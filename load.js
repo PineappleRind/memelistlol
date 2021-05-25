@@ -8,19 +8,9 @@ function clr() {
     hue = hue + 10
     return `hsl(${hue},70%,50%)`
 }
-function mergeSort(e) {
-    let t = e.length / 2;
-    return e.length < 2 ? e : merge(mergeSort(e.splice(0, t)), mergeSort(e))
-}
 
-function merge(e, t) {
-    let n = [];
-    for (; e.length && t.length;) e[0] < t[0] ? n.push(e.shift()) : n.push(t.shift());
-    return [...n, ...e, ...t]
+let sorted = things.sort();
+for (let i=0;i<things.length;i++){
+    let y = '<button class="item" style="background: ' + clr() + '">' + sorted[i] + '</button>' 
+    bod.insertAdjacentHTML('beforeend',y)
 }
-let sorted = mergeSort(things);
-it = sorted.map(function(e) {
-    return '<button class="item" style="background: ' + clr() + '">' + e + '</button>'
-}).join("") + "</button>"
-
-bod.insertAdjacentHTML('beforeend',it)
