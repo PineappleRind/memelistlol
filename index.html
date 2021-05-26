@@ -7,12 +7,17 @@
     <title>Memelist</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="dark">
+    <div id="darkToggle"></div>
     <main>
         <h1>Official Online Meme List</h1>
         <hr>
-        <b>Quick Links</b><br>
-        <a href="all.html">View All Memes</a> | <a href="all.html">Search by Letter (WIP)</a>
+        <h2>All Memes</h2><br>
+        <button onclick="Memes.load();this.remove()">Load All Memes...</button><br>
     </main>
+    <div id="overlay" style="opacity:0;pointer-events: none;"></div>
+    <div class="modalwrap">
+    </div>
+    <script src="load.js"></script>
 </body>
 </html>
