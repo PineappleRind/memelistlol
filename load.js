@@ -97,6 +97,16 @@ var memes = {
         name: "Marcello & Vivian Murphy",
         description:'The exact origin of this meme is unknown. Marcello and Vivian Murphy have extraordinary vocal chords and can do a multitude of string instrument sounds, but mainly cello and violin. Marcello got this talent from his mom, Dorothy Murphy, when she was trying to teach him how to do harp sounds (Dorothy could do harp sounds but not cello). Marcello, though, emitted a most unusual sound to Dorothy, and that was the cello. Marcello then passed the talent on to his wife and children.',
         compatible: false
+    },
+    maryolin: {
+        name: "Maryolin!",
+        description: "The exact origin of this meme is unknown. Maryolin does a weird sound that can be described like this: starting high-pitched, but not too high pitched, then up REALLY high to almost a scream, then ending in a monotone-like high-pitched voice. All this is done while saying MARYOLIN!",
+        compatible: false
+    },
+    maurice: {
+        name: "Maurice",
+        description: "This meme, Maurice (pronounced Morris), was from a drummer on GarageBand. The original Maurice from GarageBand played loose, hip-hop drums. The meme-ified Maurice could literally play anything, at any speed, to the extent that he grows another arm on his chest to help play.",
+        compatible: false
     }
 }
 let valDone = getVal(sort(memes))
