@@ -13,7 +13,10 @@
         <h1>Official Online Meme List</h1>
         <hr>
         <h2>All Memes</h2><br>
-        <button onclick="Memes.load();this.remove()">Load All Memes...</button><br>
+        <button onclick="Memes.load();this.remove()">Load All Memes...</button>
+        <i id="info" style="display:none;">Click for info. Each meme has its own description! Bold = meme craziness compatible.</i>
+    <input id="input" style="display:none;" type="text" placeholder="Search..."><button style="display:none;" id="search" onclick="autocomplete()">Go</button><br>
+        <div class="items-cont"></div>
     </main>
     <div id="overlay" style="opacity:0;pointer-events: none;"></div>
     <div class="modalwrap">

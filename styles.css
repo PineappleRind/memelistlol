@@ -144,56 +144,22 @@ button:hover {
     box-shadow: 0 0px 0px 5px rgba(255,255,255,0.3);
 }
 
-
-/* autocomplete field */ 
-
-.autocomplete {
-    /*the container must be positioned relative:*/
-    position: relative;
-    display: inline-block;
-    margin:0 !important;
-  }
   input[type=text] {
-    background-color: #18162c;
-    width: 100%;
+    background-color: #edecf6;
+    width: 80%;
     padding: 10px;
     font-size: 16px;
     margin:0 !important;
     border:0;
-    color:white;
+    color:rgb(43, 40, 40);
     outline:0;
+    border-radius:6px;
+    box-shadow: 0 0 0 10px transparent
+    ;transition: 1s;
   }
-  .autocomplete-items {
-    position: absolute;
-    border-bottom: none;
-    border-top: none;
-    z-index: 99;
-    /*position the autocomplete items to be the same width as the container:*/
-    top: 100%;
-    left: 0;
-    right: 0;
-    margin:0 !important;
-    padding:5px;
-    border-radius:5px;
-    background-color: rgb(21, 20, 31);
-    animation: pulse 3s infinite;
-  }
-  .autocomplete-items div {
-    padding: 12px;
-    cursor: pointer;
-    background-color: rgb(21, 20, 31);
-    border-bottom: 1px solid #0c0a0a;
-    margin:0 !important;
-    border-radius:5px;
-  }
-  .autocomplete-items div:hover {
-    /*when hovering an item:*/
-    background-color: rgb(38, 37, 56);
-  }
-  .autocomplete-active {
-    /*when navigating through the items using the arrow keys:*/
-    background-color: rgb(54, 121, 187) !important;
-    color: #ffffff;
+  body.dark input[type=text] {
+    background-color: #171523;
+    color:White;
   }
 @media screen and (max-width:600px) {
     .modal {

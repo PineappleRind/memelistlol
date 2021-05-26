@@ -1,5 +1,7 @@
-var bod = document.querySelector("main");
+var bod = document.querySelector(".items-cont");
+var main = document.querySelector('main')
 var cloneCount = 0
+var loaded
 var memes = {
     andrewChester: {
         name: "Andrew Chester",
@@ -18,7 +20,7 @@ var memes = {
     },
     beOneWithThePieCrust: {
         name: "Be One with the Pie Crust",
-        description: "Anthony was trying to make a gluten free/dairy free pumpkin pie. He found a recipe on YouTube featuring an energetic female Texan making a pumpkin pie. At one point she said, when molding the pie crust into the pie pan, \"Be One with the Pie Crust\". <b>To use this meme in Meme Craziness, say it slowly in an eerie, nasal kind of voice.</b>",
+        description: "Anthony was trying to make a gluten free/dairy free pumpkin pie. He found a recipe on YouTube featuring an energetic female Texan making a pumpkin pie. At one point she said, when molding the pie crust into the pie pan, \"Be One with the Pie Crust\".<hr> <b>To use this meme in Meme Craziness, say it slowly in an eerie, nasal kind of voice.</b>",
         compatible: true
     },
     boyBoy: {
@@ -33,7 +35,7 @@ var memes = {
     },
     canalaCanala: {
         name: "Canala! Canala!",
-        description: "When Anthony and Daniel were repeating memes loudly, their dad said \"Can you guys stop going around like CANALA! CANALA!?\" <b>To use this meme in Meme Craziness, say it quickly in a throaty voice. Repeat as many times as you want.</b>",
+        description: "When Anthony and Daniel were repeating memes loudly, their dad said \"Can you guys stop going around like CANALA! CANALA!?\" <hr><b>To use this meme in Meme Craziness, say it quickly in a throaty voice. Repeat as many times as you want.</b>",
         compatible: true
     },
     chocoloFudgePeanutoCaramel: {
@@ -49,6 +51,11 @@ var memes = {
     fabian: {
         name: "Fabian",
         description: "Fabian is a singer with a high-pitched, chubby, buttery voice. He once did opera. His last name is Operadio. It was made from one of Daniel's funny voice ideas.",
+        compatible: true
+    },
+    furball: {
+        name: "Furball",
+        description: "On a TV show called The Berenstain Bears, in an episode called \"The Big Blooper\", Sister and Lizzy watch a video titled \"Trouble at Big Bear High\". In the video, a basketball player says: \"Get out of my way, you furball.\" The opponent then returns with \"Who you calling furball, furball?\" And then proceeds to score a point. Sister and Lizzy then start using those phrases everywhere they go. In real life, the Meme Creators also started using it, and it became a meme. <hr><b>To use this meme in Meme Craziness, say the first phrase (\"Get out of my way, furball.\") and another person will say the second phrase (\"Who you calling furball, furball?\")",
         compatible: true
     },
     grahy: {
@@ -78,12 +85,17 @@ var memes = {
     },
     maNamesBritney: {
         name: "Ma name's BRITNEY",
-        description: "The Meme Creators asked Marc to create a few memes. One of the memes he created was called \"Ma Name's Britney\". <b>To use this meme in Meme Craziness, say it really high pitched.",
+        description: "The Meme Creators asked Marc to create a few memes. One of the memes he created was called \"Ma Name's Britney\". <hr><b>To use this meme in Meme Craziness, say it really high pitched.",
         compatible: true
     },
     meanig: {
         name: "Meanig",
         description: 'When Anthony was spamming "MEANIE" on discord, he accidentally put a G at the end instead of an E. Nowadays, the meme is used as a substitute for the word Meanie. It has no vocal form.',
+        compatible: false
+    },
+    marcelloAndVivianMurphy: {
+        name: "Marcello & Vivian Murphy",
+        description:'The exact origin of this meme is unknown. Marcello and Vivian Murphy have extraordinary vocal chords and can do a multitude of string instrument sounds, but mainly cello and violin. Marcello got this talent from his mom, Dorothy Murphy, when she was trying to teach him how to do harp sounds (Dorothy could do harp sounds but not cello). Marcello, though, emitted a most unusual sound to Dorothy, and that was the cello. Marcello then passed the talent on to his wife and children.',
         compatible: false
     }
 }
@@ -91,14 +103,10 @@ let valDone = getVal(sort(memes))
 let arrDone = propValToArr(valDone)
 var Memes = {
     load: function() {
-        bod.insertAdjacentHTML('beforeend',`<i>Click for info. Bold = meme craziness compatible.</i>
-        <form autocomplete="off" action="/action_page.php">
-  <div class="autocomplete" style="width:300px;">
-    <input id="myInput" type="text" name="myCountry" placeholder="Country">
-  </div>
-  <input type="submit">
-</form><br>`)
-        loadMemes()
+        $('input').style.display = 'inline-block'
+        $('search').style.display = 'inline-block'
+        $('info').style.display = 'block'
+       loadMemes()
     }
 }
 function $(e) {
@@ -114,23 +122,23 @@ function propValToArr(obj) {
        if (i == obj.length - 1) return arr.sort()
      }
 }
-Object.size = function(obj) {
-    var size = 0,
-      key;
-    for (key in obj) {
-      if (obj.hasOwnProperty(key)) size++;
-    }
-    return size;
-};
+function getNextKey(e, n) {
+    var r = Object.keys(e),
+        t = r.indexOf(n),
+        o = r[t + 1];
+    return e[o]
+}
+
 function sort(e) {
-    let fin = Object.keys(e)
-    .sort()
-    .reduce(function (acc, key) { 
-        acc[key] = e[key];
-        return acc;
+    let n = Object.keys(e).sort().reduce(function(n, r) {
+        return n[r] = e[r], n
     }, {});
-    console.log(fin)
-    return fin
+    return n
+}
+Object.size = function(e) {
+    var n, r = 0;
+    for (n in e) e.hasOwnProperty(n) && r++;
+    return r
 }
 let light = 0;
 function clr() {
@@ -140,23 +148,26 @@ function clr() {
 }
 
 function loadMemes() {
-    autocomplete(document.getElementById("myInput"),arrDone,valDone)
-    for (let i=0;i<Object.size(memes);i++){
-        if (valDone[i].compatible === false) {
-            var y = '<button class="item" style="background: ' + clr() + '">' + valDone[i].name + '</button>' 
-        }
-        else {
-            var y = '<button class="item" style="background: ' + clr() + '; font-weight:900;">' + valDone[i].name + '</button>' 
-        }
-        bod.insertAdjacentHTML('beforeend',y)
-        setTimeout(function(){
-            let o = document.querySelectorAll('.item')[i]
+    loaded = true;
+    for (let i = 0; i < Object.size(memes); i++) {
+        var y = document.createElement('BUTTON')
+        y.classList.add('item')
+        y.innerHTML = valDone[i].name
+        y.style.background = clr()
+        y.description = getNextKey(valDone[i],'name')
+        if (valDone[i].compatible === true) y.style.fontWeight = '900';
+        bod.appendChild(y)
+
+        setTimeout(function() {
+            var o = document.querySelectorAll('.item')[i]
             o.onclick = () => {
-                modal(o,valDone[i].name,valDone[i].description)
+                modal(o, o.innerHTML, o.description)
             }
-            //console.clear()
-        })
+            removeText(bod.firstChild)
+        //console.clear()
+    })
     }
+    bod.insertAdjacentHTML('beforeend', y)
 }
 function modal(btn,name,desc) {
     let o = $('overlay')
@@ -194,7 +205,7 @@ function showModal(r,t) {
 }
 function closeModal(o,m) {
     m.style.opacity = '0'
-    m.style.transform = 'translateY(10px)'
+    m.style.transform = 'translateY(30px)'
     setTimeout(function(){
         m.remove()
         o.setAttribute('style','opacity:0;pointer-events: none;')
@@ -205,99 +216,44 @@ $('darkToggle').onclick = () => {
 }
 
 
-function autocomplete(inp, arr,obj) {
-    /*the autocomplete function takes two arguments,
-    the text field element and an array of possible autocompleted values:*/
-    var currentFocus;
-    /*execute a function when someone writes in the text field:*/
-    inp.addEventListener("input", function(e) {
-        var a, b, i, val = this.value;
-        /*close any already open lists of autocompleted values*/
-        closeAllLists();
-        if (!val) { return false;}
-        currentFocus = -1;
-        /*create a DIV element that will contain the items (values):*/
-        a = document.createElement("DIV");
-        a.setAttribute("id", this.id + "autocomplete-list");
-        a.setAttribute("class", "autocomplete-items");
-        /*append the DIV element as a child of the autocomplete container:*/
-        this.parentNode.appendChild(a);
-        /*for each item in the array...*/
-        for (i = 0; i < arr.length; i++) {
-          /*check if the item starts with the same letters as the text field value:*/
-          if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
-            /*create a DIV element for each matching element:*/
-            b = document.createElement("DIV");
-            /*make the matching letters bold:*/
-            b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
-            b.innerHTML += arr[i].substr(val.length);
-            /*insert a input field that will hold the current array item's value:*/
-            b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
-            /*execute a function when someone clicks on the item value (DIV element):*/
-                b.addEventListener("click", function(e) {
-                /*insert the value for the autocomplete text field:*/
-                inp.value = this.getElementsByTagName("input")[0].value;
-                /*close the list of autocompleted values,
-                (or any other open lists of autocompleted values:*/
-                closeAllLists();
-            });
-            a.appendChild(b);
-          }
+function autocomplete() {
+    let input = document.getElementById('input')
+    let removeCount = 0
+    clear()
+    setTimeout(function(){loadMemes();
+    setTimeout(function(){
+        searchDups()
+        for (let i = 0; i < 5; i++){
+            for (let j = 0; j < document.getElementsByClassName('item').length; j++) {
+                let content = document.getElementsByClassName('item')[j].textContent.toLowerCase()
+                if (!content.includes(input.value)) document.getElementsByClassName('item')[j].remove()
+                removeCount++
+                if (document.getElementsByClassName('item').length == 0) main.innerHTML += 'No results :( <button onclick="window.location.href=\'https://memelist.ml\'">Try again</button>'
+            }
         }
-    });
-    /*execute a function presses a key on the keyboard:*/
-    inp.addEventListener("keydown", function(e) {
-        var x = document.getElementById(this.id + "autocomplete-list");
-        if (x) x = x.getElementsByTagName("div");
-        if (e.keyCode == 40) {
-          /*If the arrow DOWN key is pressed,
-          increase the currentFocus variable:*/
-          currentFocus++;
-          /*and and make the current item more visible:*/
-          addActive(x);
-        } else if (e.keyCode == 38) { //up
-          /*If the arrow UP key is pressed,
-          decrease the currentFocus variable:*/
-          currentFocus--;
-          /*and and make the current item more visible:*/
-          addActive(x);
-        } else if (e.keyCode == 13) {
-          /*If the ENTER key is pressed, prevent the form from being submitted,*/
-          e.preventDefault();
-          if (currentFocus > -1) {
-            /*and simulate a click on the "active" item:*/
-            if (x) x[currentFocus].click();
-          }
+    },100)},100)
+}
+function clear() {
+    bod.innerHTML = ''
+}
+function searchDups() {
+    let items = document.getElementsByClassName('item')
+    for (let i = 0; i > items.length; i++) {
+        for (let j = 0; j > items.length; j++) {
+            if (items[i].innerHTML == items[j].innerHTML) {
+                items[j].remove()
+            }
         }
-    });
-    function addActive(x) {
-      /*a function to classify an item as "active":*/
-      if (!x) return false;
-      /*start by removing the "active" class on all items:*/
-      removeActive(x);
-      if (currentFocus >= x.length) currentFocus = 0;
-      if (currentFocus < 0) currentFocus = (x.length - 1);
-      /*add class "autocomplete-active":*/
-      x[currentFocus].classList.add("autocomplete-active");
     }
-    function removeActive(x) {
-      /*a function to remove the "active" class from all autocomplete items:*/
-      for (var i = 0; i < x.length; i++) {
-        x[i].classList.remove("autocomplete-active");
-      }
+}
+function removeText(child) {
+
+while (child) {
+    nextSibling = child.nextSibling;
+    if (child.nodeType == 3) {
+        child.parentNode.removeChild(child);
     }
-    function closeAllLists(elmnt) {
-      /*close all autocomplete lists in the document,
-      except the one passed as an argument:*/
-      var x = document.getElementsByClassName("autocomplete-items");
-      for (var i = 0; i < x.length; i++) {
-        if (elmnt != x[i] && elmnt != inp) {
-        x[i].parentNode.removeChild(x[i]);
-      }
-    }
-  }
-  /*execute a function when someone clicks in the document:*/
-  document.addEventListener("click", function (e) {
-      closeAllLists(e.target);
-  });
-  }
+    child = nextSibling;
+}
+
+}
