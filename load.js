@@ -117,6 +117,16 @@ var memes = {
         name: "Region of Prescott",
         description: "An announcer on a TV show was recorded saying \"Region of Prescott\". <hr><b>To use this meme in Meme Craziness, say each syllable in the following intonation: low, low, low, high, very high",
         compatible: true
+    },
+    scuzi: {
+        name: "Scuzi",
+        description: "Working on it :) <hr> <b> To use this meme in Meme Craziness, undefined </b>",
+        compatible: true
+    },
+    titongoGetNoPay: {
+        name: "TITONGO GET NO PAY",
+        description: "This meme refers to an Argentinian web developer who designed the UtilityBot website. The website looked horrible and Andrew decided to not pay him (he never said he was paying anyway). <hr><b>To use this meme in Meme Craziness, say it in a high-pitched Indian Voice.</b>",
+        compatible: true
     }
 }
 let valDone = getVal(sort(memes))
