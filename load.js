@@ -107,6 +107,16 @@ var memes = {
         name: "Maurice",
         description: "This meme, Maurice (pronounced Morris), was from a drummer on GarageBand. The original Maurice from GarageBand played loose, hip-hop drums. The meme-ified Maurice could literally play anything, at any speed, to the extent that he grows another arm on his chest to help play.",
         compatible: false
+    },
+    rambleberry: {
+        name: "Rambleberry",
+        description: "In one of the Meme Creator's beds, a picture was taken of a Meme Creator making a funny face. The face is extremely hard to describe! It ended up being called the Rambleberry Face. A song has been made about it.",
+        compatible: false
+    },
+    regionOfPrescott: {
+        name: "Region of Prescott",
+        description: "An announcer on a TV show was recorded saying \"Region of Prescott\". <hr><b>To use this meme in Meme Craziness, say each syllable in the following intonation: low, low, low, high, very high",
+        compatible: true
     }
 }
 let valDone = getVal(sort(memes))
