@@ -2,6 +2,7 @@ var bod = document.querySelector(".items-cont");
 var main = document.querySelector('main')
 var cloneCount = 0
 var loaded
+document.write('johnathan you are banging my daughter')
 var memes = {
     andrewChester: {
         name: "Andrew Chester",
