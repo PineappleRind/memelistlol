@@ -130,7 +130,8 @@ var memes = {
     },
     zhou: {
         name: "Zhou",
-        description: "One of the Meme Creators said to the other, \"Zhou\". The other Meme Creator died laughing. Another form: \"We are going to the Zhou.\" <hr> <b>To use this meme in meme craziness, say it with an unnatural elongation of the syllable Zh and slightly high-pitched voice, ending with the Ou a little lower.</b>"
+        description: "One of the Meme Creators said to the other, \"Zhou\". The other Meme Creator died laughing. Another form: \"We are going to the Zhou.\" <hr> <b>To use this meme in meme craziness, say it with an unnatural elongation of the syllable Zh and slightly high-pitched voice, ending with the Ou a little lower.</b>",
+        compatible: true
     }
 }
 let valDone = getVal(sort(memes))
