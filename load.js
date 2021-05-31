@@ -120,13 +120,17 @@ var memes = {
     },
     scuzi: {
         name: "Scuzi",
-        description: "Working on it :) <hr> <b> To use this meme in Meme Craziness, undefined </b>",
+        description: "The exact origin of this meme is unknown. Here's a story associated with the meme: It's 1 AM. The Meme Creator is in the bed with Andrew. Andrew asked the Meme Creator to say Scuzi. He did. <hr> <b> To use this meme in Meme Craziness, say each syllable with the following intonations: scu medium, zi low then high </b>",
         compatible: true
     },
     titongoGetNoPay: {
         name: "TITONGO GET NO PAY",
         description: "This meme refers to an Argentinian web developer who designed the UtilityBot website. The website looked horrible and Andrew decided to not pay him (he never said he was paying anyway). <hr><b>To use this meme in Meme Craziness, say it in a high-pitched Indian Voice.</b>",
         compatible: true
+    },
+    zhou: {
+        name: "Zhou",
+        description: "One of the Meme Creators said to the other, \"Zhou\". The other Meme Creator died laughing. Another form: \"We are going to the Zhou.\" <hr> <b>To use this meme in meme craziness, say it with an unnatural elongation of the syllable Zh and slightly high-pitched voice, ending with the Ou a little lower.</b>"
     }
 }
 let valDone = getVal(sort(memes))
