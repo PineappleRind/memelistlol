@@ -89,7 +89,7 @@ function buttonClone(e) {
         e.appendChild(y)
         setTimeout(function(){
             y.remove()
-        },800)
+        },1000)
     }
     else return
     cloneCount++
