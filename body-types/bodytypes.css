@@ -73,8 +73,13 @@ th {
   top:0;bottom:0;right:0;left:0;
   height:100%;
   width:100%;
+  opacity:0;
+  pointer-events:none;
 }
-
+.modal-wrap.open {
+  opacity:0;
+  pointer-events:all;
+}
 .modal-align {
   position:fixed;
   z-index:3;
