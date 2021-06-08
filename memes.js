@@ -11,12 +11,12 @@ var memes = {
     },
     aurearaBorealis: {
         name: "Aureara Borealis",
-        description: "When Daniel was saying the phrase Aurora Borealis, he made a mistake and called it Aureara Borealis. The reaction was good enough to make the term a meme.",
+        description: "When Meme Creator 1 was saying the phrase Aurora Borealis, he made a mistake and called it Aureara Borealis. The reaction was good enough to make the term a meme.",
         compatible: false
     },
     beOneWithThePieCrust: {
         name: "Be One with the Pie Crust",
-        description: "Anthony was trying to make a gluten free/dairy free pumpkin pie. He found a recipe on YouTube featuring an energetic female Texan making a pumpkin pie. At one point she said, when molding the pie crust into the pie pan, \"Be One with the Pie Crust\".<hr> <b>To use this meme in Meme Craziness, say it slowly in an eerie, nasal kind of voice.</b>",
+        description: "Meme Creator 2 was trying to make a gluten free/dairy free pumpkin pie. He found a recipe on YouTube featuring an energetic female Texan making a pumpkin pie. At one point she said, when molding the pie crust into the pie pan, \"Be One with the Pie Crust\".<hr> <b>To use this meme in Meme Craziness, say it slowly in an eerie, nasal kind of voice.</b>",
         compatible: true
     },
     bodyTypes: {
@@ -26,7 +26,7 @@ var memes = {
     },
     boyBoy: {
         name: "BOYBOY",
-        description: "On Discord, Anthony was spamming calling someone \"boy\", when he skipped pressing the Enter key to send it, causing a duplication of Boy.",
+        description: "On Discord, Meme Creator 2 was spamming calling someone \"boy\", when he skipped pressing the Enter key to send it, causing a duplication of Boy.",
         compatible: false
     },
     cheapoulearni: {
@@ -36,7 +36,7 @@ var memes = {
     },
     canalaCanala: {
         name: "Canala! Canala!",
-        description: "When Anthony and Daniel were repeating memes loudly, their dad said \"Can you guys stop going around like CANALA! CANALA!?\" <hr><b>To use this meme in Meme Craziness, say it quickly in a throaty voice. Repeat as many times as you want.</b>",
+        description: "When the Meme Creators were repeating memes loudly, their dad said \"Can you guys stop going around like CANALA! CANALA!?\" <hr><b>To use this meme in Meme Craziness, say it quickly in a throaty voice. Repeat as many times as you want.</b>",
         compatible: true
     },
     chocoloFudgePeanutoCaramel: {
@@ -51,7 +51,7 @@ var memes = {
     },
     fabian: {
         name: "Fabian",
-        description: "Fabian is a singer with a high-pitched, chubby, buttery voice. He once did opera. His last name is Operadio. It was made from one of Daniel's funny voice ideas.",
+        description: "Fabian is a singer with a high-pitched, chubby, buttery voice. He once did opera. His last name is Operadio. It was made from one of Meme Creator 1's funny voice ideas.",
         compatible: true
     },
     furball: {
@@ -66,22 +66,22 @@ var memes = {
     },
     guySax: {
         name: "Guy Sax",
-        description: "At a dinner table one evening, music started playing that sounded chill and attractive to listen to. Daniel consequently sucked in his cheeks and picked up a glass and calmly started drinking from it while twitching his eyebrows upward. It was called guy sax.",
+        description: "At a dinner table one evening, music started playing that sounded chill and attractive to listen to. Meme Creator 1 consequently sucked in his cheeks and picked up a glass and calmly started drinking from it while twitching his eyebrows upward. It was called guy sax.",
         compatible: false
     },
     heathersKitchenParty: {
         name: "Heather's Kitchen Party",
-        description: "On the radio, Thomas happened to catch a funny ad of \"Heather's Kithen Party, April 28th\" and record it.",
+        description: "On the radio, Meme Creator 3 happened to catch a funny ad of \"Heather's Kithen Party, April 28th\" and record it.",
         compatible: false
     },
     heyMorgan: {
         name: "Hey, Morgan! Yes?",
-        description: "At Ripley's Aquarium, one of the divers was feeding the fish, while a woman was outside of the tank asking questions to the diver. Whenever she wanted to ask a question, she said this: \"Hey, Morgan?\" very obnoxiously, and receive a very nasal-sounding reply: \"Yes?\". <hr> <b>To use this meme in Meme Craziness, say Hey, Morgan with an increased amount of intonation on the middle syllable of Morgan, and after that say Yesh? very nasally sounding.</b>",
+        description: "At Ripley's Aquarium, one of the divers was feeding the fish, while a woman was outside of the tank asking questions to the diver. Whenever she wanted to ask a question, she said this: \"Hey, Morgan?\" very obnoxiously, and receive a very nasal-sounding reply: \"Yes?\". On Halloween the next year, when trick-or-treating, the Meme Creators were repeating this meme. Another trick-or-treater said \"Shut up.\"<hr> <b>To use this meme in Meme Craziness, say Hey, Morgan with an increased amount of intonation on the middle syllable of Morgan, and after that say Yesh? very nasally sounding.</b>",
         compatible: true
     },
     hooie: {
         name: "Hooie",
-        description: "This is one of the first memes ever created! The exact origin of this meme is not clear, but it has to do with one of Daniel's random sounds he made. Due to the funniness of this meme, the \"Hooy Club\" (as it was called originally) was formed, with Daniel being the Hooy Chief. It was later discontinued.",
+        description: "This is one of the first memes ever created! The exact origin of this meme is not clear, but it has to do with one of Meme Creator 1's random sounds he made. Due to the funniness of this meme, the \"Hooy Club\" (as it was called originally) was formed, with Meme Creator 1 being the Hooy Chief. It was later discontinued.",
         compatible: true
     },
     johnAndGladys: {
@@ -96,7 +96,7 @@ var memes = {
     },
     meanig: {
         name: "Meanig",
-        description: 'When Anthony was spamming "MEANIE" on discord, he accidentally put a G at the end instead of an E. Nowadays, the meme is used as a substitute for the word Meanie. It has no vocal form.',
+        description: 'When Meme Creator 2 was spamming "MEANIE" on discord, he accidentally put a G at the end instead of an E. Nowadays, the meme is used as a substitute for the word Meanie. It has no vocal form.',
         compatible: false
     },
     marcelloAndVivianMurphy: {
