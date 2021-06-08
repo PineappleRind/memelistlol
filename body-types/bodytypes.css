@@ -61,6 +61,7 @@ th {
   transition:0.5s;
   position:relative;
   z-index:100;
+  max-width:50%;
 }
 
 .modal.open {
@@ -105,6 +106,8 @@ th {
 top:20px;
   right:20px;
   cursor:pointer;
+  text-shadow: 0 0 10px black;
+  z-index:1000;
 }
 .modal.close:hover {
 font-weight:500
