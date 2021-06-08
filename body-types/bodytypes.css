@@ -79,7 +79,7 @@ th {
   transition: 0.5s;
 }
 .modal-wrap.open {
-  opacity:0;
+  opacity:1;
   pointer-events:all;
    background:rgba(0,0,0,0.4);
   backdrop-filter:blur(2px);
