@@ -18,4 +18,10 @@ function openModal(e,t){
   modal.innerHTML = html
   modalWrap.classList.add('open')
   modal.classList.add('open')
+  
+  modalWrap.onclick = closeModal
 }
+
+function closeModal(){ let modalWrap = $('.modal-wrap')[0];
+  let modal = $('.modal')[0];modalWrap.classList.add('open');
+  modal.classList.add('open')}
