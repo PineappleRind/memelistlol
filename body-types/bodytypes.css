@@ -36,6 +36,10 @@ th, td {
   color:white;
   font-weight:300;
 }td{border:1px solid #222}
+td:hover {
+transform:translateY(-10px);
+  box-shadow: 0 0 10px rgba(200,200,200,0.2)
+}
 
 tr:nth-child(even){background: #000}
 tr:nth-child(odd){background: #0d0d0d}
@@ -106,7 +110,7 @@ th {
 top:20px;
   right:20px;
   cursor:pointer;
-  text-shadow: 0 0 10px black;
+  text-shadow: 0 0 10px black,0 0 10px black;
   z-index:1000;
 }
 .modal.close:hover {
