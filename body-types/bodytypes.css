@@ -1,7 +1,7 @@
 *{margin:0;font-family:system-ui, Roboto, sans-serif}
 
 body {
-  background: #0d0d0d;
+  background: #111;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -41,7 +41,7 @@ tr:nth-child(even){background: #000}
 tr:nth-child(odd){background: #0d0d0d}
 
 th {
-  background-color: dodgerblue;
+  background-color: rgb(50,0,200);
   color: white;
   font-weight:600;
 }
