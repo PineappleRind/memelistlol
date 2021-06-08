@@ -11,7 +11,6 @@ for (let i = 0; i < $('td').length; i++) {
   let modalWrap = $('.modal-wrap')[0]
   let modal = $('.modal')[0]
     modalWrap.onclick = closeModal
-a
 function openModal(e,t){
   let html = `
   <h1>Body Type: ${e}</h1>
