@@ -19,7 +19,7 @@ th {
   background: #222;
   font-weight:800;
   color:white;
-  padding:10px;
+  padding:17px;
 }
 
 table {
@@ -35,7 +35,7 @@ th, td {
   padding: 10px;
   color:black;
   font-weight:300;
-}
+}td{border:1px solid #ccc}
 
 tr:nth-child(even){background: #fff}
 tr:nth-child(odd){background: #f2f2f2}
