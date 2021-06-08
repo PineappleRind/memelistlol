@@ -85,7 +85,6 @@ th {
   pointer-events:all;
    background:rgba(255,255,255,0.1);
   backdrop-filter:blur(8px);
-  z-index:5;
 }
 .modal-align {
   position:fixed;
@@ -97,4 +96,16 @@ th {
   display:flex;
   align-items:center;
   justify-content:center;
+}
+.modal.close{
+  position:absolute;
+  margin:0;
+  font-size:30px;
+  font-weight:200;
+top:20px;
+  right:20px;
+  cursor:pointer
+}
+.modal.close:hover {
+font-weight:500
 }
