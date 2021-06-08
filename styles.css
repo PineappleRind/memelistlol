@@ -6,15 +6,15 @@ body {
     transition: 1s ease-in-out;
 }
 body.dark {
-    background: #0d0d3e;
+    background: #000020;
 }
 body.dark .modal, body.dark main {
-    background: #222343;
+    background: #222244;
     color:white;
     transition: 1s ease-in-out;
 }
 body.dark #overlay {
-    background: rgba(0, 0, 20, 0.541)
+    background: rgba(36, 36, 60, 0.541)
 }
 main {
     width:94%;
@@ -62,7 +62,7 @@ body.dark #darkToggle::after {
     left:0;
     right:0;
     bottom:0;
-    background:rgba(0,0,50,0.6);
+    background:rgba(0,0,60,0.6);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     margin:0;
@@ -159,7 +159,7 @@ button:hover {
     ;transition: 1s;
   }
   body.dark input[type=text] {
-    background-color: #171540;
+    background-color: #111131;
     color:White;
   }
 @media screen and (max-width:600px) {
