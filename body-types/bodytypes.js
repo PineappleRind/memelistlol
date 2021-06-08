@@ -16,14 +16,11 @@ function openModal(e,t){
   <h1>Body Type: ${e}</h1>
   <p>${t}</p>
   `
-
   modal.innerHTML = html
   modalWrap.classList.add('open')
   modal.classList.add('open')
-  
-
 }
 
 function closeModal(){ let modalWrap = $('.modal-wrap')[0];
-  let modal = $('.modal')[0];modalWrap.classList.add('open');
-  modal.classList.add('open')}
+  let modal = $('.modal')[0];modalWrap.classList.remove('open');
+  modal.classList.remove('open')}
