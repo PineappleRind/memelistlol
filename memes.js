@@ -145,3 +145,9 @@ var memes = {
         compatible: true
     }
 }
+var size = 0,
+    key;
+for (key in memes) {
+ if (memes.hasOwnProperty(key)) size++;
+}
+console.log(size)
