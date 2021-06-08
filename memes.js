@@ -19,6 +19,11 @@ var memes = {
         description: "Anthony was trying to make a gluten free/dairy free pumpkin pie. He found a recipe on YouTube featuring an energetic female Texan making a pumpkin pie. At one point she said, when molding the pie crust into the pie pan, \"Be One with the Pie Crust\".<hr> <b>To use this meme in Meme Craziness, say it slowly in an eerie, nasal kind of voice.</b>",
         compatible: true
     },
+    bodyTypes: {
+        name: "Body Types",
+        description: "This meme is about the shapes of some people's bodies. For example, a Ball is shaped like a ball. <b>We have a website JUST for body types! <a href=\"/body-types\">Here it is :)</a>",
+        compatible: false
+    },
     boyBoy: {
         name: "BOYBOY",
         description: "On Discord, Anthony was spamming calling someone \"boy\", when he skipped pressing the Enter key to send it, causing a duplication of Boy.",
