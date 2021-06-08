@@ -37,7 +37,9 @@ th, td {
   font-weight:300;
 }td{border:1px solid #222}
 td:hover {
-transform:translateY(-10px);
+transform:translateY(-2px);
+  cursor:pointer;
+  opacity:0.3;
   box-shadow: 0 0 10px rgba(200,200,200,0.2)
 }
 
