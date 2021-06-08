@@ -59,6 +59,8 @@ th {
   transform:translateY(30px);
   color:white;
   transition:0.5s;
+  position:relative;
+  z-index:100;
 }
 
 .modal.open {
@@ -83,6 +85,7 @@ th {
   pointer-events:all;
    background:rgba(255,255,255,0.1);
   backdrop-filter:blur(8px);
+  z-index:5;
 }
 .modal-align {
   position:fixed;
