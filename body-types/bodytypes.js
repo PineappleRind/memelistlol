@@ -5,6 +5,7 @@ for (let i = 0; i < $('td').length; i++) {
     let desc = $('td').getAttribute('description')
     openModal($('td').innerHTML,desc)
   }
+  console.log(i)
 }
 
 function openModal(e,t){
