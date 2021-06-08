@@ -124,9 +124,14 @@ var memes = {
         description: "In mid-2019, on a cruise ship, the cruise director's name was Ricky. Meme Creator 3 was terrified of him because he made scary jokes like \"In Jamaica we skated on grass. No, not that type of grass.\". For the next few years, Ricky was stalking the Meme Creators. When Meme Creator 2 generated AI sentences, one of them was \"Ricky's Hot Dogs with Cheese on top\". And, on WWDC 2021, one of the Animojis on the thumbnail looked like Ricky!",
         compatible: false
     },
+    rupert: {
+        name: "Rupert",
+        description: "Meme Creator 1 had a thought: Rupert is a funny name. When he saw the name Prince Rupert, he associated it with the funny name, and created Rupert. <hr><b>To usee this meme in Meme Craziness, say: \"My name is Rupert\" in a very throaty voice that is hard to do.</b>",
+        compatible: true
+    },
     scuzi: {
         name: "Scuzi",
-        description: "The exact origin of this meme is unknown. Here's a story associated with the meme: It's 1 AM. The Meme Creator is in the bed with Andrew. Andrew asked the Meme Creator to say Scuzi. He did. <hr> <b> To use this meme in Meme Craziness, say each syllable with the following intonations: scu medium, zi low then high </b>",
+        description: "In the Meme Creators' House, an Italian cleaner was cleaning and got in the way with the Meme Creator's aunt. The Meme Creators' aunt then said: \"Scuzi\" (excuse me in Italian). The meme creators thought it was funny for a non-Italian to say something in Italian. Here's a story associated with the meme: It's 1 AM. The Meme Creator is in the bed with Andrew. Andrew asked the Meme Creator to say Scuzi. He did. <hr> <b> To use this meme in Meme Craziness, say each syllable with the following intonations: scu medium, zi low then high </b>",
         compatible: true
     },
     titongoGetNoPay: {
