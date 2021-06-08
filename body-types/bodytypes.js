@@ -2,8 +2,8 @@ function $(id){return document.querySelectorAll(id)}
 
 for (let i = 0; i < $('td').length; i++) {
   $('td')[i].onclick = () => {
-    let desc = $('td').getAttribute('description')
-    openModal($('td').innerHTML,desc)
+    let desc = $('td')[i].getAttribute('description')
+    openModal($('td')[i].innerHTML,desc)
   }
   console.log(i)
 }
