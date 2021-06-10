@@ -86,8 +86,13 @@ var memes = {
     },
     johnAndGladys: {
         name: "John and Gladys",
-        description: "The Meme Creators turned shared features in some grandparents into stereotypes. These included taking a walk with their neighbor occasionally, sitting on the veranda on a rocking chair, having grandchildren, and having a carpenter husband whose name is John.",
+        description: "The Meme Creators turned shared features in some grandparents into stereotypes. These included taking a walk with their neighbor occasionally, sitting on the veranda on a rocking chair, having grandchildren visit, and having a carpenter husband whose name is John.",
         compatible: false
+    },
+    lordeGorde: {
+        name: "LordeGorde",
+        description: "The Meme Creators asked Marc to create a few memes. One of the memes he created was called \"LordeGorde\". Marc said that we should say LORDEGORDE! when something goes wrong, for example: when someone falls off the bed \"LORDEGORDE\"! <hr><b>To use this meme in Meme Craziness, say LORDEGORDE with the following intonation: L medium, O high, RDE falling, GORDE rising.</b>",
+        compatible: true
     },
     maNamesBritney: {
         name: "Ma name's BRITNEY",
