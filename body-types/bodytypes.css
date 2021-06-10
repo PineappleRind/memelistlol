@@ -8,7 +8,7 @@ body {
   height:100vh;
   color:white;
 }
-h1{font-size:24px;}
+h1{font-size:24px;color:white;margin-bottom:10px}
 table {
   padding:0;
   box-shadow: 0 3px 10px rgba(0,0,0,0.3);
