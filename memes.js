@@ -44,6 +44,11 @@ var memes = {
         description: "The meme creators noticed that Sean had the essence of the name o'Henry, like the popular candy bar. They started associating the slogan of that candy bar with Sean, which was \"Chocolo-fudge Peanuto-caramel. O'Henry. Have it all.\" This was shortened to just Chocolo-fudge peanuto-caramel.",
         compatible: false
     },
+    compression: {
+        name: "Compression",
+        description: "Compression is a quality of person. Compressed people are more likely to have forehead wrinkles and dimples, and have male pattern baldness. You can even hear the compression in the voice! To simulate a compressed person, put two hands on each cheek and push in towards your mouth hard. Then talk. You will sound compressed!",
+        compatible: false
+    },
     deepDave: {
         name: "Deep Dave",
         description: "Inspired by deep-voice announcers like Redd Pepper and the VoiceOver welcome voice, Deep Dave is a deep-voiced character made by Daniel. His catchphrase is \"My name is Dave.\"",
