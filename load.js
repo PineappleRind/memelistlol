@@ -150,6 +150,14 @@ function searchDups() {
         }
     }
 }
+function onlyCraziness() {
+    let items = document.getElementsByClassName('item')
+    for (let i = 0; i > items.length; i++) {
+            if (items[i].style.fontWeight != '900') {
+                items[i].remove()
+            }
+    }
+}
 function removeText(child) {
 
 while (child) {
@@ -160,4 +168,17 @@ while (child) {
     child = nextSibling;
 }
 
+}
+
+onclick = () => {
+if ($('check').checked == true) {
+onlyCraziness()
+}
+    else {
+    clear()
+    setTimeout(function(){loadMemes();
+    setTimeout(function(){
+        searchDups()
+    }
+},100)},100)
 }
