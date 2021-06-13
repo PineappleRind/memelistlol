@@ -94,11 +94,17 @@ var memes = {
         description: "The Meme Creators turned shared features in some grandparents into stereotypes. These included taking a walk with their neighbor occasionally, sitting on the veranda on a rocking chair, having grandchildren visit, and having a carpenter husband whose name is John.",
         compatible: false
     },
+    limpFish: {
+        name: "Limp Fish",
+        description: "Meme Creator 3 received a very tight hug by his uncle. When Meme Creator 3 returned the hug weakly, his uncle called him a Limp Fish!",
+        compatible: false
+    },
     lordeGorde: {
         name: "LordeGorde",
         description: "The Meme Creators asked Marc to create a few memes. One of the memes he created was called \"LordeGorde\". Marc said that we should say LORDEGORDE! when something goes wrong, for example: when someone falls off the bed \"LORDEGORDE\"! <hr><b>To use this meme in Meme Craziness, say LORDEGORDE with the following intonation: L medium, O high, RDE falling, GORDE rising.</b>",
         compatible: true
     },
+    luvya: {},
     maNamesBritney: {
         name: "Ma name's BRITNEY",
         description: "The Meme Creators asked Marc to create a few memes. One of the memes he created was called \"Ma Name's Britney\". <hr><b>To use this meme in Meme Craziness, say it really high pitched.",
@@ -170,4 +176,4 @@ var size = 0,
 for (key in memes) {
  if (memes.hasOwnProperty(key)) size++;
 }
-console.log(size)
+document.body.insertAdjacentHTML('beforeend',size)
