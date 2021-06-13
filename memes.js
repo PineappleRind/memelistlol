@@ -104,7 +104,11 @@ var memes = {
         description: "The Meme Creators asked Marc to create a few memes. One of the memes he created was called \"LordeGorde\". Marc said that we should say LORDEGORDE! when something goes wrong, for example: when someone falls off the bed \"LORDEGORDE\"! <hr><b>To use this meme in Meme Craziness, say LORDEGORDE with the following intonation: L medium, O high, RDE falling, GORDE rising.</b>",
         compatible: true
     },
-    luvya: {},
+    luvya: {
+        name: "Luvya",
+        description: "The Meme Creators' grandmother, instead of saying love you, said Luvya.",
+        compatible: false
+    },
     maNamesBritney: {
         name: "Ma name's BRITNEY",
         description: "The Meme Creators asked Marc to create a few memes. One of the memes he created was called \"Ma Name's Britney\". <hr><b>To use this meme in Meme Craziness, say it really high pitched.",
@@ -128,6 +132,11 @@ var memes = {
     maurice: {
         name: "Maurice",
         description: "This meme, Maurice (pronounced Morris), was from a drummer on GarageBand. The original Maurice from GarageBand played loose, hip-hop drums. The meme-ified Maurice could literally play anything, at any speed, to the extent that he grows another arm on his chest to help play.",
+        compatible: false
+    },
+    prudence: {
+        name: "Prudence",
+        description: "The Meme Creators found an old picture of their aunt putting her finger on her chin and staring off into the distance. The word \"Prudence\" was associated with the picture. Later on, attributes to the meme such as the Plum of Prudence were added.",
         compatible: false
     },
     rambleberry: {
