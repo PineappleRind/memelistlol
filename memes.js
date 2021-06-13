@@ -59,6 +59,11 @@ var memes = {
         description: "Fabian is a singer with a high-pitched, chubby, buttery voice. He once did opera. His last name is Operadio. It was made from one of Meme Creator 1's funny voice ideas.",
         compatible: true
     },
+    fruitOfThePerson: {
+        name: "Fruit of the Person",
+        description: "Most people have qualities that are like fruits. For example, a person with a small, round face would be a cherry tomato. A person with a large, oval face would be a watermelon. The factor of what makes someone their fruit is not just limited to their facial shape, however. Some people can be almonds because their skin is darker than normal and their voice sounds a little starchy.",
+        compatible: false
+    },
     furball: {
         name: "Furball",
         description: "On a TV show called The Berenstain Bears, in an episode called \"The Big Blooper\", Sister and Lizzy watch a video titled \"Trouble at Big Bear High\". In the video, a basketball player says: \"Get out of my way, you furball.\" The opponent then returns with \"Who you calling furball, furball?\" And then proceeds to score a point. Sister and Lizzy then start using those phrases everywhere they go. In real life, the Meme Creators also started using it, and it became a meme. <hr><b>To use this meme in Meme Craziness, say the first phrase (\"Get out of my way, furball.\") and another person will say the second phrase (\"Who you calling furball, furball?\")",
