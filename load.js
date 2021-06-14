@@ -180,5 +180,7 @@ onlyCraziness()
     setTimeout(function(){
         searchDups()
     }
-},100)},100)
+,100)
+},100)
+    }
 }
