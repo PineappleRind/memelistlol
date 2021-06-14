@@ -7,7 +7,7 @@ body {
 }
 a {color:white}
 body.dark {
-    background: #000020;
+    background: #050520;
 }
 body.dark .modal, body.dark main {
     background: #222244;

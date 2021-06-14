@@ -121,7 +121,7 @@ var memes = {
     },
     meanig: {
         name: "Meanig",
-        description: 'When Meme Creator 2 was spamming "MEANIE" on discord, he accidentally put a G at the end instead of an E. Nowadays, the meme is used as a substitute for the word Meanie. It has no vocal form.',
+        description: 'When Meme Creator 2 was spamming MEANIE on discord, he accidentally put a G at the end instead of an E. Nowadays, the meme is used as a substitute for the word Meanie. It has no vocal form.',
         compatible: false
     },
     marcelloAndVivianMurphy: {
