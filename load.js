@@ -10,22 +10,25 @@ var Memes = {
         $('input').style.display = 'inline-block'
         $('search').style.display = 'inline-block'
         $('info').style.display = 'block'
-       loadMemes()
+        loadMemes()
     }
 }
+
 function $(e) {
     return document.getElementById(e)
 }
+
 function getVal(e) {
     return Object.values(e)
 }
+
 function propValToArr(obj) {
     var arr = [];
     for (let i = 0; i < obj.length; i++) {
-        arr.push(obj[i].name)
-       if (i == obj.length - 1) return arr.sort()
-     }
+        arr.push(obj[i].name) if (i == obj.length - 1) return arr.sort()
+    }
 }
+
 function getNextKey(e, n) {
     var r = Object.keys(e),
         t = r.indexOf(n),
@@ -45,6 +48,7 @@ Object.size = function(e) {
     return r
 }
 let light = 0;
+
 function clr() {
     light = light + 10
     if (light <= 100 || light >= 50) return `hsl(${light},100%,30%)`
@@ -54,66 +58,51 @@ function clr() {
 function loadMemes() {
     loaded = true;
     for (let i = 0; i < Object.size(memes); i++) {
-        var y = document.createElement('BUTTON')
-        y.classList.add('item')
-        y.innerHTML = valDone[i].name
-        y.style.background = clr()
-        y.description = getNextKey(valDone[i],'name')
-        if (valDone[i].compatible === true) y.style.fontWeight = '900';
-        bod.appendChild(y)
-
-        setTimeout(function() {
-            var o = document.querySelectorAll('.item')[i]
-            o.onclick = () => {
+        var y = document.createElement('BUTTON') y.classList.add('item') y.innerHTML = valDone[i].name y.style.background = clr() y.description = getNextKey(valDone[i], 'name') if (valDone[i].compatible === true) y.style.fontWeight = '900';
+        bod.appendChild(y) setTimeout(function() {
+            var o = document.querySelectorAll('.item')[i] o.onclick = () => {
                 modal(o, o.innerHTML, o.description)
             }
             removeText(bod.firstChild)
-        //console.clear()
-    })
+            //console.clear()
+        })
     }
     bod.insertAdjacentHTML('beforeend', y)
 }
-function modal(btn,name,desc) {
+
+function modal(btn, name, desc) {
     let o = $('overlay')
-o.setAttribute('style','opacity:1;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px;)')
+    o.setAttribute('style', 'opacity:1;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px;)')
     buttonClone(btn)
-    showModal(name,desc)
+    showModal(name, desc)
 }
 
 function buttonClone(e) {
     if (e.childElementCount < 1) {
-        let y = document.createElement('BUTTON')
-        y.classList.add('item')
-        y.style.backgroundColor = e.style.backgroundColor
-        y.innerHTML = e.innerHTML
-        e.appendChild(y)
-        setTimeout(function(){
+        let y = document.createElement('BUTTON') y.classList.add('item') y.style.backgroundColor = e.style.backgroundColor y.innerHTML = e.innerHTML e.appendChild(y) setTimeout(function() {
             y.remove()
-        },1000)
-    }
-    else return
-    cloneCount++
+        }, 1000)
+    } else return cloneCount++
 }
-function showModal(r,t) {
-    let y = document.createElement('DIV')
-    y.classList.add('modal')
-    y.innerHTML = `
-    <h1>Meme Info - ${r}</h1>
-    <hr>
-    <p>${t}</p>
-    <p id="close" onclick="closeModal($('overlay'),document.querySelector('.modal'))">&times;</p>
-    `
+
+function showModal(r, t) {
+    let y = document.createElement('DIV') y.classList.add('modal') y.innerHTML = ` <h1>Meme Info - ${r}</h1>
+            <hr>
+            <p>${t}</p>
+            <p id="close" onclick="closeModal($('overlay'),document.querySelector('.modal'))">&times;</p>
+            `
     let wr = document.querySelector('.modalwrap')
     wr.innerHTML = ''
     wr.appendChild(y)
 }
-function closeModal(o,m) {
+
+function closeModal(o, m) {
     m.style.opacity = '0'
     m.style.transform = 'translateY(30px)'
-    setTimeout(function(){
+    setTimeout(function() {
         m.remove()
-        o.setAttribute('style','opacity:0;pointer-events: none;')
-    },1000)
+        o.setAttribute('style', 'opacity:0;pointer-events: none;')
+    }, 1000)
 }
 $('darkToggle').onclick = () => {
     document.body.classList.toggle('dark')
@@ -124,22 +113,24 @@ function autocomplete() {
     let input = document.getElementById('input')
     let removeCount = 0
     clear()
-    setTimeout(function(){loadMemes();
-    setTimeout(function(){
-        searchDups()
-        for (let i = 0; i < 5; i++){
-            for (let j = 0; j < document.getElementsByClassName('item').length; j++) {
-                let content = document.getElementsByClassName('item')[j].textContent.toLowerCase()
-                if (!content.includes(input.value)) document.getElementsByClassName('item')[j].remove()
-                removeCount++
-                if (document.getElementsByClassName('item').length == 0) main.innerHTML += 'No results :( <button onclick="window.location.href=\'https://memelist.ml\'">Try again</button>'
+    setTimeout(function() {
+        loadMemes();
+        setTimeout(function() {
+            searchDups()
+            for (let i = 0; i < 5; i++) {
+                for (let j = 0; j < document.getElementsByClassName('item').length; j++) {
+                    let content = document.getElementsByClassName('item')[j].textContent.toLowerCase() if (!content.includes(input.value)) document.getElementsByClassName('item')[j].remove() removeCount++
+                    if (document.getElementsByClassName('item').length == 0) main.innerHTML += 'No results :( <button onclick="window.location.href=\' https://memelist.ml\'">Try again</button>'
+                }
             }
-        }
-    },100)},100)
+        }, 100)
+    }, 100)
 }
+
 function clear() {
     bod.innerHTML = ''
 }
+
 function searchDups() {
     let items = document.getElementsByClassName('item')
     for (let i = 0; i > items.length; i++) {
@@ -150,37 +141,24 @@ function searchDups() {
         }
     }
 }
+
 function onlyCraziness() {
     let items = document.getElementsByClassName('item')
     for (let i = 0; i > items.length; i++) {
-            if (items[i].style.fontWeight != '900') {
-                items[i].remove()
-            }
+        if (items[i].style.fontWeight != '900') {
+            items[i].remove()
+        }
     }
 }
+
 function removeText(child) {
 
-while (child) {
-    nextSibling = child.nextSibling;
-    if (child.nodeType == 3) {
-        child.parentNode.removeChild(child);
+    while (child) {
+        nextSibling = child.nextSibling;
+        if (child.nodeType == 3) {
+            child.parentNode.removeChild(child);
+        }
+        child = nextSibling;
     }
-    child = nextSibling;
-}
 
-}
-
-onclick = () => {
-if ($('check').checked == true) {
-onlyCraziness()
-}
-    else {
-    clear()
-    setTimeout(function(){loadMemes();
-    setTimeout(function(){
-        searchDups()
-    }
-,100)
-},100)
-}
 }
