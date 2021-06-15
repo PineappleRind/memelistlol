@@ -4,6 +4,11 @@ var memes = {
         description: "A nickname for Andrew. When he does a front flip on the trampoline, the form of the flip is thin and fast, much like the name Chester.",
         compatible: false
     },
+    appley: {
+        name: "Appley",
+        description: "Some people have excess fat. Some people sound soapy, like apples. Some people have a round body. Some people are very very fast. And some people have all of these qualities! Introducing: Apply People.",
+        compatible: false
+    },
     atTheBusinessCentre: {
         name: "At the business centre, I'm Mike Hepple",
         description: "This meme stemmed from a 680 News business anchorman saying the phrase \"At the business centre, i'm Mike Hepple\" at the end of his Business report.",
@@ -139,10 +144,20 @@ var memes = {
         description: "This meme, Maurice (pronounced Morris), was from a drummer on GarageBand. The original Maurice from GarageBand played loose, hip-hop drums. The meme-ified Maurice could literally play anything, at any speed, to the extent that he grows another arm on his chest to help play.",
         compatible: false
     },
+    mister: {
+        name: "Mister",
+        description: "The exact origin of this meme is unknown. It is used in any sentence talking to any person. Just tack it on and you're all set! Example: \"Hello mister.\"",
+        compatible: false
+    },
     prudence: {
         name: "Prudence",
         description: "The Meme Creators found an old picture of their aunt putting her finger on her chin and staring off into the distance. The word \"Prudence\" was associated with the picture. Later on, attributes to the meme such as the Plum of Prudence were added.",
         compatible: false
+    },
+    putALittleFreshAuringeJuiceInThere: {
+        name: "Put a little fresh auringe juice in there",
+        description: "Meme Creator 3 recorded an unknown recipe video of a woman making something with orange juice. She said: \"Put a little fresh auringe juice in there\". <hr><b>To use this meme in meme craziness, start low and end medium. (medium = caps) Example: put a little fresh AURINGE JUICE IN THERE",
+        compatible: true
     },
     rambleberry: {
         name: "Rambleberry",
