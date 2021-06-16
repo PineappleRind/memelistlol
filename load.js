@@ -135,7 +135,8 @@ function autocomplete() {
             for (let i = 0; i < 5; i++) {
                 for (let j = 0; j < document.getElementsByClassName('item').length; j++) {
                     let content = document.getElementsByClassName('item')[j].textContent.toLowerCase()
-                    if (!content.includes(input.value)) document.getElementsByClassName('item')[j].remove() removeCount++
+                    if (!content.includes(input.value)) document.getElementsByClassName('item')[j].remove() 
+                    removeCount++
                     if (document.getElementsByClassName('item').length == 0) main.innerHTML += 'No results :( <button onclick="window.location.href=\' https://memelist.ml\'">Try again</button>'
                 }
             }
@@ -168,7 +169,6 @@ function onlyCraziness() {
 }
 
 function removeText(child) {
-
     while (child) {
         nextSibling = child.nextSibling;
         if (child.nodeType == 3) {
@@ -176,5 +176,4 @@ function removeText(child) {
         }
         child = nextSibling;
     }
-
 }
