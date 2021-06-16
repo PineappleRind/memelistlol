@@ -67,7 +67,8 @@ function loadMemes() {
         if (valDone[i].compatible === true) y.style.fontWeight = '900';
         bod.appendChild(y) 
         setTimeout(function() {
-            var o = document.querySelectorAll('.item')[i] o.onclick = () => {
+            var o = document.querySelectorAll('.item')[i] 
+            o.onclick = () => {
                 modal(o, o.innerHTML, o.description)
             }
             removeText(bod.firstChild)
