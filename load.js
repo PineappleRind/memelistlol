@@ -25,7 +25,8 @@ function getVal(e) {
 function propValToArr(obj) {
     var arr = [];
     for (let i = 0; i < obj.length; i++) {
-        arr.push(obj[i].name) if (i == obj.length - 1) return arr.sort()
+        arr.push(obj[i].name)
+        if (i == obj.length - 1) return arr.sort()
     }
 }
 
@@ -58,7 +59,12 @@ function clr() {
 function loadMemes() {
     loaded = true;
     for (let i = 0; i < Object.size(memes); i++) {
-        var y = document.createElement('BUTTON') y.classList.add('item') y.innerHTML = valDone[i].name y.style.background = clr() y.description = getNextKey(valDone[i], 'name') if (valDone[i].compatible === true) y.style.fontWeight = '900';
+        var y = document.createElement('BUTTON')
+        y.classList.add('item')
+        y.innerHTML = valDone[i].name
+        y.style.background = clr()
+        y.description = getNextKey(valDone[i], 'name')
+        if (valDone[i].compatible === true) y.style.fontWeight = '900';
         bod.appendChild(y) setTimeout(function() {
             var o = document.querySelectorAll('.item')[i] o.onclick = () => {
                 modal(o, o.innerHTML, o.description)
@@ -79,7 +85,12 @@ function modal(btn, name, desc) {
 
 function buttonClone(e) {
     if (e.childElementCount < 1) {
-        let y = document.createElement('BUTTON') y.classList.add('item') y.style.backgroundColor = e.style.backgroundColor y.innerHTML = e.innerHTML e.appendChild(y) setTimeout(function() {
+        let y = document.createElement('BUTTON')
+        y.classList.add('item')
+        y.style.backgroundColor = e.style.backgroundColor
+        y.innerHTML = e.innerHTML
+        e.appendChild(y)
+        setTimeout(function() {
             y.remove()
         }, 1000)
     } else return cloneCount++
@@ -119,7 +130,8 @@ function autocomplete() {
             searchDups()
             for (let i = 0; i < 5; i++) {
                 for (let j = 0; j < document.getElementsByClassName('item').length; j++) {
-                    let content = document.getElementsByClassName('item')[j].textContent.toLowerCase() if (!content.includes(input.value)) document.getElementsByClassName('item')[j].remove() removeCount++
+                    let content = document.getElementsByClassName('item')[j].textContent.toLowerCase()
+                    if (!content.includes(input.value)) document.getElementsByClassName('item')[j].remove() removeCount++
                     if (document.getElementsByClassName('item').length == 0) main.innerHTML += 'No results :( <button onclick="window.location.href=\' https://memelist.ml\'">Try again</button>'
                 }
             }
