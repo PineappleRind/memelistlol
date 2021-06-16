@@ -65,7 +65,8 @@ function loadMemes() {
         y.style.background = clr()
         y.description = getNextKey(valDone[i], 'name')
         if (valDone[i].compatible === true) y.style.fontWeight = '900';
-        bod.appendChild(y) setTimeout(function() {
+        bod.appendChild(y) 
+        setTimeout(function() {
             var o = document.querySelectorAll('.item')[i] o.onclick = () => {
                 modal(o, o.innerHTML, o.description)
             }
