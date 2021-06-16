@@ -99,7 +99,9 @@ function buttonClone(e) {
 }
 
 function showModal(r, t) {
-    let y = document.createElement('DIV') y.classList.add('modal') y.innerHTML = ` <h1>Meme Info - ${r}</h1>
+    let y = document.createElement('DIV') 
+    y.classList.add('modal') 
+    y.innerHTML = ` <h1>Meme Info - ${r}</h1>
             <hr>
             <p>${t}</p>
             <p id="close" onclick="closeModal($('overlay'),document.querySelector('.modal'))">&times;</p>
