@@ -6,8 +6,13 @@ var memes = {
     },
     appley: {
         name: "Appley",
-        description: "Some people have excess fat. Some people sound soapy, like apples. Some people have a round body. Some people are very very fast. And some people have all of these qualities! Introducing: Apply People.",
+        description: "Some people have excess fat. Some people sound soapy, like apples. Some people have a round body. Some people are very very fast. And some people have all of these qualities! Introducing: Appley People.",
         compatible: false
+    },
+    assortedInsults: {
+        name: "Assorted \"Insults\"",
+        description: "These \"Insults\" are from different places. They are pretty funny, but sometimes people don't like them (I have no idea why 😭). A few of these are: <br>You sound like a blender | You're a bronze goblin | You're a busted scooter at the dump. | You're so old, you smell like musty bean water.<br>There are a lot more too! They're all memes.<hr><b>To use this meme in meme craziness, randomly insult someone!</b>",
+        compatible: true
     },
     atTheBusinessCentre: {
         name: "At the business centre, I'm Mike Hepple",
@@ -183,6 +188,11 @@ var memes = {
         name: "Scuzi",
         description: "In the Meme Creators' House, an Italian cleaner was cleaning and got in the way with the Meme Creator's aunt. The Meme Creators' aunt then said: \"Scuzi\" (excuse me in Italian). The meme creators thought it was funny for a non-Italian to say something in Italian. Here's a story associated with the meme: It's 1 AM. The Meme Creator is in the bed with Andrew. Andrew asked the Meme Creator to say Scuzi. He did. <hr> <b> To use this meme in Meme Craziness, say each syllable with the following intonations: scu medium, zi low then high </b>",
         compatible: true
+    },
+    skinTwist: {
+        name: "Skin Twist",
+        description: "In a Bad Lip Reading video, Tim Cook was announcing the next apple product: The Apple Skin Twist. He said: <i>\"We're proud to present the Apple Skin Twist. It twists your skin, okay? If you just leave it on there, you can surprise yourself, because it can make up to 50% more <b>flaps.</b>\"</i>",
+        compatible: false
     },
     titongoGetNoPay: {
         name: "TITONGO GET NO PAY",
