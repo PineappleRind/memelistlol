@@ -159,6 +159,11 @@ var memes = {
         description: "The Meme Creators found an old picture of their aunt putting her finger on her chin and staring off into the distance. The word \"Prudence\" was associated with the picture. Later on, attributes to the meme such as the Plum of Prudence were added.",
         compatible: false
     },
+    poorBard: {
+        name: "Poor Baird!",
+        description: "The Meme Creators were telling their aunt about a bird that hit the window and survived but not before fainting. Their aunt said \"pOoR bAiRD!\"",
+        compatible: false
+    },
     putALittleFreshAuringeJuiceInThere: {
         name: "Put a little fresh auringe juice in there",
         description: "Meme Creator 3 recorded an unknown recipe video of a woman making something with orange juice. She said: \"Put a little fresh auringe juice in there\". <hr><b>To use this meme in meme craziness, start low and end medium. (medium = caps) Example: put a little fresh AURINGE JUICE IN THERE",
