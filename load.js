@@ -10,6 +10,7 @@ var Memes = {
         $('input').style.display = 'inline-block'
         $('search').style.display = 'inline-block'
         $('info').style.display = 'block'
+        $('loading').style.display = 'none'
         loadMemes()
     }
 }
