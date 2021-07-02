@@ -101,7 +101,7 @@ var memes = {
     },
     hooie: {
         name: "Hooie",
-        description: "This is one of the first memes ever created! The exact origin of this meme is not clear, but it has to do with one of Meme Creator 1's random sounds he made. Due to the funniness of this meme, the \"Hooy Club\" (as it was called originally) was formed, with Meme Creator 1 being the Hooy Chief. It was later discontinued.",
+        description: "This is one of the first memes ever created! The exact origin of this meme is not clear, but it has to do with one of Meme Creator 1's random sounds he made. Due to the funniness of this meme, the \"Hooy Club\" (as it was called originally) was formed, with Meme Creator 1 being the Hooy Chief. It was later discontinued. A theory for how Hooie came to be was on a boring car ride Meme Creator 1 randomly blurted out Hooie.",
         compatible: true
     },
     johnAndGladys: {
