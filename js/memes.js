@@ -1,23 +1,28 @@
+var memeReqs = [2,5,10]
 var memes = {
     andrewChester: {
         name: "Andrew Chester",
         description: "A nickname for Andrew. When he does a front flip on the trampoline, the form of the flip is thin and fast, much like the name Chester.",
-        compatible: false
+        compatible: false,
+        achievements: ["Chester Simp", "Chester Servant", "Chester Spouse"]
     },
     appley: {
         name: "Appley",
         description: "Some people have excess fat. Some people sound soapy, like apples. Some people have a round body. Some people are very very fast. And some people have all of these qualities! Introducing: Appley People.",
-        compatible: false
+        compatible: false,
+        achievements: ["Red Delicious Apple", "Gala Apple", "Spartan Apple"]
     },
     assortedInsults: {
         name: "Assorted \"Insults\"",
         description: "These \"Insults\" are from different places. They are pretty funny, but sometimes people don't like them (I have no idea why 😭). A few of these are: <br>You sound like a blender | You're a bronze goblin | You're a busted scooter at the dump. | You're so old, you smell like musty bean water.<br>There are a lot more too! They're all memes.<hr><b>To use this meme in meme craziness, randomly insult someone!</b>",
-        compatible: true
+        compatible: true,
+        achievements: ["You’re a bronze goblin", "You sound like a blender",  "You're worse than 300 itchy sweaters"]
     },
     atTheBusinessCentre: {
         name: "At the business centre, I'm Mike Hepple",
         description: "This meme stemmed from a 680 News business anchorman saying the phrase \"At the business centre, i'm Mike Hepple\" at the end of his Business report.",
-        compatible: false
+        compatible: false,
+        achievements: ["Mike's friend", "Mike's colleague", "Mike himself"]
     },
     aurearaBorealis: {
         name: "Aureara Borealis",
