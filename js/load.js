@@ -3,8 +3,6 @@ var main = document.querySelector('main')
 var cloneCount = 0
 var loaded
 
-let valDone = getVal(sort(memes))
-let arrDone = propValToArr(valDone)
 var Memes = {
     load: function() {
         $('input').style.display = 'inline-block'
@@ -23,31 +21,11 @@ function getVal(e) {
     return Object.values(e)
 }
 
-function propValToArr(obj) {
-    var arr = [];
-    for (let i = 0; i < obj.length; i++) {
-        arr.push(obj[i].name)
-        if (i == obj.length - 1) return arr.sort()
-    }
-}
-
 function getNextKey(e, n) {
     var r = Object.keys(e),
         t = r.indexOf(n),
         o = r[t + 1];
     return e[o]
-}
-
-function sort(e) {
-    let n = Object.keys(e).sort().reduce(function(n, r) {
-        return n[r] = e[r], n
-    }, {});
-    return n
-}
-Object.size = function(e) {
-    var n, r = 0;
-    for (n in e) e.hasOwnProperty(n) && r++;
-    return r
 }
 let light = 0;
 
@@ -59,22 +37,20 @@ function clr() {
 
 function loadMemes() {
     loaded = true;
-    for (let i = 0; i < Object.size(memes); i++) {
+    for (let i = 0; i < memes.length; i++) {
         var y = document.createElement('BUTTON')
         y.classList.add('item')
-        y.innerHTML = valDone[i].name
+        y.innerHTML = memes[i].name
         y.style.background = clr()
-        y.description = getNextKey(valDone[i], 'name')
-        if (valDone[i].compatible === true) y.style.fontWeight = '900';
-        bod.appendChild(y) 
-        setTimeout(function() {
+        y.description = getNextKey(memes[i], 'name')
+        if (memes[i].compatible === true) y.style.fontWeight = '900';
+        bod.appendChild(y)
             var o = document.querySelectorAll('.item')[i] 
             o.onclick = () => {
                 modal(o, o.innerHTML, o.description)
             }
-            removeText(bod.firstChild)
+        setTimeout(function(){removeText(bod.firstChild)})
             //console.clear()
-        })
     }
     bod.insertAdjacentHTML('beforeend', y)
 }
