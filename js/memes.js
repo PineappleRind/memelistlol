@@ -1,11 +1,12 @@
-var memeReqs = [2,5,10]
+
 var memes = [
     {
         name: "Andrew Chester",
         description: "A nickname for Andrew. When he does a front flip on the trampoline, the form of the flip is thin and fast, much like the name Chester.",
         compatible: false,
         achievements: ["Chester Simp", "Chester Servant", "Chester Spouse"],
-        viewed: 0
+        viewed: 0,
+        reqs: [2,5,10],
     },
     {
         name: "Appley",
@@ -232,4 +233,3 @@ var memes = [
         compatible: true
     }
 ]
-document.body.insertAdjacentHTML('beforeend',memes.length)

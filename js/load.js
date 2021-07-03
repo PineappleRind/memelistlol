@@ -5,10 +5,10 @@ var loaded
 
 var Memes = {
     load: function() {
-        $('input').style.display = 'inline-block'
-        $('search').style.display = 'inline-block'
-        $('info').style.display = 'block'
-        $('loading').style.display = 'none'
+        document.getElementById('input').style.display = 'inline-block'
+        document.getElementById('search').style.display = 'inline-block'
+        document.getElementById('info').style.display = 'block'
+        document.getElementById('loading').style.display = 'none'
         loadMemes()
     }
 }
@@ -102,7 +102,7 @@ function autocomplete() {
         loadMemes();
         setTimeout(function() {
             searchDups()
-            for (let i = 0; i < 5; i++) {
+            for (let i = 0; i < 15; i++) {
                 for (let j = 0; j < document.getElementsByClassName('item').length; j++) {
                     let content = document.getElementsByClassName('item')[j].textContent.toLowerCase()
                     if (!content.includes(input.value)) document.getElementsByClassName('item')[j].remove() 
