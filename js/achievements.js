@@ -59,3 +59,7 @@ function achievement() {
     
     }
 }
+
+function notif(name,desc) {
+
+}

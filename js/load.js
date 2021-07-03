@@ -21,12 +21,6 @@ function getVal(e) {
     return Object.values(e)
 }
 
-function getNextKey(e, n) {
-    var r = Object.keys(e),
-        t = r.indexOf(n),
-        o = r[t + 1];
-    return e[o]
-}
 let light = 0;
 
 function clr() {
@@ -42,12 +36,11 @@ function loadMemes() {
         y.classList.add('item')
         y.innerHTML = memes[i].name
         y.style.background = clr()
-        y.description = getNextKey(memes[i], 'name')
         if (memes[i].compatible === true) y.style.fontWeight = '900';
         bod.appendChild(y)
             var o = document.querySelectorAll('.item')[i] 
             o.onclick = () => {
-                modal(o, o.innerHTML, o.description)
+                modal(o, memes[i].name, memes[i].description)
             }
         setTimeout(function(){removeText(bod.firstChild)})
             //console.clear()
