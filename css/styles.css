@@ -27,7 +27,7 @@
   background: #444464;
 }
 body {
-    background-color: #f1f1f1;
+    background-color: #ddddf8;
     background-repeat:no-repeat;
     background-size:cover;
     background-position: center center;
@@ -49,20 +49,6 @@ body.dark {
     -webkit-backdrop-filter: brightness(100%);
             backdrop-filter: brightness(100%);
 }
-body svg {
-    -webkit-transition:0.1s;
-    -o-transition:0.1s;
-    transition:0.1s;
-    -webkit-filter:brightness(300%);
-            filter:brightness(300%)
-}
-body.dark svg {
-    -webkit-filter:none;
-            filter:none;
-    -webkit-transform:none;
-        -ms-transform:none;
-            transform:none;
-}
 body.dark .modal, body.dark main {
     background: #222244;
     color:white;
@@ -71,7 +57,7 @@ body.dark .modal, body.dark main {
     transition: 1s ease-in-out;
 }
 body.dark main {
-    background: rgba(20,20,40,0.5);
+    background: rgba(50,50,80,0.5);
     
 }
 body.dark #overlay {
@@ -81,11 +67,11 @@ main {
     width:90%;
     max-height:90%;
     margin:auto;
-    background: rgba(230,230,255,0.2);
+    background: rgba(200,210,255,0.2);
     backdrop-filter:blur(10px);
-    -webkit-backdrop-filter:blur(10px);
-    -moz-backdrop-filter:blur(10px);
-    padding:20px;
+    -webkit-backdrop-filter:blur(30px);
+    -moz-backdrop-filter:blur(30px);
+    padding:30px;
     -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.2);
             box-shadow: 0 0 5px rgba(0,0,0,0.2);
     margin-top:30px;
@@ -98,11 +84,6 @@ main {
     position:relative;
 }
 
-main::before {
-    height:100%;width:100%;border-radius:10px;padding:20px;
-    filter: url('#blur');
-    filter: blur(5px);
-}
 hr {
     margin:10px 6px;
 }
@@ -111,29 +92,27 @@ i {
     display:block;
 }
 #darkToggle {
-    position:fixed;
+    position:absolute;
     z-index:11;
     right:15px;
     top:10px;
     margin:0;
-    text-shadow: 0 0 4px black;
-    font-size:40px;
+    text-shadow: 0 0 10px white;
+    color:#888;
+    font-size:20px;
     cursor:pointer;
     -webkit-transition: 0.1s;
     -o-transition: 0.1s;
     transition: 0.1s;
 }
 #darkToggle::after {
-    content: '🌙'
+    content: 'light mode ☑';
+    color:black
 }
-#darkToggle:active {
-    opacity:0;
-    -webkit-transform:scale(0.6);
-        -ms-transform:scale(0.6);
-            transform:scale(0.6);
-}
+
 body.dark #darkToggle::after {
-    content: '🌞'
+    content: 'light mode ☐';
+    color:white
 }
 #overlay {
     position:fixed;

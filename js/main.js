@@ -41,6 +41,8 @@ function loadMemes() {
             var o = document.querySelectorAll('.item')[i] 
             o.onclick = () => {
                 modal(o, memes[i].name, memes[i].description)
+                cookie.memes[i].viewed++
+                //achievement()
             }
         setTimeout(function(){removeText(bod.firstChild)})
             //console.clear()
@@ -129,15 +131,6 @@ function searchDups() {
     }
 }
 
-function onlyCraziness() {
-    let items = document.getElementsByClassName('item')
-    for (let i = 0; i > items.length; i++) {
-        if (items[i].style.fontWeight != '900') {
-            items[i].remove()
-        }
-    }
-}
-
 function removeText(child) {
     while (child) {
         nextSibling = child.nextSibling;
@@ -146,4 +139,77 @@ function removeText(child) {
         }
         child = nextSibling;
     }
+}
+
+onload = () => {
+  loadCookie()
+  cookie.timesViewed++
+  updateCookie()
+}
+  console.log(get("achievements"))
+function updateCookie(e) {
+  //set('achievements',JSON.stringify(cookie))
+}
+function loadCookie() {
+  //cookie = JSON.parse(get('achievements'))
+}
+function len(e) {
+    var size = 0,
+        key;
+    for (key in e) {
+     if (e.hasOwnProperty(key)) size++;
+    }
+    return size
+}
+function set(name,val) {
+    const d = new Date();
+    d.setTime(d.getTime() + (8640000000));
+    let expires = "expires=" + d.toGMTString();
+    document.cookie = name + "=" + val + ";" + expires + ";path=/";
+}
+function get(name) {
+  name = name + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+function ind(e,i) {
+    return e[Object.keys(e)[i]];
+}
+
+function achievement() {
+    for (let i = 0; i < memes.length; i++) {
+      if (cookie.memes[i].viewed >= memes[i].reqs[0]) {
+        notification(memes[i].achievements[0],`View "${memes[i].name}" ${memes[i].reqs[0]} times`)
+        memes[i].reqs = arrRemove(memes[i].reqs,memes[i].reqs[0])
+        cookie.memes[i].reqs = arrRemove(cookie.memes[i].reqs,cookie.memes[i].reqs[0])
+        memes[i].achievements = arrRemove(memes[i].achievements,memes[i].achievements[0])
+        cookie.memes[i].achievements = arrRemove(cookie.memes[i].achievements,cookie.memes[i].achievements[0])
+      }
+    }
+}
+function arrRemove(arr, value) {
+  var index = arr.indexOf(value);
+  if (index > -1) {
+    arr.splice(index, 1);
+  }
+  return arr;
+}
+function notification(name,desc) {
+   iziToast.show({
+    title: `Achievement Unlocked: ${name}<p style="display:block;font-weight:200;margin-bottom:10px;margin-right:14px;margin-top:10px;">${desc}</p>`,
+    timeout: 15000,
+    titleSize: '25px',
+    theme:'dark'
+});
 }
