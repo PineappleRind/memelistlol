@@ -12,7 +12,7 @@ var cookie = {
     "viewed": 0,
     "reqs": [2, 5, 10]
 }, {
-    "name": "Assorted \"Insults\"",
+    "name": "Assorted ''Insults''",
     "achievements": ["You’re a bronze goblin", "You sound like a blender", "You're worse than 300 itchy sweaters"],
     "viewed": 0,
     "reqs": [2, 5, 10]

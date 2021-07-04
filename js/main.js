@@ -1,5 +1,6 @@
 var bod = document.querySelector(".items-cont");
 var main = document.querySelector('main')
+var inp = document.getElementById('input')
 var cloneCount = 0
 var loaded
 var date = new Date()
@@ -7,7 +8,7 @@ date.setTime(date.getTime() + (86400000000));
 var expires = date.toGMTString()
 var Memes = {
     load: function() {
-        document.getElementById('input').style.display = 'inline-block'
+        inp.style.display = 'inline-block'
         document.getElementById('search').style.display = 'inline-block'
         document.getElementById('info').style.display = 'block'
         document.getElementById('loading').style.display = 'none'
@@ -42,7 +43,7 @@ function loadMemes() {
         bod.appendChild(y)
             var o = document.querySelectorAll('.item')[i] 
             o.onclick = () => {
-                //updateAndLoadCookie()
+                save()
                 modal(o, memes[i].name, memes[i].description)
                 console.log(cookie.memes[i].viewed)
                 cookie.memes[i].viewed++
@@ -75,7 +76,7 @@ function buttonClone(e) {
         }, 1000)
     } else return cloneCount++
 }
-document.getElementById('input').onkeypress = e => {
+inp.onkeypress = e => {
     if (e.key == 'Enter') document.getElementById('search').click()
 }
 function showModal(r, t) {
@@ -99,12 +100,22 @@ function closeModal(o, m) {
         o.setAttribute('style', 'opacity:0;pointer-events: none;')
     }, 1000)
 }
-if (cookie.lightMode == true) document.body.classList.remove('dark')
+onload = () => {if (cookie.lightMode == true) smoothLightMode()}
 $('darkToggle').onclick = () => {
     document.body.classList.toggle('dark')
     if (!document.body.classList.contains('dark')) cookie.lightMode = true;
     else cookie.lightMode = false
+
+    save()
     //updateAndLoadCookie(false)
+}
+
+function smoothLightMode() {
+    document.body.classList.remove('dark')
+    document.body.style.transition = 'none'
+    main.style.transition = 'none'
+    inp.style.transition = 'none'
+    setTimeout(function(){document.body.style.transition = '1s';main.style.transition = '1s';inp.style.transition = '1s'},1000)
 }
 
 
@@ -173,23 +184,23 @@ function removeText(child) {
 
 
 
-
-
-
-
-
-
-  //updateAndLoadCookie()
-
-
-function updateAndLoadCookie() {
-    let notSaved = JSON.stringify(cookie)
-       set('achievements',notSaved)
-        cookie = get('achievements')
-        console.log('notSaved')
-console.log()
+if (!lscache.get('visited')) {
+    save()
+    set('visited','true')
+} else {
+    loadFromSave()
 }
 
+function save(){
+    let notSaved = JSON.stringify(cookie).replace(/\\/g, "")
+    set('achievements',notSaved)
+}
+function loadFromSave() {
+    cookie = JSON.parse(lscache.get('achievements'))
+}
+function set(e,r) {
+    lscache.set(e,r,10000000000)
+}
 function len(e) {
     var size = 0,
         key;
@@ -197,15 +208,6 @@ function len(e) {
      if (e.hasOwnProperty(key)) size++;
     }
     return size
-}
-function set(name, value) {
-  var cookie = [name, '=', JSON.stringify(value), '; expires=983423423;domain=.', window.location.host.toString(), '; path=/;'].join('');
-  document.cookie = cookie;
-}
-function get(name) {
- var result = document.cookie.match(new RegExp(name + '=([^;]+)'));
- result && (result = JSON.parse(result[1]));
- return result;
 }
 
 function ind(e,i) {
@@ -222,6 +224,7 @@ function achievement() {
         cookie.memes[i].achievements.shift()
 
         cookie.achievementsList.push({name: cookie.memes[i].achievements[0], desc: `View "${memes[i].name}" ${memes[i].reqs[0]} times`})
+        save()
       }
     }
 }
