@@ -194,26 +194,31 @@ var memes = [{
     "name": "Poor Baird!",
     "description": "The Meme Creators were telling their aunt about a bird that hit the window and survived but not before fainting. Their aunt said \"pOoR bAiRD!\"",
     "compatible": false,
+    "achievements": ["Dizzy","Unconscious","In a coma"],
     "reqs": [2, 5, 10]
 }, {
     "name": "Put a little fresh auringe juice in there",
     "description": "Meme Creator 3 recorded an unknown recipe video of a woman making something with orange juice. She said: \"Put a little fresh auringe juice in there\". <hr><b>To use this meme in meme craziness, start low and end medium. (medium = caps) Example: put a little fresh AURINGE JUICE IN THERE",
     "compatible": true,
+    "achievements": ["Not bad auringe juice","Pretty good auringe juice","I'm hooked on your auringe juice"],
     "reqs": [2, 5, 10]
 }, {
     "name": "Rambleberry",
     "description": "In one of the Meme Creator's beds, a picture was taken of a Meme Creator making a funny face. The face is extremely hard to describe! It ended up being called the Rambleberry Face. A song has been made about it.",
     "compatible": false,
+    "achievements": ["You can make the face","You're actually good at it","Hold on, let me nominate you to the Oscars"],
     "reqs": [2, 5, 10]
 }, {
     "name": "Region of Prescott",
     "description": "An announcer on a TV show was recorded saying \"Region of Prescott\". <hr><b>To use this meme in Meme Craziness, say each syllable in the following intonation: low, low, low, high, very high",
     "compatible": true,
+    "achievements": ["You've heard of Prescott","You live in Prescott","You're mayor of Prescott"],
     "reqs": [2, 5, 10]
 }, {
     "name": "Ricky the Cruise Director",
     "description": "In mid-2019, on a cruise ship, the cruise director's name was Ricky. Meme Creator 3 was terrified of him because he made scary jokes like \"In Jamaica we skated on grass. No, not that type of grass.\". For the next few years, Ricky was stalking the Meme Creators. When Meme Creator 2 generated AI sentences, one of them was \"Ricky's Hot Dogs with Cheese on top\". And, on WWDC 2021, one of the Animojis on the thumbnail looked like Ricky!",
     "compatible": false,
+    "achievements": ["Okay, you've seen him","Wait, you actually like him?","You're under the influence of Ricky"],
     "reqs": [2, 5, 10]
 }, {
     "name": "Rupert",

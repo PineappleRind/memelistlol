@@ -75,7 +75,9 @@ function buttonClone(e) {
         }, 1000)
     } else return cloneCount++
 }
-
+document.getElementById('input').onkeypress = e => {
+    if (e.key == 'Enter') document.getElementById('search').click()
+}
 function showModal(r, t) {
     let y = document.createElement('DIV') 
     y.classList.add('modal') 
@@ -102,7 +104,7 @@ $('darkToggle').onclick = () => {
     document.body.classList.toggle('dark')
     if (!document.body.classList.contains('dark')) cookie.lightMode = true;
     else cookie.lightMode = false
-    updateAndLoadCookie(false)
+    //updateAndLoadCookie(false)
 }
 
 
@@ -177,7 +179,7 @@ function removeText(child) {
 
 
 
-  updateAndLoadCookie()
+  //updateAndLoadCookie()
 
 
 function updateAndLoadCookie() {

@@ -164,22 +164,27 @@ var cookie = {
 }, {
     "name": "Poor Baird!",
     "reqs": [2, 5, 10],
+        "achievements": ["Dizzy","Unconscious","In a coma"],
     "viewed": 0
 }, {
     "name": "Put a little fresh auringe juice in there",
     "reqs": [2, 5, 10],
+        "achievements": ["Not bad auringe juice","Pretty good auringe juice","I'm hooked on your auringe juice"],
     "viewed": 0
 }, {
     "name": "Rambleberry",
     "reqs": [2, 5, 10],
+        "achievements": ["You can make the face","You're actually good at it","Hold on, let me nominate you to the Oscars"],
     "viewed": 0
 }, {
     "name": "Region of Prescott",
     "reqs": [2, 5, 10],
+        "achievements": ["You've heard of Prescott","You live in Prescott","You're mayor of Prescott"],
     "viewed": 0
 }, {
     "name": "Ricky the Cruise Director",
     "reqs": [2, 5, 10],
+        "achievements": ["Okay, you've seen him","Wait, you actually like him?","You're under the influence of Ricky"],
     "viewed": 0
 }, {
     "name": "Rupert",
