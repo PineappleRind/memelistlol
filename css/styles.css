@@ -64,8 +64,7 @@ body.dark #overlay {
     background: rgba(36, 36, 60, 0.541)
 }
 main {
-    width:90%;
-    max-height:90%;
+    width:88%;
     margin:auto;
     background: rgba(200,210,255,0.2);
     backdrop-filter:blur(10px);
@@ -74,8 +73,8 @@ main {
     padding:30px;
     -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.2);
             box-shadow: 0 0 5px rgba(0,0,0,0.2);
-    margin-top:30px;
-    border-radius:10px;
+    margin-top:40px;
+    border-radius:19px/14px;
     -webkit-transition: 1s ease-in-out;
     -o-transition: 1s ease-in-out;
     transition: 1s ease-in-out;
@@ -255,6 +254,22 @@ button:hover {
 @media screen and (max-width:600px) {
     .modal {
         max-width:90%;
+    }
+    main {
+        width:100%;
+        margin:0 !important;
+        height:100%;
+    }
+    svg {
+        position:fixed;
+        top:0;
+        left:0;
+        right:0;
+        bottom:0;
+        background-attachment:fixed;
+    }
+    main h1 {
+        font-size:24px;
     }
 }
 

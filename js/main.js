@@ -2,7 +2,9 @@ var bod = document.querySelector(".items-cont");
 var main = document.querySelector('main')
 var cloneCount = 0
 var loaded
-
+var date = new Date()
+date.setTime(date.getTime() + (86400000000));
+var expires = date.toGMTString()
 var Memes = {
     load: function() {
         document.getElementById('input').style.display = 'inline-block'
@@ -40,9 +42,13 @@ function loadMemes() {
         bod.appendChild(y)
             var o = document.querySelectorAll('.item')[i] 
             o.onclick = () => {
+                //updateAndLoadCookie()
                 modal(o, memes[i].name, memes[i].description)
+                console.log(cookie.memes[i].viewed)
                 cookie.memes[i].viewed++
-                //achievement()
+                
+                cookie.timesClicked++
+                achievement()
             }
         setTimeout(function(){removeText(bod.firstChild)})
             //console.clear()
@@ -91,8 +97,12 @@ function closeModal(o, m) {
         o.setAttribute('style', 'opacity:0;pointer-events: none;')
     }, 1000)
 }
+if (cookie.lightMode == true) document.body.classList.remove('dark')
 $('darkToggle').onclick = () => {
     document.body.classList.toggle('dark')
+    if (!document.body.classList.contains('dark')) cookie.lightMode = true;
+    else cookie.lightMode = false
+    updateAndLoadCookie(false)
 }
 
 
@@ -141,18 +151,43 @@ function removeText(child) {
     }
 }
 
-onload = () => {
-  loadCookie()
-  cookie.timesViewed++
-  updateCookie()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  updateAndLoadCookie()
+
+
+function updateAndLoadCookie() {
+    let notSaved = JSON.stringify(cookie)
+       set('achievements',notSaved)
+        cookie = get('achievements')
+        console.log('notSaved')
+console.log()
 }
-  console.log(get("achievements"))
-function updateCookie(e) {
-  //set('achievements',JSON.stringify(cookie))
-}
-function loadCookie() {
-  //cookie = JSON.parse(get('achievements'))
-}
+
 function len(e) {
     var size = 0,
         key;
@@ -161,26 +196,14 @@ function len(e) {
     }
     return size
 }
-function set(name,val) {
-    const d = new Date();
-    d.setTime(d.getTime() + (8640000000));
-    let expires = "expires=" + d.toGMTString();
-    document.cookie = name + "=" + val + ";" + expires + ";path=/";
+function set(name, value) {
+  var cookie = [name, '=', JSON.stringify(value), '; expires=983423423;domain=.', window.location.host.toString(), '; path=/;'].join('');
+  document.cookie = cookie;
 }
 function get(name) {
-  name = name + "=";
-  let decodedCookie = decodeURIComponent(document.cookie);
-  let ca = decodedCookie.split(';');
-  for(let i = 0; i < ca.length; i++) {
-    let c = ca[i];
-    while (c.charAt(0) == ' ') {
-      c = c.substring(1);
-    }
-    if (c.indexOf(name) == 0) {
-      return c.substring(name.length, c.length);
-    }
-  }
-  return "";
+ var result = document.cookie.match(new RegExp(name + '=([^;]+)'));
+ result && (result = JSON.parse(result[1]));
+ return result;
 }
 
 function ind(e,i) {
@@ -191,20 +214,16 @@ function achievement() {
     for (let i = 0; i < memes.length; i++) {
       if (cookie.memes[i].viewed >= memes[i].reqs[0]) {
         notification(memes[i].achievements[0],`View "${memes[i].name}" ${memes[i].reqs[0]} times`)
-        memes[i].reqs = arrRemove(memes[i].reqs,memes[i].reqs[0])
-        cookie.memes[i].reqs = arrRemove(cookie.memes[i].reqs,cookie.memes[i].reqs[0])
-        memes[i].achievements = arrRemove(memes[i].achievements,memes[i].achievements[0])
-        cookie.memes[i].achievements = arrRemove(cookie.memes[i].achievements,cookie.memes[i].achievements[0])
+        memes[i].reqs.shift()
+        cookie.memes[i].reqs.shift()
+        memes[i].achievements.shift()
+        cookie.memes[i].achievements.shift()
+
+        cookie.achievementsList.push({name: cookie.memes[i].achievements[0], desc: `View "${memes[i].name}" ${memes[i].reqs[0]} times`})
       }
     }
 }
-function arrRemove(arr, value) {
-  var index = arr.indexOf(value);
-  if (index > -1) {
-    arr.splice(index, 1);
-  }
-  return arr;
-}
+
 function notification(name,desc) {
    iziToast.show({
     title: `Achievement Unlocked: ${name}<p style="display:block;font-weight:200;margin-bottom:10px;margin-right:14px;margin-top:10px;">${desc}</p>`,

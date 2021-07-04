@@ -44,7 +44,7 @@ var memes = [{
     "name": "BOYBOY",
     "description": "On Discord, Meme Creator 2 was spamming calling someone \"boy\", when he skipped pressing the Enter key to send it, causing a duplication of Boy.",
     "compatible": false,
-    "achievements": ["Boy", "Boyboy", "BOYBOYBOY"],
+    "achievements": ["Boyboy", "Boyboyboy", "Oh boy."],
     "reqs": [2, 5, 10]
 }, {
     "name": "Cheapoulearni",
@@ -68,106 +68,127 @@ var memes = [{
     "name": "Compression",
     "description": "Compression is a quality of person. Compressed people are more likely to have forehead wrinkles and dimples, and have male pattern baldness. You can even hear the compression in the voice! To simulate a compressed person, put two hands on each cheek and push in towards your mouth hard. Then talk. You will sound compressed!",
     "compatible": false,
+    "achievements": ["Dimples","Forehead wrinkles","Maximum compression"],
     "reqs": [2, 5, 10]
 }, {
     "name": "Deep Dave",
     "description": "Inspired by deep-voice announcers like Redd Pepper and the VoiceOver welcome voice, Deep Dave is a deep-voiced character made by Daniel. His catchphrase is \"My name is Dave.\"",
     "compatible": false,
+    "achievements": ["Deep Dave", "Deeper Dave","Deepest Dave"],
     "reqs": [2, 5, 10]
 }, {
     "name": "Fabian",
     "description": "Fabian is a singer with a high-pitched, chubby, buttery voice. He once did opera. His last name is Operadio. It was made from one of Meme Creator 1's funny voice ideas.",
     "compatible": true,
+    "achievements": ["Fabian Fan","Fabian Fanatic","Fabian Superfan"],
     "reqs": [2, 5, 10]
 }, {
     "name": "Fruit of the Person",
     "description": "Most people have qualities that are like fruits. For example, a person with a small, round face would be a cherry tomato. A person with a large, oval face would be a watermelon. The factor of what makes someone their fruit is not just limited to their facial shape, however. Some people can be almonds because their skin is darker than normal and their voice sounds a little starchy.",
     "compatible": false,
+    "achievements": ["Fruit of the person beginner","Fruit of the person nerd","Fruitofthepersonologist"],
     "reqs": [2, 5, 10]
 }, {
     "name": "Furball",
     "description": "On a TV show called The Berenstain Bears, in an episode called \"The Big Blooper\", Sister and Lizzy watch a video titled \"Trouble at Big Bear High\". In the video, a basketball player says: \"Get out of my way, you furball.\" The opponent then returns with \"Who you calling furball, furball?\" And then proceeds to score a point. Sister and Lizzy then start using those phrases everywhere they go. In real life, the Meme Creators also started using it, and it became a meme. <hr><b>To use this meme in Meme Craziness, say the first phrase (\"Get out of my way, furball.\") and another person will say the second phrase (\"Who you calling furball, furball?\")",
     "compatible": true,
+    "achievements":["Furry","Very furry","You're such a furball"],
     "reqs": [2, 5, 10]
 }, {
     "name": "Grahy",
     "description": "This meme was from a funny mispronunciation by Andrew and Marc's mom when trying to pronounce Gravy at the dinner table.",
     "compatible": false,
+    "achievements": ["Yucky grahy","Pretty good grahy","Astounding grahy"],
     "reqs": [2, 5, 10]
 }, {
     "name": "Guy Sax",
     "description": "At a dinner table one evening, music started playing that sounded chill and attractive to listen to. Meme Creator 1 consequently sucked in his cheeks and picked up a glass and calmly started drinking from it while twitching his eyebrows upward. It was called guy sax.",
     "compatible": false,
+    "achievements": ["Handsome","Very attractive","Guy Sax himself"],
     "reqs": [2, 5, 10]
 }, {
     "name": "Heather's Kitchen Party",
     "description": "On the radio, Meme Creator 3 happened to catch a funny ad of \"Heather's Kithen Party, April 28th\" and record it.",
     "compatible": false,
+    "achievements": ["Guest","Honored guest","VIP"],
     "reqs": [2, 5, 10]
 }, {
     "name": "Hey, Morgan! Yes?",
     "description": "At Ripley's Aquarium, one of the divers was feeding the fish, while a woman was outside of the tank asking questions to the diver. Whenever she wanted to ask a question, she said this: \"Hey, Morgan?\" very obnoxiously, and receive a very nasal-sounding reply: \"Yes?\". On Halloween the next year, when trick-or-treating, the Meme Creators were repeating this meme. Another trick-or-treater said \"Shut up.\"<hr> <b>To use this meme in Meme Craziness, say Hey, Morgan with an increased amount of intonation on the middle syllable of Morgan, and after that say Yesh? very nasally sounding.</b>",
     "compatible": true,
+    "achievements": ["A fish","A shark","A whale"],
     "reqs": [2, 5, 10]
 }, {
     "name": "Hooie",
     "description": "This is one of the first memes ever created! The exact origin of this meme is not clear, but it has to do with one of Meme Creator 1's random sounds he made. Due to the funniness of this meme, the \"Hooy Club\" (as it was called originally) was formed, with Meme Creator 1 being the Hooy Chief. It was later discontinued. A theory for how Hooie came to be was on a boring car ride Meme Creator 1 randomly blurted out Hooie.",
     "compatible": true,
+    "achievements": ["Hooie club member","Hooie chief","HOOOOIEEEEEEEEEEEEE"],
     "reqs": [2, 5, 10]
 }, {
     "name": "John and Gladys",
     "description": "The Meme Creators turned shared features in some grandparents into stereotypes. These included taking a walk with their neighbor occasionally, sitting on the veranda on a rocking chair, having grandchildren visit, and having a carpenter husband whose name is John.",
     "compatible": false,
+    "achievements": ["Gladys' child","Gladys' grandchild","Gladys' favorite grandchild"],
     "reqs": [2, 5, 10]
 }, {
     "name": "Limp Fish",
     "description": "Meme Creator 3 received a very tight hug by his uncle. When Meme Creator 3 returned the hug weakly, his uncle called him a Limp Fish!",
     "compatible": false,
+    "achievements": ["Weak hug","Firm hug","Organ squisher"],
     "reqs": [2, 5, 10]
 }, {
     "name": "LordeGorde",
     "description": "The Meme Creators asked Marc to create a few memes. One of the memes he created was called \"LordeGorde\". Marc said that we should say LORDEGORDE! when something goes wrong, for example: when someone falls off the bed \"LORDEGORDE\"! <hr><b>To use this meme in Meme Craziness, say LORDEGORDE with the following intonation: L medium, O high, RDE falling, GORDE rising.</b>",
     "compatible": true,
+    "achievements": ["What a pity","Woah, that's bad","CALL THE POLICE"],
     "reqs": [2, 5, 10]
 }, {
     "name": "Luvya",
     "description": "The Meme Creators' grandmother, instead of saying love you, said Luvya.",
     "compatible": false,
+    "achievements": ["Likeya","Luvya","Adoreya"],
     "reqs": [2, 5, 10]
 }, {
     "name": "Ma name's BRITNEY",
     "description": "The Meme Creators asked Marc to create a few memes. One of the memes he created was called \"Ma Name's Britney\". <hr><b>To use this meme in Meme Craziness, say it really high pitched.",
     "compatible": true,
-    "reqs": [2, 5, 10]
-}, {
-    "name": "Meanig",
-    "description": "When Meme Creator 2 was spamming MEANIE on discord, he accidentally put a G at the end instead of an E. Nowadays, the meme is used as a substitute for the word Meanie. It has no vocal form.",
-    "compatible": false,
+    "achievements": ["My name is britney.","Ma name's britnee","MA NAYMS BRITNEEEE"],
     "reqs": [2, 5, 10]
 }, {
     "name": "Marcello & Vivian Murphy",
-    "description": "The exact origin of this meme is unknown. Marcello and Vivian Murphy have extraordinary vocal chords and can do a multitude of string instrument sounds, but mainly cello and violin. Marcello got this talent from his mom, Dorothy Murphy, when she was trying to teach him how to do harp sounds (Dorothy could do harp sounds but not cello). Marcello, though, emitted a most unusual sound to Dorothy, and that was the cello. Marcello then passed the talent on to his wife and children.",
+    "description": "The exact origin of this meme is unknown. Marcello and Vivian Murphy have extraordinary vocal chords and can do a multitude of string instrument sounds, but mainly cello and violin. Marcello got this talent from his mom, Dorothy Murphy, when she was trying to teach him how to do harp sounds (Dorothy could do harp sounds but not cello). Marcello, though, emitted a most unusual sound to Dorothy, and that was the cello. Marcello then passed the talent on to his wife and children. It's called murphing.",
     "compatible": false,
+    "achievements": ["Fan of the Murphys","Friend of the Murphys","Wow! You can murph!"],
     "reqs": [2, 5, 10]
 }, {
     "name": "Maryolin!",
     "description": "The exact origin of this meme is unknown. Maryolin does a weird sound that can be described like this: starting high-pitched, but not too high pitched, then up REALLY high to almost a scream, then ending in a monotone-like high-pitched voice. All this is done while saying MARYOLIN!",
     "compatible": false,
+    "achievements": ["Violin","Mandolin","Maryolin"],
     "reqs": [2, 5, 10]
 }, {
     "name": "Maurice",
     "description": "This meme, Maurice (pronounced Morris), was from a drummer on GarageBand. The original Maurice from GarageBand played loose, hip-hop drums. The meme-ified Maurice could literally play anything, at any speed, to the extent that he grows another arm on his chest to help play.",
     "compatible": false,
+    "achievements": ["Drummer","Good drummer","Professional drummer"],
+    "reqs": [2, 5, 10]
+}, {
+    "name": "Meanig",
+    "description": "When Meme Creator 2 was spamming MEANIE on discord, he accidentally put a G at the end instead of an E. Nowadays, the meme is used as a substitute for the word Meanie. It has no vocal form.",
+    "compatible": false,
+    "achievements": ["Mean","Very mean","Meanig"],
     "reqs": [2, 5, 10]
 }, {
     "name": "Mister",
     "description": "The exact origin of this meme is unknown. It is used in any sentence talking to any person. Just tack it on and you're all set! Example: \"Hello mister.\"",
     "compatible": false,
+    "achievements": ["Guy","Mister","Sire"],
     "reqs": [2, 5, 10]
 }, {
     "name": "Prudence",
     "description": "The Meme Creators found an old picture of their aunt putting her finger on her chin and staring off into the distance. The word \"Prudence\" was associated with the picture. Later on, attributes to the meme such as the Plum of Prudence were added.",
     "compatible": false,
+    "achievements": ["Observer of Prudence", "Prudent","A person of Prudence"],
     "reqs": [2, 5, 10]
 }, {
     "name": "Poor Baird!",
