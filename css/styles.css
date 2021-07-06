@@ -50,7 +50,7 @@ body.dark .modal, body.dark main {
 }
 body.dark main {
     background: rgba(50,50,80,0.5);
-    
+    border: 1px solid rgba(0,0,0,0.6)
 }
 body.dark #overlay {
     background: rgba(36, 36, 60, 0.541)
@@ -58,8 +58,7 @@ body.dark #overlay {
 main {
     width:88%;
     margin:auto;
-    background: rgba(200,210,255,0.2);
-
+        background: rgba(200,210,255,0. 7);
     padding:30px;
     -webkit-box-shadow: 0 2px 3px rgba(0,0,0,0.2);
             box-shadow: 0 2px 3px rgba(0,0,0,0.2);
@@ -72,19 +71,7 @@ main {
     text-shadow: 0  0 10px black !important;
     position:relative;
     z-index:2;
-}
-main::after {
-pointer-events: none;
-    backdrop-filter:blur(17px);
-    height:100%;
-    background: rgba(200,210,255,0.2);
-    position:absolute;top:0;
-    z-index:-1;
-    left:0;
-    right:0;
-    width:100%;
-    content:'';
-    border-radius: 30px;
+    border: 1px solid rgba(255,255,255,0.3)
 }
 
 hr {
@@ -253,6 +240,71 @@ button:hover {
     background-color: #333353aa;
     color:White;
   }
+  .achievements-list {
+      position:fixed;
+      bottom:0;
+      overflow:hidden;
+      left:0;
+      right:0;
+      background: rgba(0,0,60,0.8);
+    z-index:12;
+    height:0%;
+    color:white;
+    transition:0.8s ease-in-out;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+  }
+  .achievements-list.open {
+      height:100%;
+  }
+.list-item {
+      padding:30px;
+      border-radius:30px;
+      width:40%;
+      margin:10px;
+      box-shadow: 0 2px 3px rgba(0,0,0,0.3);
+      color:white;
+      background:rgba(200,200,240,0.2);
+  }
+
+  #closeachl {
+      font-size:30px;
+      cursor:pointer;
+      position:fixed;
+      top:0;
+      right:0;
+      z-index:200;
+      margin:30px;
+  }
+  #closeachl:active {
+      transform:scale(0.9)
+  }
+  .inner {
+      overflow:scroll;
+      width:100vw;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+  }
+
+  @supports ((-webkit-backdrop-filter: blur(30px)) or (backdrop-filter: blur(30px))) {
+  main {
+         background: rgba(200,210,255,0.2);
+    backdrop-filter:blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+  }
+  .achievements-list {
+      backdrop-filter:blur(10px);
+      -webkit-backdrop-filter:blur(10px);
+      background:rgba(0,0,60,0.7);
+  }
+  .list-item {
+      backdrop-filter: blur(30px);
+       -webkit-backdrop-filter: blur(30px);
+  }
+}
 @media screen and (max-width:600px) {
     .modal {
         max-width:90%;

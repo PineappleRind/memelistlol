@@ -1,11 +1,13 @@
 var bod = document.querySelector(".items-cont");
 var main = document.querySelector('main')
 var inp = document.getElementById('input')
+var achl = document.querySelector('.achievements-list')
 var cloneCount = 0
 var loaded
 var date = new Date()
 date.setTime(date.getTime() + (86400000000));
 var expires = date.toGMTString()
+
 var Memes = {
     load: function() {
         inp.style.display = 'inline-block'
@@ -33,6 +35,7 @@ function clr() {
 }
 
 function loadMemes() {
+    loadAchs()
     loaded = true;
     for (let i = 0; i < memes.length; i++) {
         var y = document.createElement('BUTTON')
@@ -45,7 +48,6 @@ function loadMemes() {
             o.onclick = () => {
                 save()
                 modal(o, memes[i].name, memes[i].description)
-                console.log(cookie.memes[i].viewed)
                 cookie.memes[i].viewed++
                 
                 cookie.timesClicked++
@@ -182,18 +184,31 @@ function removeText(child) {
 
 
 
-
+        setTimeout(function(){
+            cookie.timesViewed++
+            save()
+        },5000)
 
 if (!lscache.get('visited')) {
     save()
     set('visited','true')
 } else {
     loadFromSave()
+    achievement()
 }
 
 function save(){
-    let notSaved = JSON.stringify(cookie).replace(/\\/g, "")
+    let notSaved = JSON.stringify(cookie)
     set('achievements',notSaved)
+}
+
+function loadAchs() {
+    if (cookie.achievementsList.length == 0) achl.innerHTML = `<p id="closeachl">&times;</p><div class="inner"><h1>No achievements yet..</h1></div>`
+    else achl.innerHTML = `<p id="closeachl">&times;</p><div class="inner"></div>`
+
+    for (let i = 0; i < cookie.achievementsList.length; i++) {
+        document.querySelector('.inner').insertAdjacentHTML('beforeend',`<div class="list-item"><h1>${cookie.achievementsList[i].name}</h1><p>${cookie.achievementsList[i].desc}</p></div>`)
+    }
 }
 function loadFromSave() {
     cookie = JSON.parse(lscache.get('achievements'))
@@ -218,17 +233,33 @@ function achievement() {
     for (let i = 0; i < memes.length; i++) {
       if (cookie.memes[i].viewed >= memes[i].reqs[0]) {
         notification(memes[i].achievements[0],`View "${memes[i].name}" ${memes[i].reqs[0]} times`)
-        memes[i].reqs.shift()
+        setTimeout(function(){memes[i].reqs.shift()
         cookie.memes[i].reqs.shift()
         memes[i].achievements.shift()
-        cookie.memes[i].achievements.shift()
+        cookie.memes[i].achievements.shift()})
 
-        cookie.achievementsList.push({name: cookie.memes[i].achievements[0], desc: `View "${memes[i].name}" ${memes[i].reqs[0]} times`})
-        save()
+        setTimeout(function(){cookie.achievementsList = remDupObj(cookie.achievementsList,'desc');save()})
+
+        cookie.achievementsList.push({name: cookie.memes[i].achievements[0], desc: `View the meme ${memes[i].name} ${memes[i].reqs[0]} times`})
       }
     }
+    loadAchs()
+        if (cookie.timesViewed >= 5 && searchName('Welcome back') === undefined) {
+            notification('Welcome back',`View the meme list ${cookie.timesViewed} times`)
+            cookie.achievementsList.push({name: 'Welcome back', desc: `View the meme list ${cookie.timesViewed} times`})
+        }
 }
-
+function remDupObj(array, key) {
+    var check = {};
+    var res = [];
+    array.forEach(element => {
+        if(!check[element[key]]) {
+            check[element[key]] = true;
+            res.push(element);
+        }
+    });
+    return res;
+}
 function notification(name,desc) {
    iziToast.show({
     title: `Achievement Unlocked: ${name}<p style="display:block;font-weight:200;margin-bottom:10px;margin-right:14px;margin-top:10px;">${desc}</p>`,
@@ -236,4 +267,10 @@ function notification(name,desc) {
     titleSize: '25px',
     theme:'dark'
 });
+}
+function searchName(e) {
+    var result = cookie.achievementsList.find(obj => {
+  return obj.name === e
+})
+return result
 }

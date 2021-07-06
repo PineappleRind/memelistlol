@@ -32,7 +32,7 @@ var memes = [{
     "name": "Be One with the Pie Crust",
     "description": "Meme Creator 2 was trying to make a gluten free/dairy free pumpkin pie. He found a recipe on YouTube featuring an energetic female Texan making a pumpkin pie. At one point she said, when molding the pie crust into the pie pan, \"Be One with the Pie Crust\".<hr> <b>To use this meme in Meme Craziness, say it slowly in an eerie, nasal kind of voice.</b>",
     "compatible": true,
-    "achievements": ["Lights", "Southern Lights", "Northern Lights"],
+    "achievements": ["Baker", "Good baker", "Award-winning baker"],
     "reqs": [2, 5, 10]
 }, {
     "name": "Body Types",
