@@ -1,6 +1,6 @@
 # memelistlol
 The official online meme list.
-The website features have not yet been completed.
+The website version is now alpha! You can find it [here](https://memelist.ml).
 
 ## Features
 
