@@ -125,6 +125,7 @@ function autocomplete() {
     let input = document.getElementById('input')
     let removeCount = 0
     clear()
+    cookie.timesSearched++
     setTimeout(function() {
         loadMemes();
         setTimeout(function() {
@@ -248,10 +249,14 @@ function achievement(e) {
             notification('Welcome back',`View the meme list ${cookie.timesViewed} times`)
             cookie.achievementsList.push({name: 'Welcome back', desc: `View the meme list ${cookie.timesViewed} times`})
         }
+    if (cookie.timesSearched >= 1 && searchName('Seeker') === undefined) {
+            notification('Seeker',`Search for the first time`)
+            cookie.achievementsList.push({name: 'Seeker', desc: `Search for the first time`})
+        }
 }
 function achClr(i) {
     memes[i].reqs.shift()
-    cookie.memes[i].reqs.shift()y
+    cookie.memes[i].reqs.shift()
     cookie.memes[i].achievements.shift()
 }
 function remDupObj(array, key) {
