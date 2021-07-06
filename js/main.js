@@ -238,7 +238,7 @@ function achievement(e) {
             setTimeout(function(){cookie.achievementsList = remDupObj(cookie.achievementsList,'desc');save()})
             cookie.achievementsList.push({name: cookie.memes[i].achievements[0], desc: `View the meme ${memes[i].name} ${memes[i].reqs[0]} times`})
         }
-        achClr()
+        achClr(i)
       }
     }
     loadAchs()
@@ -247,7 +247,7 @@ function achievement(e) {
             cookie.achievementsList.push({name: 'Welcome back', desc: `View the meme list ${cookie.timesViewed} times`})
         }
 }
-function achClr() {
+function achClr(i) {
     memes[i].reqs.shift()
     cookie.memes[i].reqs.shift()
     memes[i].achievements.shift()
