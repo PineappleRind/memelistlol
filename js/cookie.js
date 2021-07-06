@@ -189,26 +189,32 @@ var cookie = {
 }, {
     "name": "Rupert",
     "reqs": [2, 5, 10],
+        "achievements": ["Visit Prince Rupert", "Drive around Prince Rupert", "Sail around Prince Rupert"],
     "viewed": 0
 }, {
     "name": "Scuzi",
     "reqs": [2, 5, 10],
+        "achievements": ["Excuse me","'scuse me","Scuzi"],
     "viewed": 0
 }, {
     "name": "Skin Twist",
     "reqs": [2, 5, 10],
+        "achievements":["You left it on for a minute", "You left it on for an hour", "You left it on for a day"],
     "viewed": 0
 }, {
     "name": "TITONGO GET NO PAY",
     "reqs": [2, 5, 10],
+        "achievements": ["Bad website", "Horrible website", "Beyond horrible website."],
     "viewed": 0
 }, {
     "name": "The Smeller",
     "reqs": [2, 5, 10],
+        "achievements":["You smell like sweat and cheetos", "You smell like a hotel bedsheet", "You smell like honey-maple"],
     "viewed": 0
 }, {
     "name": "Zhou",
     "reqs": [2, 5, 10],
+        "achievements": ["Zhou", "Pretty good Zhou", "We are going to the Zhou"],
     "viewed": 0
 }
         ],
