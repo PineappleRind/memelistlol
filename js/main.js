@@ -51,7 +51,7 @@ function loadMemes() {
                 cookie.memes[i].viewed++
                 
                 cookie.timesClicked++
-                achievement()
+                achievement(true)
             }
         setTimeout(function(){removeText(bod.firstChild)})
             //console.clear()
@@ -194,7 +194,7 @@ if (!lscache.get('visited')) {
     set('visited','true')
 } else {
     loadFromSave()
-    achievement()
+    achievement(false)
 }
 
 function save(){
@@ -229,15 +229,13 @@ function ind(e,i) {
     return e[Object.keys(e)[i]];
 }
 
-function achievement() {
+function achievement(e) {
     for (let i = 0; i < memes.length; i++) {
       if (cookie.memes[i].viewed >= memes[i].reqs[0]) {
         notification(memes[i].achievements[0],`View "${memes[i].name}" ${memes[i].reqs[0]} times`)
-        setTimeout(function(){memes[i].reqs.shift()
-        cookie.memes[i].reqs.shift()
-        memes[i].achievements.shift()
-        cookie.memes[i].achievements.shift()})
-
+        if (e == true) {
+            achClr()
+        }
         setTimeout(function(){cookie.achievementsList = remDupObj(cookie.achievementsList,'desc');save()})
 
         cookie.achievementsList.push({name: cookie.memes[i].achievements[0], desc: `View the meme ${memes[i].name} ${memes[i].reqs[0]} times`})
@@ -248,6 +246,12 @@ function achievement() {
             notification('Welcome back',`View the meme list ${cookie.timesViewed} times`)
             cookie.achievementsList.push({name: 'Welcome back', desc: `View the meme list ${cookie.timesViewed} times`})
         }
+}
+function achClr() {
+    memes[i].reqs.shift()
+    cookie.memes[i].reqs.shift()
+    memes[i].achievements.shift()
+    cookie.memes[i].achievements.shift()
 }
 function remDupObj(array, key) {
     var check = {};
