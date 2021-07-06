@@ -205,7 +205,9 @@ function save(){
 function loadAchs() {
     if (cookie.achievementsList.length == 0) achl.innerHTML = `<p id="closeachl">&times;</p><div class="inner"><h1>No achievements yet..</h1></div>`
     else achl.innerHTML = `<p id="closeachl">&times;</p><div class="inner"></div>`
-
+$('closeachl').onmousedown = () => {
+        achl.classList.remove('open')
+}
     for (let i = 0; i < cookie.achievementsList.length; i++) {
         document.querySelector('.inner').insertAdjacentHTML('beforeend',`<div class="list-item"><h1>${cookie.achievementsList[i].name}</h1><p>${cookie.achievementsList[i].desc}</p></div>`)
     }
@@ -249,8 +251,7 @@ function achievement(e) {
 }
 function achClr(i) {
     memes[i].reqs.shift()
-    cookie.memes[i].reqs.shift()
-    memes[i].achievements.shift()
+    cookie.memes[i].reqs.shift()y
     cookie.memes[i].achievements.shift()
 }
 function remDupObj(array, key) {
