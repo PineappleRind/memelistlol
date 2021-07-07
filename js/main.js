@@ -195,7 +195,7 @@ if (!lscache.get('visited')) {
     set('visited','true')
 } else {
     loadFromSave()
-    setTimeout(function(){achievement(true)})
+    setTimeout(function(){achievement(false)})
 }
 
 function save(){
@@ -235,9 +235,8 @@ function ind(e,i) {
 function achievement(e) {
     for (let i = 0; i < memes.length; i++) {
       if (cookie.memes[i].viewed >= memes[i].reqs[0]) {
-        
+                    setTimeout(achClr(i))
         if (e == true) {
-            setTimeout(achClr(i))
             notification(memes[i].achievements[0],`View "${memes[i].name}" ${cookie.memes[i].viewed} times`)
             setTimeout(function(){cookie.achievementsList = remDupObj(cookie.achievementsList,'desc');save()})
             cookie.achievementsList.push({name: cookie.memes[i].achievements[0], desc: `View the meme ${memes[i].name} ${memes[i].viewed} times`})
