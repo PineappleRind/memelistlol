@@ -195,7 +195,7 @@ if (!lscache.get('visited')) {
     set('visited','true')
 } else {
     loadFromSave()
-    achievement(true)
+    setTimeout(function(){achievement(true)})
 }
 
 function save(){
