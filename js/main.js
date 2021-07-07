@@ -4,9 +4,6 @@ var inp = document.getElementById('input')
 var achl = document.querySelector('.achievements-list')
 var cloneCount = 0
 var loaded
-var date = new Date()
-date.setTime(date.getTime() + (86400000000));
-var expires = date.toGMTString()
 
 var Memes = {
     load: function() {
@@ -42,27 +39,25 @@ function loadMemes() {
         y.classList.add('item')
         y.innerHTML = memes[i].name
         y.style.background = clr()
+        y.onclick = () => {
+            save()
+            setTimeout(function(){modal(memes[i].name, memes[i].description)},200)
+            cookie.memes[i].viewed++
+            buttonClone(y)
+            cookie.timesClicked++
+            achievement(true)
+        }
         if (memes[i].compatible === true) y.style.fontWeight = '900';
+        console.log(y)
         bod.appendChild(y)
-            var o = document.querySelectorAll('.item')[i] 
-            o.onclick = () => {
-                save()
-                modal(o, memes[i].name, memes[i].description)
-                cookie.memes[i].viewed++
-                
-                cookie.timesClicked++
-                achievement(true)
-            }
-        setTimeout(function(){removeText(bod.firstChild)})
             //console.clear()
     }
-    bod.insertAdjacentHTML('beforeend', y)
 }
 
-function modal(btn, name, desc) {
+function modal(name, desc) {
     let o = $('overlay')
-    o.setAttribute('style', 'opacity:1;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px;)')
-    buttonClone(btn)
+    o.setAttribute('style', 'opacity:1;backdrop-filter:blur(1px);-webkit-backdrop-filter:blur(1px;)')
+
     showModal(name, desc)
 }
 
@@ -125,10 +120,11 @@ function autocomplete() {
     let input = document.getElementById('input')
     let removeCount = 0
     clear()
+    achievement()
     cookie.timesSearched++
-    setTimeout(function() {
+  //  setTimeout(function() {
         loadMemes();
-        setTimeout(function() {
+       // setTimeout(function() {
             searchDups()
             for (let i = 0; i < 15; i++) {
                 for (let j = 0; j < document.getElementsByClassName('item').length; j++) {
@@ -138,8 +134,8 @@ function autocomplete() {
                     if (document.getElementsByClassName('item').length == 0) main.innerHTML += 'No results :( <button onclick="window.location.href=\' https://memelist.ml\'">Try again</button>'
                 }
             }
-        }, 100)
-    }, 100)
+      //  }, 100)
+  //  }, 100)
 }
 
 function clear() {
@@ -157,34 +153,6 @@ function searchDups() {
     }
 }
 
-function removeText(child) {
-    while (child) {
-        nextSibling = child.nextSibling;
-        if (child.nodeType == 3) {
-            child.parentNode.removeChild(child);
-        }
-        child = nextSibling;
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         setTimeout(function(){
             cookie.timesViewed++
             save()
@@ -195,7 +163,7 @@ if (!lscache.get('visited')) {
     set('visited','true')
 } else {
     loadFromSave()
-    setTimeout(function(){achievement(false)})
+   // setTimeout(function(){achievement(false)})
 }
 
 function save(){
@@ -206,7 +174,7 @@ function save(){
 function loadAchs() {
     if (cookie.achievementsList.length == 0) achl.innerHTML = `<p id="closeachl">&times;</p><div class="inner"><h1>No achievements yet..</h1></div>`
     else achl.innerHTML = `<p id="closeachl">&times;</p><div class="inner"></div>`
-$('closeachl').onmousedown = () => {
+$('closeachl').onmouseup = () => {
         achl.classList.remove('open')
 }
     for (let i = 0; i < cookie.achievementsList.length; i++) {
@@ -234,8 +202,8 @@ function ind(e,i) {
 
 function achievement(e) {
     for (let i = 0; i < memes.length; i++) {
-      if (cookie.memes[i].viewed >= memes[i].reqs[0]) {
-                    setTimeout(achClr(i))
+      if (cookie.memes[i].viewed >= cookie.memes[i].reqs[0]) {
+        setTimeout(achClr(i))
         if (e == true) {
             notification(memes[i].achievements[0],`View "${memes[i].name}" ${cookie.memes[i].viewed} times`)
             setTimeout(function(){cookie.achievementsList = remDupObj(cookie.achievementsList,'desc');save()})
@@ -254,9 +222,12 @@ function achievement(e) {
         }
 }
 function achClr(i) {
+
     memes[i].reqs.shift()
     cookie.memes[i].reqs.shift()
     cookie.memes[i].achievements.shift()
+
+    setTimeout(function(){console.log('removed achievements of ' + memes[i].name + ', there are now ' + cookie.memes[i].achievements.length + ' achievements left')}) 
 }
 function remDupObj(array, key) {
     var check = {};
@@ -274,7 +245,7 @@ function notification(name,desc) {
     title: `Achievement Unlocked: ${name}<p style="display:block;font-weight:200;margin-bottom:10px;margin-right:14px;margin-top:10px;">${desc}</p>`,
     timeout: 15000,
     titleSize: '25px',
-    theme:'dark'
+    theme: cookie.determineTheme()
 });
 }
 function searchName(e) {

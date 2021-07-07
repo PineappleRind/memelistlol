@@ -33,15 +33,14 @@
     </div>
     <script src="libs/izitoast.js"></script>
     <script src="libs/lscache.js"></script>
-    <script src="js/cookie.js"></script>
-    <script src="js/memes.js"></script>
+    <script src="js/data.js"></script>
     <script src="js/main.js"></script>
     <script>
         Memes.load()
         $('achievements').onclick = () => {
     achl.classList.add('open')
 }
-$('closeachl').onmousedown = () => {
+$('closeachl').onmouseup = () => {
         achl.classList.remove('open')
 }
     </script>
