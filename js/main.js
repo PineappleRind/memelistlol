@@ -239,7 +239,7 @@ function achievement(e) {
         if (e == true) {
             notification(memes[i].achievements[0],`View "${memes[i].name}" ${cookie.memes[i].viewed} times`)
             setTimeout(function(){cookie.achievementsList = remDupObj(cookie.achievementsList,'desc');save()})
-            cookie.achievementsList.push({name: cookie.memes[i].achievements[0], desc: `View the meme ${memes[i].name} ${memes[i].viewed} times`})
+            cookie.achievementsList.push({name: memes[i].achievements[0], desc: `View the meme ${memes[i].name} ${cookie.memes[i].viewed} times`})
         }
       }
     }
