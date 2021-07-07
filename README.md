@@ -1,4 +1,4 @@
-# memelistlol
+# memelist
 The official online meme list.
 The website version is now alpha! You can find it [here](https://memelist.ml).
 
