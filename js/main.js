@@ -1,4 +1,4 @@
-var bod = document.querySelector(".items-cont");
+var bod = document.querySelector(".items-cont"); // The variables. These are "shortcuts"; I select the element on the page and store it. This one can be referred to as "bod" in the code.
 var main = document.querySelector('main')
 var inp = document.getElementById('input')
 var achl = document.querySelector('.achievements-list')
@@ -11,7 +11,7 @@ var Memes = {
         document.getElementById('search').style.display = 'inline-block'
         document.getElementById('info').style.display = 'block'
         document.getElementById('loading').style.display = 'none'
-        loadMemes()
+        loadMemes() 
     }
 }
 
@@ -25,7 +25,7 @@ function getVal(e) {
 
 let light = 0;
 
-function clr() {
+function clr() { // The function for colors, so that the buttons' background color goes from red, to pink, and back again
     light = light + 10
     if (light <= 100 || light >= 50) return `hsl(${light},100%,30%)`
     else return `hsl(${light},100%,50%)`
@@ -34,34 +34,34 @@ function clr() {
 function loadMemes() {
     loadAchs()
     loaded = true;
-    for (let i = 0; i < memes.length; i++) {
-        var y = document.createElement('BUTTON')
-        y.classList.add('item')
-        y.innerHTML = memes[i].name
-        y.style.background = clr()
-        y.onclick = () => {
-            save()
-            setTimeout(function(){modal(memes[i].name, memes[i].description)},200)
-            cookie.memes[i].viewed++
-            buttonClone(y)
-            cookie.timesClicked++
-            achievement(true)
+    for (let i = 0; i < memes.length; i++) { // For each meme,
+        var y = document.createElement('BUTTON') // Create a button
+        y.classList.add('item') // Add a class to it to refer to it in the style sheet
+        y.innerHTML = memes[i].name // Set the content to the meme's name
+        y.style.background = clr() // Calls the color function
+        y.onclick = () => { // When the button is clicked,
+            save() // Save 
+            setTimeout(function(){modal(memes[i].name, memes[i].description)},200) // Open the modal 
+            cookie.memes[i].viewed++ // Increase the view count of the specific meme
+            buttonClone(y) // Button animation
+            cookie.timesClicked++ // Increase the overall view count
+            achievement(true) // Check if the user unlocked an achievement
         }
-        if (memes[i].compatible === true) y.style.fontWeight = '900';
+        if (memes[i].compatible === true) y.style.fontWeight = '900'; // If the meme is compatible with Meme Craziness bold it
         console.log(y)
-        bod.appendChild(y)
+        bod.appendChild(y) // Add the button to the page
             //console.clear()
     }
 }
 
-function modal(name, desc) {
-    let o = $('overlay')
+function modal(name, desc) { // Function to open the modal
+    let o = $('overlay') // Overlay variable (for the overlay)
     o.setAttribute('style', 'opacity:1;backdrop-filter:blur(1px);-webkit-backdrop-filter:blur(1px;)')
 
-    showModal(name, desc)
+    showModal(name, desc) // Another function to open the modal
 }
 
-function buttonClone(e) {
+function buttonClone(e) { // Button animation (Pretty complicated)
     if (e.childElementCount < 1) {
         let y = document.createElement('BUTTON')
         y.classList.add('item')
@@ -74,36 +74,36 @@ function buttonClone(e) {
     } else return cloneCount++
 }
 inp.onkeypress = e => {
-    if (e.key == 'Enter') document.getElementById('search').click()
+    if (e.key == 'Enter') document.getElementById('search').click() // If the user pressed the key "Enter" search the value
 }
-function showModal(r, t) {
-    let y = document.createElement('DIV') 
-    y.classList.add('modal') 
-    y.innerHTML = ` <h1>Meme Info - ${r}</h1>
+function showModal(r, t) { 
+    let y = document.createElement('DIV') // Creates a miscellanous object
+    y.classList.add('modal')  // adds a class to it
+    y.innerHTML = ` <h1>Meme Info - ${r}</h1> 
             <hr>
             <p>${t}</p>
             <p id="close" onclick="closeModal($('overlay'),document.querySelector('.modal'))">&times;</p>
-            `
+            ` // Puts the content of the modal
     let wr = document.querySelector('.modalwrap')
-    wr.innerHTML = ''
-    wr.appendChild(y)
+    wr.innerHTML = '' // Closes any currently open modals
+    wr.appendChild(y) // adds the modal to the overlay
 }
 
-function closeModal(o, m) {
-    m.style.opacity = '0'
+function closeModal(o, m) { // Function to close the modal
+    m.style.opacity = '0'// Set the opacity of the modal to 0
     m.style.transform = 'translateY(30px)'
     setTimeout(function() {
-        m.remove()
-        o.setAttribute('style', 'opacity:0;pointer-events: none;')
+        m.remove() // After a second, remove the modal from the page completely
+        o.setAttribute('style', 'opacity:0;pointer-events: none;') // Hides the overlay
     }, 1000)
 }
-onload = () => {if (cookie.lightMode == true) smoothLightMode()}
-$('darkToggle').onclick = () => {
-    document.body.classList.toggle('dark')
-    if (!document.body.classList.contains('dark')) cookie.lightMode = true;
+onload = () => {if (cookie.lightMode == true) smoothLightMode()} // On page load, checks if the user had light mode enabled on the previous session. 
+$('darkToggle').onclick = () => { // Toggles dark mode
+    document.body.classList.toggle('dark') 
+    if (!document.body.classList.contains('dark')) cookie.lightMode = true; // Saves the preference locally (Page-limited)
     else cookie.lightMode = false
 
-    save()
+    save() // Saves the preference globally (On the user's device)
     //updateAndLoadCookie(false)
 }
 
