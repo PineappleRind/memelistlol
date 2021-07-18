@@ -389,6 +389,11 @@ var cookie = {
         "reqs": [2, 5, 10],
         "achievements": ["Weak hug", "Firm hug", "Organ squisher"],
         "viewed": 0
+    },{
+        "name": "Lisa Bee",
+        "reqs": [2,5,10],
+        "achievements": ["Cheerleader","Ballet Dancer","Wig Reviewer"],
+        "viewed": 0
     }, {
         "name": "LordeGorde",
         "reqs": [2, 5, 10],
@@ -522,6 +527,7 @@ var fotpQuestions = [{
             points: function() {
                 fotpData[0].count += 0.5; // Blackberry
                 fotpData[1].count += 0.2;// peach
+                fotpData[5].count += 0.5
             }
         },
         {
@@ -529,6 +535,7 @@ var fotpQuestions = [{
             points: function() {
                 // None for Blackberry
                 fotpData[1].count += 0.5; // peach
+                fotpData[4].count += 0.5
             }
         },
         {
@@ -537,6 +544,7 @@ var fotpQuestions = [{
                 // None for Blackberry
                 // None for Peach
                 fotpData[2].count +=0.5; // almond
+                fotpData[5].count += 0.2
             }
         },
         {
@@ -545,7 +553,8 @@ var fotpQuestions = [{
                 // None for Blackberry
                 fotpData[1].count += 0.2
                 // None for Almond
-                fotpData[3].count += 0.5
+                fotpData[3].count += 0.5;
+                fotpData[4].count += 0.2
             }
         }
     ]
@@ -561,6 +570,7 @@ var fotpQuestions = [{
                   fotpData[1].count += 0.5;
                   // None for Almond
                   fotpData[3].count +=  0.5;
+                  fotpData[4].count += 0.2
               }
           },
           {
@@ -568,7 +578,8 @@ var fotpQuestions = [{
               points: function() {
                   fotpData[0].count += 0.5; //blackberry
                   // None for Peach
-                  fotpData[2].count += 0.5
+                  fotpData[2].count += 0.5;
+                  fotpData[4].count += 0.2
               }
           },
           {
@@ -578,6 +589,7 @@ var fotpQuestions = [{
                   // None for Peach
                   fotpData[2].count += 0.2;
                   // None for Watermelon
+                  fotpData[5].count += 0.5
               }
           }
       ]  
@@ -593,6 +605,7 @@ var fotpQuestions = [{
                     // none for peach
                     fotpData[2].count += 0.5;
                     fotpData[3].count += 0.2;
+                    fotpData[5].count += 0.5
                 }
             },
             {
@@ -602,6 +615,7 @@ var fotpQuestions = [{
                     fotpData[1].count += 0.2;
                     // none for almond
                     fotpData[3].count += 0.5
+                    fotpData[5].count += 0.2
                 }
             },
             {
@@ -611,16 +625,61 @@ var fotpQuestions = [{
                     fotpData[1].count += 0.5;
                     // none for almond
                     fotpData[3].count += 0.2
+                    fotpData[4].count += 0.2
                 }
             },
             {
                 name: "I'm obese",
                 points: function() {
                     //none at all 
+                    fotpData[4].count += 0.5
                 }
             }
         ]
-    }
+    },
+    /*{
+        name: "What hairstyle do you have?",
+        id:"weight",
+        answers: [
+            {
+                name: "I have normal hair",
+                points: function() {
+                    fotpData[0].count += 0.5;
+                    // none for peach
+                    fotpData[2].count += 0.5;
+                    fotpData[3].count += 0.2;
+                    fotpData[5].count += 0.5
+                }
+            },
+            {
+                name: "I'm slightly overweight",
+                points: function() {
+                    fotpData[0].count += 0.2;
+                    fotpData[1].count += 0.2;
+                    // none for almond
+                    fotpData[3].count += 0.5
+                    fotpData[5].count += 0.2
+                }
+            },
+            {
+                name: "I'm overweight",
+                points: function() {
+                    //none for blackberry
+                    fotpData[1].count += 0.5;
+                    // none for almond
+                    fotpData[3].count += 0.2
+                    fotpData[4].count += 0.2
+                }
+            },
+            {
+                name: "I'm obese",
+                points: function() {
+                    //none at all 
+                    fotpData[4].count += 0.5
+                }
+            }
+        ]
+    }*/
 ]
 
 var fotpData = [{
@@ -637,6 +696,14 @@ var fotpData = [{
     },
     {
         name: "Watermelon",
+        count: 0
+    },
+    {
+        name: "Plum",
+        count: 0
+    },
+    {
+        name: "Eggplant",
         count: 0
     }
 ]
