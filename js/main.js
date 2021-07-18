@@ -41,7 +41,7 @@ function loadMemes() {
         y.style.background = clr() // Calls the color function
         y.onclick = () => { // When the button is clicked,
             save() // Save 
-            setTimeout(function(){modal(memes[i].name, memes[i].description)},200) // Open the modal 
+            setTimeout(function(){showModal(memes[i].name, memes[i].description)},200) // Open the modal 
             cookie.memes[i].viewed++ // Increase the view count of the specific meme
             buttonClone(y) // Button animation
             cookie.timesClicked++ // Increase the overall view count
@@ -52,13 +52,6 @@ function loadMemes() {
         bod.appendChild(y) // Add the button to the page
             //console.clear()
     }
-}
-
-function modal(name, desc) { // Function to open the modal
-    let o = $('overlay') // Overlay variable (for the overlay)
-    o.setAttribute('style', 'opacity:1;backdrop-filter:blur(1px);-webkit-backdrop-filter:blur(1px;)')
-
-    showModal(name, desc) // Another function to open the modal
 }
 
 function buttonClone(e) { // Button animation (Pretty complicated)
@@ -77,6 +70,8 @@ inp.onkeypress = e => {
     if (e.key == 'Enter') document.getElementById('search').click() // If the user pressed the key "Enter" search the value
 }
 function showModal(r, t) { 
+    let o = $('overlay') // Overlay variable (for the overlay)
+    o.setAttribute('style', 'opacity:1;filter:blur(60px);')
     let y = document.createElement('DIV') // Creates a miscellanous object
     y.classList.add('modal')  // adds a class to it
     y.innerHTML = ` <h1>Meme Info - ${r}</h1> 
@@ -254,3 +249,53 @@ function searchName(e) {
 })
 return result
 }
+
+
+
+/************** FRUIT OF THE PERSON QUIZ *****************/
+/* by me lol
+ * started july 18 2021
+*/
+
+function fotpModal() {
+    var iid = 0;
+    let y = document.createElement('DIV')
+    y.innerHTML = `<button onclick="fotpEval(document.querySelector('.modalwrap').children[0])">Evaluate!</button><p id="close" onclick="closeModal($('overlay'),document.querySelector('.modal'))">&times;</p>`
+    y.classList.add('modal')
+    for (let i = 0; i < fotpQuestions.length; i++) {
+        iid = 0
+        y.innerHTML += `<h2>${fotpQuestions[i].name}</h2>`
+        for (let j = 0; j < fotpQuestions[i].answers.length; j++) {
+            iid++
+            y.innerHTML += `<input type="radio" name="${fotpQuestions[i].id}" id="${fotpQuestions[i].id + iid}"><label for="${fotpQuestions[i].id + iid.toString()}">${fotpQuestions[i].answers[j].name}</label><br>`
+        }
+    }
+    let wr = document.querySelector('.modalwrap')
+    wr.innerHTML = '' // Closes any currently open modals
+    wr.appendChild(y) // adds the modal to the overlay
+}
+function fotpEval(mod) {
+    setTimeout(function(){mod.innerHTML = 'Evaluating...'})
+    setTimeout(function(){fotpShowResults(mod)},500)
+    for (let i = 0; i < fotpQuestions.length; i++) {
+        for (let j = 0; j < fotpQuestions[i].answers.length; j++) {
+            if (document.getElementById(`${fotpQuestions[i].id + (j+1).toString()}`).checked == true) {
+                fotpQuestions[i].answers[j].points()
+            }
+        }
+    }
+}
+function fotpGetFruit() {
+    var maxVotes = Math.max(...fotpData.map(e => e.count));
+    return fotpData.find(game => game.count === maxVotes);
+}
+function fotpShowResults(mod) {
+    var article = getArticle(fotpGetFruit().name)
+    mod.innerHTML = `<h1>You're ${article} ${fotpGetFruit().name}</h1>`
+}
+function getArticle(u) {
+    let e = u.toLowerCase()
+    if (e.startsWith('a') || e.startsWith('e')|| e.startsWith('i')|| e.startsWith('o')|| e.startsWith('u')) return 'an'
+    else return 'a'
+}
+fotpModal()

@@ -11,6 +11,15 @@
 h1,p,h2 {
     margin:0;
 }
+html {
+    overflow: hidden;
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    overflow: auto;
+}
 ::-webkit-scrollbar {
 	width: 9px;
 	background: none;
@@ -133,8 +142,8 @@ i {
 	right: 0;
 	bottom: 0;
 	background: rgba(0, 0, 60, 0.1);
-	backdrop-filter: blur(2px);
-	-webkit-backdrop-filter: blur(2px);
+	backdrop-filter: blur(50px);
+	-webkit-backdrop-filter: blur(50px);
 	margin: 0;
 	-webkit-transition: 0.5s;
 	-o-transition: 0.5s;
@@ -168,6 +177,7 @@ i {
 	padding: 30px;
 	background: rgba(255, 255, 255, 0.555);
 	backdrop-filter: blur(30px);
+	-webkit-backdrop-filter: blur(30px);
 	border-radius: 20px;
 	-webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 	box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
@@ -210,7 +220,7 @@ body.dark button,body.dark button * {
 
 button, button * {
 	border: 0;
-	border-radius: 12px/10px;
+	border-radius: 12px;
 	padding: 12px;
 	margin: 4px;
 	color: white;
@@ -224,7 +234,7 @@ button, button * {
 	filter: brightness(120%);
 	background: cornflowerblue
 }
-
+button *{position:absolute;display:block}
 button:hover {
     box-shadow: -2px 3px 0 rgba(255,255,255,0.2);
     transform: translate(1px,-1px);
