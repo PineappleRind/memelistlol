@@ -14,7 +14,12 @@ var Memes = {
         loadMemes() 
     }
 }
-
+$('closeachl').onmouseup = () => {
+    achl.classList.remove('open')
+}
+$('achievements').onclick = () => {
+    achl.classList.add('open')
+}
 function $(e) {
     return document.getElementById(e)
 }
@@ -48,7 +53,6 @@ function loadMemes() {
             achievement(true) // Check if the user unlocked an achievement
         }
         if (memes[i].compatible === true) y.style.fontWeight = '900'; // If the meme is compatible with Meme Craziness bold it
-        console.log(y)
         bod.appendChild(y) // Add the button to the page
             //console.clear()
     }

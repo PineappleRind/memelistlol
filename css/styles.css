@@ -193,6 +193,8 @@ i {
 	-webkit-transition: 1s;
 	-o-transition: 1s;
 	transition: 1s;
+	max-height:80%;
+	overflow: scroll;
 }
 
 .modal p#close {

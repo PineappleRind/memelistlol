@@ -527,7 +527,10 @@ var fotpQuestions = [{
             points: function() {
                 fotpData[0].count += 0.5; // Blackberry
                 fotpData[1].count += 0.2;// peach
-                fotpData[5].count += 0.5
+                fotpData[5].count += 0.5;
+                fotpData[6].count += 0.5
+                fotpData[7].count += 0.5
+                console.log('Average head: Added 0.5 to blackberry,eggplant,grape, and rambutan; 0.2 to peach')
             }
         },
         {
@@ -535,7 +538,7 @@ var fotpQuestions = [{
             points: function() {
                 // None for Blackberry
                 fotpData[1].count += 0.5; // peach
-                fotpData[4].count += 0.5
+                fotpData[4].count += 0.5;
             }
         },
         {
@@ -570,7 +573,9 @@ var fotpQuestions = [{
                   fotpData[1].count += 0.5;
                   // None for Almond
                   fotpData[3].count +=  0.5;
-                  fotpData[4].count += 0.2
+                  fotpData[4].count += 0.2;
+                  fotpData[6].count += 0.5
+                  console.log('Fair skin: Added 0.5 to Peach, Watermelon, and Grape; 0.2 to Blackberry and Plum')
               }
           },
           {
@@ -580,6 +585,9 @@ var fotpQuestions = [{
                   // None for Peach
                   fotpData[2].count += 0.5;
                   fotpData[4].count += 0.2
+                  fotpData[7].count += 0.5
+                  fotpData[6].count += 0.2
+                  console.log('Darker fair skin: Added 0.5 to blackberry, almond, and rambutan; 0.2 to plum and grape')
               }
           },
           {
@@ -589,7 +597,7 @@ var fotpQuestions = [{
                   // None for Peach
                   fotpData[2].count += 0.2;
                   // None for Watermelon
-                  fotpData[5].count += 0.5
+                  fotpData[5].count += 0.7
               }
           }
       ]  
@@ -605,7 +613,10 @@ var fotpQuestions = [{
                     // none for peach
                     fotpData[2].count += 0.5;
                     fotpData[3].count += 0.2;
-                    fotpData[5].count += 0.5
+                    fotpData[5].count += 0.5;
+                    fotpData[6].count += 0.2
+                    fotpData[7].count += 0.5
+                    console.log('Average weight: added 0.5 to blackberry, almond, eggplant, and rambutan; 0.2 to watermelon and grape')
                 }
             },
             {
@@ -616,6 +627,8 @@ var fotpQuestions = [{
                     // none for almond
                     fotpData[3].count += 0.5
                     fotpData[5].count += 0.2
+                    fotpData[6].count += 0.2
+                    console.log('Slightly over weight: Added 0.2 to blackberry, peach, eggplant and grape; 0.5 to Watermelon')
                 }
             },
             {
@@ -637,73 +650,130 @@ var fotpQuestions = [{
             }
         ]
     },
-    /*{
+    {
         name: "What hairstyle do you have?",
-        id:"weight",
+        id:"hair",
         answers: [
             {
                 name: "I have normal hair",
                 points: function() {
-                    fotpData[0].count += 0.5;
-                    // none for peach
-                    fotpData[2].count += 0.5;
-                    fotpData[3].count += 0.2;
-                    fotpData[5].count += 0.5
-                }
-            },
-            {
-                name: "I'm slightly overweight",
-                points: function() {
                     fotpData[0].count += 0.2;
-                    fotpData[1].count += 0.2;
-                    // none for almond
-                    fotpData[3].count += 0.5
-                    fotpData[5].count += 0.2
-                }
-            },
-            {
-                name: "I'm overweight",
-                points: function() {
-                    //none for blackberry
-                    fotpData[1].count += 0.5;
-                    // none for almond
-                    fotpData[3].count += 0.2
                     fotpData[4].count += 0.2
                 }
             },
             {
-                name: "I'm obese",
+                name: "I have lots of hair, pretty messy",
                 points: function() {
-                    //none at all 
-                    fotpData[4].count += 0.5
+                    fotpData[7].count += 0.5
+                }
+            },
+            {
+                name: "I have curly hair",
+                points: function() {
+                    fotpData[6].count += 0.5
+                }
+            },
+            {
+                name: "I'm bald",
+                points: function() {
+                    fotpData[5].count += 0.5
+                }
+            },
+            {
+                name: "My hair is straight and covers my eyebrows",
+                points: function() {
+                    fotpData[3].count += 0.5
+                }
+            },
+            {
+                name: "I have a little bit of male pattern baldness",
+                points: function() {
+                    fotpData[1].count += 0.5
+                    fotpData[2].count += 0.5
                 }
             }
         ]
-    }*/
+    }, {
+        name: "What is your voice quality?",
+        id:"voice",
+        answers: [
+            {
+                name: "I have a deep, rich voice.",
+                points: function() {
+                    fotpData[4].count += 0.5
+                }
+            },
+            {
+                name: "I have a slightly breathy voice.",
+                points: function() {
+                    fotpData[7].count += 0.5
+                }
+            },
+            {
+                name: "I have a high-pitched voice.",
+                points: function() {
+                    fotpData[6].count += 0.5
+                }
+            },
+            {
+                name: "I would say I have a normal voice.",
+                points: function() {
+                    fotpData[5].count += 0.5
+                }
+            },
+            {
+                name: "My voice is deeper than average.",
+                points: function() {
+                    fotpData[3].count += 0.5
+                }
+            },
+            {
+                name: "My voice is soapy and thick.",
+                points: function() {
+                    fotpData[3].count += 0.5
+                }
+            },
+        ]
+    }
 ]
 
 var fotpData = [{
-        name: "Blackberry",
+        name: "Blackberry", //0
         count: 0
     },
     {
-        name: "Peach",
+        name: "Peach", //1
+        count: 0,
+        description: `Peaches are overweight, thick people that have light skin and a visible forehead.`
+    },
+    {
+        name: "Almond", //2
         count: 0
     },
     {
-        name: "Almond",
+        name: "Watermelon", //3
         count: 0
     },
     {
-        name: "Watermelon",
+        name: "Plum", //4
         count: 0
     },
     {
-        name: "Plum",
+        name: "Eggplant", //5
         count: 0
     },
     {
-        name: "Eggplant",
+        name: "Grape", //6
+        count: 0,
+        description: `Grapes have curly hair, and a short head. If you have this fruit, most likely you're Grapy.`
+    },
+    {
+        name: "Rambutan", //7
+        count: 0,
+        description: `Your hair is a mess. You likely have facial hair.`
+    },
+    {
+        name: "Apple", //8
         count: 0
     }
 ]
