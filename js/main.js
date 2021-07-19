@@ -264,15 +264,15 @@ return result
 function fotpModal() {
     var iid = 0;
     let y = document.createElement('DIV')
-    y.innerHTML = `<button onclick="fotpEval(document.querySelector('.modalwrap').children[0])">Evaluate!</button><p id="close" onclick="closeModal($('overlay'),document.querySelector('.modal'))">&times;</p>`
     y.classList.add('modal')
     for (let i = 0; i < fotpQuestions.length; i++) {
         iid = 0
-        y.innerHTML += `<h2>${fotpQuestions[i].name}</h2>`
+        y.innerHTML += `<br><h2>${fotpQuestions[i].name}</h2>`
         for (let j = 0; j < fotpQuestions[i].answers.length; j++) {
             iid++
             y.innerHTML += `<input type="radio" name="${fotpQuestions[i].id}" id="${fotpQuestions[i].id + iid}"><label for="${fotpQuestions[i].id + iid.toString()}">${fotpQuestions[i].answers[j].name}</label><br>`
         }
+        if (i == fotpQuestions.length - 1)  y.innerHTML += `<button onclick="fotpEval(document.querySelector('.modalwrap').children[0])">Evaluate!</button><p id="close" onclick="closeModal($('overlay'),document.querySelector('.modal'))">&times;</p>`
     }
     let wr = document.querySelector('.modalwrap')
     wr.innerHTML = '' // Closes any currently open modals
@@ -302,4 +302,3 @@ function getArticle(u) {
     if (e.startsWith('a') || e.startsWith('e')|| e.startsWith('i')|| e.startsWith('o')|| e.startsWith('u')) return 'an'
     else return 'a'
 }
-fotpModal()

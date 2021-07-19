@@ -84,7 +84,7 @@ var memes = [{
     "reqs": [2, 5, 10]
 }, {
     "name": "Fruit of the Person",
-    "description": "Most people have qualities that are like fruits. For example, a person with a small, round face would be a cherry tomato. A person with a large, oval face would be a watermelon. The factor of what makes someone their fruit is not just limited to their facial shape, however. Some people can be almonds because their skin is darker than normal and their voice sounds a little starchy.",
+    "description": "Most people have qualities that are like fruits. For example, a person with a small, round face would be a cherry tomato. A person with a large, oval face would be a watermelon. The factor of what makes someone their fruit is not just limited to their facial shape, however. Some people can be almonds because their skin is darker than normal and their voice sounds a little starchy. <a onclick=\"fotpModal()\" href=\"#\">Take the Fruit of the Person Quiz!</a>",
     "compatible": false,
     "achievements": ["Fruit of the person beginner", "Fruit of the person nerd", "Fruitofthepersonologist"],
     "reqs": [2, 5, 10]
@@ -530,7 +530,7 @@ var fotpQuestions = [{
                 fotpData[5].count += 0.5;
                 fotpData[6].count += 0.5
                 fotpData[7].count += 0.5
-                console.log('Average head: Added 0.5 to blackberry,eggplant,grape, and rambutan; 0.2 to peach')
+                fotpData[8].count += 0.5
             }
         },
         {
@@ -539,6 +539,7 @@ var fotpQuestions = [{
                 // None for Blackberry
                 fotpData[1].count += 0.5; // peach
                 fotpData[4].count += 0.5;
+                fotpData[8].count += 0.5
             }
         },
         {
@@ -558,6 +559,7 @@ var fotpQuestions = [{
                 // None for Almond
                 fotpData[3].count += 0.5;
                 fotpData[4].count += 0.2
+                fotpData[8].count += 0.2
             }
         }
     ]
@@ -575,7 +577,7 @@ var fotpQuestions = [{
                   fotpData[3].count +=  0.5;
                   fotpData[4].count += 0.2;
                   fotpData[6].count += 0.5
-                  console.log('Fair skin: Added 0.5 to Peach, Watermelon, and Grape; 0.2 to Blackberry and Plum')
+                  fotpData[8].count += 0.5
               }
           },
           {
@@ -587,7 +589,6 @@ var fotpQuestions = [{
                   fotpData[4].count += 0.2
                   fotpData[7].count += 0.5
                   fotpData[6].count += 0.2
-                  console.log('Darker fair skin: Added 0.5 to blackberry, almond, and rambutan; 0.2 to plum and grape')
               }
           },
           {
@@ -639,6 +640,7 @@ var fotpQuestions = [{
                     // none for almond
                     fotpData[3].count += 0.2
                     fotpData[4].count += 0.2
+                    fotpData[8].count += 0.5
                 }
             },
             {
@@ -646,6 +648,7 @@ var fotpQuestions = [{
                 points: function() {
                     //none at all 
                     fotpData[4].count += 0.5
+                    fotpData[8].count += 0.5
                 }
             }
         ]
@@ -659,18 +662,22 @@ var fotpQuestions = [{
                 points: function() {
                     fotpData[0].count += 0.2;
                     fotpData[4].count += 0.2
+                    fotpData[8].count += 0.2
                 }
             },
             {
                 name: "I have lots of hair, pretty messy",
                 points: function() {
                     fotpData[7].count += 0.5
+                    fotpData[6].count += 0.2
+                    
                 }
             },
             {
                 name: "I have curly hair",
                 points: function() {
                     fotpData[6].count += 0.5
+                    fotpData[8].count += 0.5
                 }
             },
             {
@@ -719,6 +726,7 @@ var fotpQuestions = [{
                 name: "I would say I have a normal voice.",
                 points: function() {
                     fotpData[5].count += 0.5
+                    fotpData[7].count += 0.5
                 }
             },
             {
@@ -730,7 +738,8 @@ var fotpQuestions = [{
             {
                 name: "My voice is soapy and thick.",
                 points: function() {
-                    fotpData[3].count += 0.5
+                    fotpData[3].count += 0.2
+                    fotpData[8].count += 0.5
                 }
             },
         ]
