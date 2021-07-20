@@ -244,7 +244,7 @@ function notification(name,desc) {
     title: `Achievement Unlocked: ${name}<p style="display:block;font-weight:200;margin-bottom:10px;margin-right:14px;margin-top:10px;">${desc}</p>`,
     timeout: 15000,
     titleSize: '25px',
-    theme: cookie.determineTheme()
+    theme: determineTheme()
 });
 }
 function searchName(e) {
@@ -254,7 +254,10 @@ function searchName(e) {
 return result
 }
 
-
+function determineTheme() {
+    if (cookie.lightMode == false) return "dark"
+        else return "light"
+}
 
 /************** FRUIT OF THE PERSON QUIZ *****************/
 /* by me lol

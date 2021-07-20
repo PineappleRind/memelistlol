@@ -495,10 +495,7 @@ var cookie = {
         "achievements": ["Zhou", "Pretty good Zhou", "We are going to the Zhou"],
         "viewed": 0
     }],
-    "determineTheme": function() {
-        if (cookie.lightMode == false) return "dark"
-        else return "light"
-    },
+
     "timesViewed": 0, // How many times the page was viewed by the user
     "lightMode": false, // If light mode is turned on
     "timesSearched": 0, // This will increment upwards when the search button is pressed :)
@@ -560,6 +557,7 @@ var fotpQuestions = [{
                 fotpData[3].count += 0.5;
                 fotpData[4].count += 0.2
                 fotpData[8].count += 0.2
+                
             }
         }
     ]
@@ -578,6 +576,7 @@ var fotpQuestions = [{
                   fotpData[4].count += 0.2;
                   fotpData[6].count += 0.5
                   fotpData[8].count += 0.5
+                  fotpData[2].count = 0
               }
           },
           {
@@ -649,6 +648,7 @@ var fotpQuestions = [{
                     //none at all 
                     fotpData[4].count += 0.5
                     fotpData[8].count += 0.5
+                    fotpData[2].count = 0
                 }
             }
         ]
@@ -670,6 +670,7 @@ var fotpQuestions = [{
                 points: function() {
                     fotpData[7].count += 0.5
                     fotpData[6].count += 0.2
+                    fotpData[2].count = 0
                     
                 }
             },
@@ -678,6 +679,7 @@ var fotpQuestions = [{
                 points: function() {
                     fotpData[6].count += 0.5
                     fotpData[8].count += 0.5
+                    fotpData[2].count = 0
                 }
             },
             {
@@ -739,7 +741,7 @@ var fotpQuestions = [{
                 name: "My voice is soapy and thick.",
                 points: function() {
                     fotpData[3].count += 0.2
-                    fotpData[8].count += 0.5
+                    fotpData[8].count += 0.9
                 }
             },
         ]
@@ -754,6 +756,7 @@ var fotpQuestions = [{
                     fotpData[3].count += 0.5
                     fotpData[7].count += 0.5
                     fotpData[4].count += 0.5
+                    fotpData[8].count = 0
                 }
             },
             {
@@ -772,6 +775,8 @@ var fotpQuestions = [{
                 points: function() {
                     fotpData[0].count += 0.5
                     fotpData[2].count += 0.5
+                    fotpData[3].count = 0 // reset watermelon, bc you cant talk fast and be a watermelon
+                    fotpData[7].count = 0
                     fotpData[5].count += 0.2
                     fotpData[6].count += 0.5
                     fotpData[8].count += 1
