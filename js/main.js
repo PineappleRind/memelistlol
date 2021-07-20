@@ -290,12 +290,20 @@ function fotpEval(mod) {
     }
 }
 function fotpGetFruit() {
-    var maxVotes = Math.max(...fotpData.map(e => e.count));
-    return fotpData.find(game => game.count === maxVotes);
+    var arr = []
+    fotpData.sort(function(a, b) {
+        return parseFloat(b.count) - parseFloat(a.count);
+    });
+    for (let i = 0; i < fotpData.length; i++) {
+        arr.push({name: fotpData[i].name,count: fotpData[i].count})
+        if (i == fotpData.length - 1) return arr
+    }
 }
 function fotpShowResults(mod) {
-    var article = getArticle(fotpGetFruit().name)
-    mod.innerHTML = `<h1>You're ${article} ${fotpGetFruit().name}</h1>`
+    mod.innerHTML = `<h1>${fotpGetFruit()[0].name} was the best match for you.</h1>
+    Next best matches were:<br>
+     ${fotpGetFruit()[1].name}<br>
+     ${fotpGetFruit()[2].name}`
 }
 function getArticle(u) {
     let e = u.toLowerCase()

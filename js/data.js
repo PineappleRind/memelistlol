@@ -743,6 +743,41 @@ var fotpQuestions = [{
                 }
             },
         ]
+    },
+    {
+        name: "How fast do you talk?",
+        id: "",
+        answers: [
+            {
+                name: "Slowly",
+                points: function() {
+                    fotpData[3].count += 0.5
+                    fotpData[7].count += 0.5
+                    fotpData[4].count += 0.5
+                }
+            },
+            {
+                name: "Normally",
+                points: function() {
+                    fotpData[0].count += 0.5
+                    fotpData[2].count += 0.5
+                    fotpData[3].count += 0.5
+                    fotpData[5].count += 0.2
+                    fotpData[6].count +=0.2
+                    fotpData[7].count += 0.5
+                }
+            },
+            {
+                name: "Fast",
+                points: function() {
+                    fotpData[0].count += 0.5
+                    fotpData[2].count += 0.5
+                    fotpData[5].count += 0.2
+                    fotpData[6].count += 0.5
+                    fotpData[8].count += 1
+                }
+            }
+        ],
     }
 ]
 
