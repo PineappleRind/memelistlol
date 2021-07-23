@@ -497,13 +497,21 @@ var cookie = {
     }],
 
     "timesViewed": 0, // How many times the page was viewed by the user
-    "lightMode": false, // If light mode is turned on
+    "myFruit": null,
     "timesSearched": 0, // This will increment upwards when the search button is pressed :)
     "timesClicked": 0, // Every time the user clicks on a meme button.
 }
 
 
+/**********************************************************************************/
 
+
+var achievementData = [
+    {
+        achievements: ["Just looking", "Searching","Seeker"],
+        reqs: [1,5,15]
+    }
+]
 
 /**********************************************************************************/
 
@@ -526,8 +534,14 @@ var fotpQuestions = [{
                 fotpData[1].count += 0.2;// peach
                 fotpData[5].count += 0.5;
                 fotpData[6].count += 0.5
-                fotpData[7].count += 0.5
+                fotpData[7].count += 0.4
                 fotpData[8].count += 0.5
+            }
+        },
+        {
+            name: "Little and round",
+            points: function() {
+                fotpData[6].count += 0.5
             }
         },
         {
@@ -586,7 +600,7 @@ var fotpQuestions = [{
                   // None for Peach
                   fotpData[2].count += 0.5;
                   fotpData[4].count += 0.2
-                  fotpData[7].count += 0.5
+                  fotpData[7].count += 0.4
                   fotpData[6].count += 0.2
               }
           },
@@ -616,7 +630,6 @@ var fotpQuestions = [{
                     fotpData[5].count += 0.5;
                     fotpData[6].count += 0.2
                     fotpData[7].count += 0.5
-                    console.log('Average weight: added 0.5 to blackberry, almond, eggplant, and rambutan; 0.2 to watermelon and grape')
                 }
             },
             {
@@ -628,7 +641,6 @@ var fotpQuestions = [{
                     fotpData[3].count += 0.5
                     fotpData[5].count += 0.2
                     fotpData[6].count += 0.2
-                    console.log('Slightly over weight: Added 0.2 to blackberry, peach, eggplant and grape; 0.5 to Watermelon')
                 }
             },
             {
@@ -748,7 +760,7 @@ var fotpQuestions = [{
     },
     {
         name: "How fast do you talk?",
-        id: "",
+        id: "talkSpeed",
         answers: [
             {
                 name: "Slowly",
@@ -783,6 +795,18 @@ var fotpQuestions = [{
                 }
             }
         ],
+    },
+    {
+        name: "",
+        id: "",
+        answers: [
+            {
+                name: "",
+                points: function() {
+
+                }
+            },
+        ]
     }
 ]
 
@@ -823,6 +847,10 @@ var fotpData = [{
     },
     {
         name: "Apple", //8
+        count: 0
+    },
+    {
+        name: "Pear",
         count: 0
     }
 ]
