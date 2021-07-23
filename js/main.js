@@ -225,14 +225,14 @@ function achievement(e) {
       desc: `View the meme list 5 times`
     })
   }
-  if (cookie.timesSearched >= achievementData[0].reqs[0] && searchName(achievementData[0].achievements[0]) === undefined) {
-    notification(achievementData[0].achievements[0], `Search ${achievementData[0].reqs[0]} time(s)`)
+  if (cookie.timesSearched >= cookie.achievementData[0].reqs[0] && searchName(cookie.achievementData[0].achievements[0]) === undefined) {
+    notification(cookie.achievementData[0].achievements[0], `Search ${cookie.achievementData[0].reqs[0]} time(s)`)
     cookie.achievementsList.push({
-      name: achievementData[0].achievements[0],
-      desc: `Search ${achievementData[0].reqs[0]} time(s)`
+      name: cookie.achievementData[0].achievements[0],
+      desc: `Search ${cookie.achievementData[0].reqs[0]} time(s)`
     })
-    achievementData[0].achievements.shift()
-    achievementData[0].reqs.shift()
+    cookie.achievementData[0].achievements.shift()
+    cookie.achievementData[0].reqs.shift()
   }
 }
 
@@ -337,4 +337,36 @@ function getArticle(u) {
   let e = u.toLowerCase()
   if (e.startsWith('a') || e.startsWith('e') || e.startsWith('i') || e.startsWith('o') || e.startsWith('u')) return 'an'
   else return 'a'
+}
+
+/************** SAVING FUNCTIONS *****************/
+/* by me lol
+ * started july 23 2021
+ */
+
+function b64(str) {
+    return window.btoa(unescape(encodeURIComponent(str)));
+}
+function unb64(str) {
+    return window.atob(unescape(encodeURIComponent(str)));
+}
+function svModal() {
+    let save = b64(JSON.stringify(cookie).replace(/(\r\n|\n|\r)/gm, ""))
+    let y = document.createElement('DIV')
+    y.classList.add('modal')
+    y.style.height = '70%'
+    y.innerHTML = `
+    <h1>Save</h1>
+    <p>This code is what's currently saved. You can change it to load a previous code, or save your code to use on a different device/browser.</p>
+    <textarea id="saveTextarea" style="width:98%;height:50%;">${save}</textarea>
+    <button onclick="svSetSave()">Load</button>`
+    let wr = document.querySelector('.modalwrap')
+    wr.innerHTML = '' // Closes any currently open modals
+    wr.appendChild(y) // adds the modal to the overlay
+}
+$('getSave').onclick = svModal()
+
+function svSetSave() {
+    let saveContent = document.getElementById('saveTextarea')
+    saveContent.value
 }

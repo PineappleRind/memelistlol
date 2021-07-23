@@ -274,6 +274,12 @@ var memes = [{
 
 var cookie = {
     "achievementsList": [],
+    "achievementData": [
+        {
+            "achievements": ["Just looking", "Searching","Seeker"],
+            "reqs": [1,5,15]
+        }
+    ],
     "memes": [{
         "name": "Andrew Chester",
         "achievements": ["Chester Simp", "Chester Servant", "Chester Spouse"],
@@ -495,7 +501,6 @@ var cookie = {
         "achievements": ["Zhou", "Pretty good Zhou", "We are going to the Zhou"],
         "viewed": 0
     }],
-
     "timesViewed": 0, // How many times the page was viewed by the user
     "myFruit": null,
     "timesSearched": 0, // This will increment upwards when the search button is pressed :)
@@ -504,15 +509,6 @@ var cookie = {
 
 
 /**********************************************************************************/
-
-
-var achievementData = [
-    {
-        achievements: ["Just looking", "Searching","Seeker"],
-        reqs: [1,5,15]
-    }
-]
-
 /**********************************************************************************/
 
 /*
