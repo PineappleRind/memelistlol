@@ -220,7 +220,7 @@ body.dark button,body.dark button * {
 	filter: brightness(90%)
 }
 
-button, button * {
+button:not(.iziToast-close), button * {
 	border: 0;
 	border-radius: 12px;
 	padding: 12px;
@@ -237,13 +237,20 @@ button, button * {
 	background: cornflowerblue
 }
 button *{position:absolute !important;display:inline;top:0;left:0;right:0;bottom:0;animation: bing-bong cubic-bezier(0,.65,.28,.99) .7s;}
-button:hover {
+button:hover:not(.iziToast-close) {
     box-shadow: -2px 3px 0 rgba(255,255,255,0.2);
     transform: translate(1px,-1px);
 }
-button:active {
+button:active:not(.iziToast-close) {
     box-shadow: 0 0 0 rgba(255,255,255,0.2);
     transform: translate(0px,1px);
+}
+.iziToast-close:hover {
+	transform:translate(1px,-1px) scale(2);
+	opacity:1;
+}
+.iziToast-close{
+	transition:0.2s;
 }
 
 input[type=text] {

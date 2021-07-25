@@ -3,7 +3,7 @@ var main = document.querySelector('main')
 var inp = document.getElementById('input')
 var achl = document.querySelector('.achievements-list')
 var cloneCount = 0
-var loaded
+var loaded,modalOpen
 
 var Memes = {
   load: function() {
@@ -81,6 +81,7 @@ inp.onkeypress = e => {
 }
 
 function showModal(r, t) {
+  modalOpen = true
   let o = $('overlay') // Overlay variable (for the overlay)
   o.setAttribute('style', 'opacity:1;filter:blur(60px);')
   let y = document.createElement('DIV') // Creates a miscellanous object
@@ -91,11 +92,15 @@ function showModal(r, t) {
             <p id="close" onclick="closeModal($('overlay'),document.querySelector('.modal'))">&times;</p>
             ` // Puts the content of the modal
   let wr = document.querySelector('.modalwrap')
+  document.body.onkeyup = e => {
+    if (e.code == 'Escape' && modalOpen == true) closeModal($('overlay'),document.querySelector('.modal'))
+  }
   wr.innerHTML = '' // Closes any currently open modals
   wr.appendChild(y) // adds the modal to the overlay
 }
 
 function closeModal(o, m) { // Function to close the modal
+  modalOpen = false
   m.style.opacity = '0' // Set the opacity of the modal to 0
   m.style.transform = 'translateY(30px)'
   setTimeout(function() {
@@ -342,7 +347,7 @@ function getArticle(u) {
 /************** SAVING FUNCTIONS *****************/
 /* by me lol
  * started july 23 2021
- */
+ 
 
 function b64(str) {
     return window.btoa(unescape(encodeURIComponent(str)));
@@ -364,9 +369,9 @@ function svModal() {
     wr.innerHTML = '' // Closes any currently open modals
     wr.appendChild(y) // adds the modal to the overlay
 }
-$('getSave').onclick = svModal()
+$('getSave').onclick = () => svModal()
 
 function svSetSave() {
     let saveContent = document.getElementById('saveTextarea')
     saveContent.value
-}
+}*/
