@@ -29,10 +29,10 @@ function getVal(e) {
   return Object.values(e)
 }
 
-let light = 0;
+let light = Math.round(Math.random() * 365);
 
 function clr() { // The function for colors, so that the buttons' background color goes from red, to pink, and back again
-  light = light + 10
+  light = light + 3
   if (light <= 100 || light >= 50) return `hsl(${light},100%,30%)`
   else return `hsl(${light},100%,50%)`
 }
@@ -50,7 +50,7 @@ function loadMemes() {
       save() // Save 
       buttonClone(p) // Button animation
       setTimeout(function() {
-        showModal(memes[i].name, memes[i].description)
+        mdShowModal(memes[i].name, memes[i].description)
       }, 200) // Open the modal 
       cookie.memes[i].viewed++ // Increase the view count of the specific meme
       cookie.timesClicked++ // Increase the overall view count
@@ -79,8 +79,12 @@ function buttonClone(e) { // Button animation (Pretty complicated)
 inp.onkeypress = e => {
   if (e.key == 'Enter') document.getElementById('search').click() // If the user pressed the key "Enter" search the value
 }
+/***********************
+ * Modal Functions
+ ***********************/
 
-function showModal(r, t) {
+
+function mdShowModal(r, t) {
   modalOpen = true
   let o = $('overlay') // Overlay variable (for the overlay)
   o.setAttribute('style', 'opacity:1;filter:blur(60px);')
@@ -89,17 +93,17 @@ function showModal(r, t) {
   y.innerHTML = ` <h1>Meme Info - ${r}</h1> 
             <hr>
             <p>${t}</p>
-            <p id="close" onclick="closeModal($('overlay'),document.querySelector('.modal'))">&times;</p>
+            <p id="close" onclick="mdCloseModal($('overlay'),document.querySelector('.modal'))">&times;</p>
             ` // Puts the content of the modal
   let wr = document.querySelector('.modalwrap')
   document.body.onkeyup = e => {
-    if (e.code == 'Escape' && modalOpen == true) closeModal($('overlay'),document.querySelector('.modal'))
+    if (e.code == 'Escape' && modalOpen == true) mdCloseModal($('overlay'),document.querySelector('.modal'))
   }
   wr.innerHTML = '' // Closes any currently open modals
   wr.appendChild(y) // adds the modal to the overlay
 }
 
-function closeModal(o, m) { // Function to close the modal
+function mdCloseModal(o, m) { // Function to close the modal
   modalOpen = false
   m.style.opacity = '0' // Set the opacity of the modal to 0
   m.style.transform = 'translateY(30px)'
@@ -108,28 +112,22 @@ function closeModal(o, m) { // Function to close the modal
     o.setAttribute('style', 'opacity:0;pointer-events: none;') // Hides the overlay
   }, 1000)
 }
-//onload = () => {if (cookie.lightMode == true) smoothLightMode()} // On page load, checks if the user had light mode enabled on the previous session. 
-/*$('darkToggle').onclick = () => { // Toggles dark mode
-    document.body.classList.toggle('dark') 
-    if (!document.body.classList.contains('dark')) cookie.lightMode = true; // Saves the preference locally (Page-limited)
-    else cookie.lightMode = false
 
-    save() /
-}
-
-function smoothLightMode() {
-    document.body.classList.remove('dark')
-    document.body.style.transition = 'none'
-    main.style.transition = 'none'
-    inp.style.transition = 'none'
-    setTimeout(function(){document.body.style.transition = '1s';main.style.transition = '1s';inp.style.transition = '1s'},1000)
-}*/
-
-function autocomplete() {
+/************************** 
+ * SEARCH FUNCTIONS
+ * by me lol
+ * These functions power the search algorithm. 
+ * They were minified, so going to be hard to explain
+***************************/
+function autocomplete() { 
   let e = document.getElementById("input");
-  clear(), cookie.timesSearched++, setTimeout(function() {
-    loadMemes(), setTimeout(function() {
+  clear()// Removes all memes from memelist
+  cookie.timesSearched++ // Increases times searched locally
+   setTimeout(function() { 
+    loadMemes()
+    setTimeout(function() {
         achievement()
+        save()
       searchDups();
       for (let t = 0; t < 15; t++)
         for (let t = 0; t < document.getElementsByClassName("item").length; t++) {
@@ -175,7 +173,7 @@ function save() {
 
 function loadAchs() {
   if (cookie.achievementsList.length == 0) achl.innerHTML = `<p id="closeachl">&times;</p><div class="inner"><h1>No achievements yet..</h1></div>`
-  else achl.innerHTML = `<p id="closeachl">&times;</p><div class="inner"></div>`
+  else achl.innerHTML = `<p id="closeachl">&times;</p><div class="inner"><h1>Your achievements (You have ${cookie.achievementsList.length})</h1></div>`
   $('closeachl').onmouseup = () => {
     achl.classList.remove('open')
   }
@@ -294,7 +292,7 @@ function fotpModal() {
       iid++
       y.innerHTML += `<input type="radio" name="${fotpQuestions[i].id}" id="${fotpQuestions[i].id + iid}"><label for="${fotpQuestions[i].id + iid.toString()}">${fotpQuestions[i].answers[j].name}</label><br>`
     }
-    if (i == fotpQuestions.length - 1) y.innerHTML += `<button onclick="fotpEval(document.querySelector('.modalwrap').children[0])">Evaluate!</button><p id="close" onclick="closeModal($('overlay'),document.querySelector('.modal'))">&times;</p>`
+    if (i == fotpQuestions.length - 1) y.innerHTML += `<button onclick="fotpEval(document.querySelector('.modalwrap').children[0])">Evaluate!</button><p id="close" onclick="mdCloseModal($('overlay'),document.querySelector('.modal'))">&times;</p>`
   }
   let wr = document.querySelector('.modalwrap')
   wr.innerHTML = '' // Closes any currently open modals
@@ -347,31 +345,49 @@ function getArticle(u) {
 /************** SAVING FUNCTIONS *****************/
 /* by me lol
  * started july 23 2021
- 
+  * These functions handle the save part of the memelist.
+ */
 
-function b64(str) {
-    return window.btoa(unescape(encodeURIComponent(str)));
+function svB64(str,en) { // Converts save data to base64.
+    if (en == true) { // If en (the parameter that is passed) is true, convert *to* base64.
+      try { // If there's no error,
+        return window.btoa(unescape(encodeURIComponent(str))); // Return converted base64.
+      } catch(err) { // If there is an error,
+        svDisplayError(err) // Display the error in this function.
+      } 
+    } else { // If it's false, convert *from* base64.
+      try { // If there's no error,
+        return window.atob(unescape(encodeURIComponent(str))); // Return.
+      } catch(err) {  // If there is an error,
+        svDisplayError(err) // Display the error in this function.
+      } 
+    }
 }
-function unb64(str) {
-    return window.atob(unescape(encodeURIComponent(str)));
+function svDisplayError(error) {// Function to show error.
+  let modal = document.querySelector('.modal') // Get modal
+  modal.innerHTML += `<p style="color:red;">Error! More detailed info: ${error}</p>` // Adds this <P> element to the end of the modal.
 }
-function svModal() {
-    let save = b64(JSON.stringify(cookie).replace(/(\r\n|\n|\r)/gm, ""))
-    let y = document.createElement('DIV')
-    y.classList.add('modal')
-    y.style.height = '70%'
-    y.innerHTML = `
-    <h1>Save</h1>
-    <p>This code is what's currently saved. You can change it to load a previous code, or save your code to use on a different device/browser.</p>
-    <textarea id="saveTextarea" style="width:98%;height:50%;">${save}</textarea>
-    <button onclick="svSetSave()">Load</button>`
+
+function svModal() { // Function to open modal. Kinda identical to the previous one (I could merge them, but its not the priority now)
+    let y = document.createElement('DIV') // creates element
+    y.classList.add('modal') //adds class
+    y.style.height = '70%' // height
     let wr = document.querySelector('.modalwrap')
     wr.innerHTML = '' // Closes any currently open modals
     wr.appendChild(y) // adds the modal to the overlay
+    let save = svB64(JSON.stringify(cookie).replace(/(\r\n|\n|\r)/gm, ""),true)  // The save code. Since local save was a raw object and not a string, it converts (Stringifys) local save (What the user did during browser session) to a string, then converts to base64.
+    y.innerHTML = `
+    <h1>Save</h1> 
+    <p>This code is what's currently saved. You can change it to load a previous code, or save your code to use on a different device/browser.</p>
+    <textarea id="saveTextarea" style="width:98%;height:50%;">${save}</textarea>
+    <button onclick="svSetSave()">Load</button>
+    <p id="close"></p>` // inner html of modal
+    mdSetClose(y) // sets the onclick events of the close button to close modal
 }
-$('getSave').onclick = () => svModal()
+$('getSave').onclick = () => svModal() // on click opens save modal
 
-function svSetSave() {
-    let saveContent = document.getElementById('saveTextarea')
-    saveContent.value
-}*/
+function svSetSave() { // sets save
+    let saveContent = document.getElementById('saveTextarea') // save content
+    cookie = JSON.parse(svB64(saveContent.value,false)) // sets local save to be the converted save the user inputted
+    save() // saves globally on user's device
+}

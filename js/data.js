@@ -850,3 +850,16 @@ var fotpData = [{
         count: 0
     }
 ]
+
+/*
+CHEATS!!!!!! :D:D::D:D:
+
+setTimeout(function(){
+    for (let i = 0; i < 2; i++) {
+        for (let i = 0; i < cookie.memes.length; i++) {
+            cookie.memes[i].viewed+=5
+        }
+    }
+    cookie.timesSearched = 15
+    cookie.timesViewed = 100
+})*/
