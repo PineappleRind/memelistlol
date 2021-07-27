@@ -112,7 +112,9 @@ function mdCloseModal(o, m) { // Function to close the modal
     o.setAttribute('style', 'opacity:0;pointer-events: none;') // Hides the overlay
   }, 1000)
 }
-
+function mdSetClose(mo) {
+  $('close').onclick = () => mdCloseModal($('overlay'),mo)
+}
 /************************** 
  * SEARCH FUNCTIONS
  * by me lol
@@ -381,7 +383,7 @@ function svModal() { // Function to open modal. Kinda identical to the previous 
     <p>This code is what's currently saved. You can change it to load a previous code, or save your code to use on a different device/browser.</p>
     <textarea id="saveTextarea" style="width:98%;height:50%;">${save}</textarea>
     <button onclick="svSetSave()">Load</button>
-    <p id="close"></p>` // inner html of modal
+    <p id="close">&times;</p>` // inner html of modal
     mdSetClose(y) // sets the onclick events of the close button to close modal
 }
 $('getSave').onclick = () => svModal() // on click opens save modal
