@@ -377,6 +377,8 @@ function svModal() { // Function to open modal. Kinda identical to the previous 
     let wr = document.querySelector('.modalwrap')
     wr.innerHTML = '' // Closes any currently open modals
     wr.appendChild(y) // adds the modal to the overlay
+    let o = $('overlay') // Overlay variable (for the overlay)
+    o.setAttribute('style', 'opacity:1;filter:blur(60px);') // shows overlay
     let save = svB64(JSON.stringify(cookie).replace(/(\r\n|\n|\r)/gm, ""),true)  // The save code. Since local save was a raw object and not a string, it converts (Stringifys) local save (What the user did during browser session) to a string, then converts to base64.
     y.innerHTML = `
     <h1>Save</h1> 
@@ -392,4 +394,5 @@ function svSetSave() { // sets save
     let saveContent = document.getElementById('saveTextarea') // save content
     cookie = JSON.parse(svB64(saveContent.value,false)) // sets local save to be the converted save the user inputted
     save() // saves globally on user's device
+    notification('Loaded!','Save was successfully loaded.')
 }

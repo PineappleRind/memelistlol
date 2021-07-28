@@ -371,18 +371,17 @@ body.dark input[type=text] {
 	right:0;
 	height:50px;
 	width:100%;
-	backdrop-filter: blur(10px);
-	background:linear-gradient(to top,transparent,rgb(14, 18, 66),rgb(16, 20, 77));
+	background:linear-gradient(to top,transparent,rgb(20, 23, 65));
 	content:''
 }
 .inner::after {
 	position:fixed;
-	bottom:0;
+	bottom:10px;
 	left:0;
 	right:0;
 	height:50px;
 	width:100%;
-	background:linear-gradient(to bottom,transparent,rgb(8, 11, 47),rgb(8, 11, 48));
+	background:linear-gradient(to bottom,transparent,rgb(19, 21, 54));
 	content:''
 }
 @supports ((-webkit-backdrop-filter: blur(30px)) or (backdrop-filter: blur(30px))) {
