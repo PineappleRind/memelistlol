@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memelist | Privacy</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="libs/izitoast.css">
+</head>
+<body class="dark" style="display:flex;align-items:center;justify-content:center;height:100vh;">
+    <main>
+        <h1 style="font-weight:900">Official Online Meme List</h1>
+        <h2 style="color:rgb(255, 255, 255);font-weight:300;">Privacy and "Cookie" storage</h2>
+        <h3 style="font-weight:100;">(Overly detailed explanation)</h3><hr>
+
+        <h3>Saved Information</h3>
+        <p>This application does not permanently store any of your data. It does store, on your computer, your save file. We do not have access to your save file, unless you share your save file with us. (We don't recommend that)</p>
+        <p>Your save file is stored on your root folder. It is not a cookie, but it's like one. This save file expires after 3 months. The save file is stored so that when you refresh, or close the page, your achievements and other items on your save file will remain saved.</p>
+        <br>
+        <h3>External Sources/Scripts</h3>
+        <p>Unlike many other websites, we do not rely on or use Google Analytics/Ad Services. These scripts track you across websites, and "personalize" your ads, while giving infomation about you to the website owner.</p>
+        <p>We have, though, a few external script sources that help with <a style="text-decoration: underline;cursor: pointer;" onclick="jokeNotif()">notifications</a>, localStorage accessibillity, and text encoding. </p>
+        <br>
+        <a href="/">Go back</a>
+        <br>
+    </main>
+    <script src="libs/izitoast.js"></script>
+    <script src="libs/lscache.js"></script>
+    <script src="libs/lzstring.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        function randColor() {
+            let t = Math.random()
+            if (t < 0.25) return "blue"
+            if (t > 0.25 && t < 0.5) return "red"
+            if (t > 0.5 && t < 0.75) return "green"
+            else return "yellow"
+        }
+    function randTheme() {
+        let y = Math.random()
+       if (y < 0.4) return 'light'
+       else return 'dark'
+    }
+    function jokeNotif() {
+        iziToast.show({
+    title: `<span style="color:white">hihi :) <p style="display:block;margin-bottom:5px;font-weight:300;"> i'm a lil notification</p></span>`,
+    timeout: 22200,
+    theme: randTheme(),
+    color:randColor()
+  });
+    }
+    </script>
+    <script> </script>
+</body>
+</html>

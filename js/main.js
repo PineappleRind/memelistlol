@@ -3,7 +3,7 @@ var main = document.querySelector('main')
 var inp = document.getElementById('input')
 var achl = document.querySelector('.achievements-list')
 var cloneCount = 0
-var loaded,modalOpen
+var loaded, modalOpen
 
 var Memes = {
   load: function() {
@@ -54,6 +54,7 @@ function loadMemes() {
       }, 200) // Open the modal 
       cookie.memes[i].viewed++ // Increase the view count of the specific meme
       cookie.timesClicked++ // Increase the overall view count
+      cookie.viewedAMemeBefore = true // User has viewed a meme before
       achievement(true) // Check if the user unlocked an achievement
     }
     if (memes[i].compatible === true) p.style.fontWeight = '900'; // If the meme is compatible with Meme Craziness bold it
@@ -90,14 +91,14 @@ function mdShowModal(r, t) {
   o.setAttribute('style', 'opacity:1;filter:blur(60px);')
   let y = document.createElement('DIV') // Creates a miscellanous object
   y.classList.add('modal') // adds a class to it
-  y.innerHTML = ` <h1>Meme Info - ${r}</h1> 
+  y.innerHTML = ` <h1>Meme Info <span>${r}</span></h1> 
             <hr>
             <p>${t}</p>
             <p id="close" onclick="mdCloseModal($('overlay'),document.querySelector('.modal'))">&times;</p>
             ` // Puts the content of the modal
   let wr = document.querySelector('.modalwrap')
   document.body.onkeyup = e => {
-    if (e.code == 'Escape' && modalOpen == true) mdCloseModal($('overlay'),document.querySelector('.modal'))
+    if (e.code == 'Escape' && modalOpen == true) mdCloseModal($('overlay'), document.querySelector('.modal'))
   }
   wr.innerHTML = '' // Closes any currently open modals
   wr.appendChild(y) // adds the modal to the overlay
@@ -112,31 +113,34 @@ function mdCloseModal(o, m) { // Function to close the modal
     o.setAttribute('style', 'opacity:0;pointer-events: none;') // Hides the overlay
   }, 1000)
 }
+
 function mdSetClose(mo) {
-  $('close').onclick = () => mdCloseModal($('overlay'),mo)
+  $('close').onclick = () => mdCloseModal($('overlay'), mo)
 }
 /************************** 
  * SEARCH FUNCTIONS
  * by me lol
  * These functions power the search algorithm. 
  * They were minified, so going to be hard to explain
-***************************/
-function autocomplete() { 
+ ***************************/
+function autocomplete() {
   let e = document.getElementById("input");
-  clear()// Removes all memes from memelist
+  clear() // Removes all memes from memelist
   cookie.timesSearched++ // Increases times searched locally
-   setTimeout(function() { 
+  setTimeout(function() {
     loadMemes()
+    achievement()
+    save()
+    searchDups();
+    for (let t = 0; t < 15; t++)
+      for (let t = 0; t < document.getElementsByClassName("item").length; t++) {
+        document.getElementsByClassName("item")[t].textContent.toLowerCase().includes(e.value) || document.getElementsByClassName("item")[t].remove();
+      }
+
+    if (document.getElementsByClassName("item").length == 0) main.innerHTML += "No results :( <button id=\"reload\">Try again</button>"
     setTimeout(function() {
-        achievement()
-        save()
-      searchDups();
-      for (let t = 0; t < 15; t++)
-        for (let t = 0; t < document.getElementsByClassName("item").length; t++) {
-          document.getElementsByClassName("item")[t].textContent.toLowerCase().includes(e.value) || document.getElementsByClassName("item")[t].remove();
-          0 == document.getElementsByClassName("item").length && (main.innerHTML += "No results :( <button onclick=\"window.location.href=' https://memelist.ml'\">Try again</button>")
-        }
-    }, 10)
+      $('reload').onclick = () => loadMemes()
+    })
   }, 10)
 }
 
@@ -165,7 +169,6 @@ if (!lscache.get('visited')) {
   set('visited', 'true')
 } else {
   loadFromSave()
-  // setTimeout(function(){achievement(false)})
 }
 
 function save() {
@@ -208,7 +211,7 @@ function ind(e, i) {
 function achievement(e) {
   for (let i = 0; i < memes.length; i++) {
     if (cookie.memes[i].viewed >= cookie.memes[i].reqs[0]) {
-      setTimeout(achClr(i))
+      //setTimeout(achClr(i))
       if (e == true) {
         notification(memes[i].achievements[0], `View "${memes[i].name}" ${cookie.memes[i].viewed} times`)
         setTimeout(function() {
@@ -266,7 +269,6 @@ function notification(name, desc) {
   iziToast.show({
     title: `Achievement Unlocked: ${name}<p style="display:block;font-weight:200;margin-bottom:10px;margin-right:14px;margin-top:10px;">${desc}</p>`,
     timeout: 15000,
-    titleSize: '25px',
     theme: 'dark'
   });
 }
@@ -287,6 +289,8 @@ function fotpModal() {
   var iid = 0;
   let y = document.createElement('DIV')
   y.classList.add('modal')
+  y.innerHTML += `<h1>Fruit of the Person Quiz</h1>
+  <i>Fill out the quiz below. Please, <b>BE HONEST</b> to improve accuracy!</i> <small><a href="privacy" style="display:inline">Privacy</a></small>`
   for (let i = 0; i < fotpQuestions.length; i++) {
     iid = 0
     y.innerHTML += `<br><h2>${fotpQuestions[i].name}</h2>`
@@ -336,6 +340,7 @@ function fotpShowResults(mod) {
     Next best matches were:<br>
      ${fotpGetFruit()[1].name}<br>
      ${fotpGetFruit()[2].name}`
+     cookie.myFruit = fotpGetFruit()[0]
 }
 
 function getArticle(u) {
@@ -347,52 +352,68 @@ function getArticle(u) {
 /************** SAVING FUNCTIONS *****************/
 /* by me lol
  * started july 23 2021
-  * These functions handle the save part of the memelist.
+ * These functions handle the save part of the memelist.
  */
 
-function svB64(str,en) { // Converts save data to base64.
-    if (en == true) { // If en (the parameter that is passed) is true, convert *to* base64.
-      try { // If there's no error,
-        return window.btoa(unescape(encodeURIComponent(str))); // Return converted base64.
-      } catch(err) { // If there is an error,
-        svDisplayError(err) // Display the error in this function.
-      } 
-    } else { // If it's false, convert *from* base64.
-      try { // If there's no error,
-        return window.atob(unescape(encodeURIComponent(str))); // Return.
-      } catch(err) {  // If there is an error,
-        svDisplayError(err) // Display the error in this function.
-      } 
+function svB64(str, en) { // Converts save data to base64.
+  if (en == true) { // If en (the parameter that is passed) is true, convert *to* base64.
+    try { // If there's no error,
+      return window.btoa(unescape(encodeURIComponent(str))); // Return converted base64.
+    } catch (err) { // If there is an error,
+      svDisplayError(err) // Display the error in this function.
     }
+  } else { // If it's false, convert *from* base64.
+    try { // If there's no error,
+      return window.atob(unescape(encodeURIComponent(str))); // Return.
+    } catch (err) { // If there is an error,
+      svDisplayError(err) // Display the error in this function.
+    }
+  }
 }
-function svDisplayError(error) {// Function to show error.
+
+function svDisplayError(error) { // Function to show error.
   let modal = document.querySelector('.modal') // Get modal
   modal.innerHTML += `<p style="color:red;">Error! More detailed info: ${error}</p>` // Adds this <P> element to the end of the modal.
 }
 
 function svModal() { // Function to open modal. Kinda identical to the previous one (I could merge them, but its not the priority now)
-    let y = document.createElement('DIV') // creates element
-    y.classList.add('modal') //adds class
-    y.style.height = '70%' // height
-    let wr = document.querySelector('.modalwrap')
-    wr.innerHTML = '' // Closes any currently open modals
-    wr.appendChild(y) // adds the modal to the overlay
-    let o = $('overlay') // Overlay variable (for the overlay)
-    o.setAttribute('style', 'opacity:1;filter:blur(60px);') // shows overlay
-    let save = svB64(JSON.stringify(cookie).replace(/(\r\n|\n|\r)/gm, ""),true)  // The save code. Since local save was a raw object and not a string, it converts (Stringifys) local save (What the user did during browser session) to a string, then converts to base64.
-    y.innerHTML = `
-    <h1>Save</h1> 
+  let y = document.createElement('DIV') // creates element
+  y.classList.add('modal') //adds class
+  y.style.height = '70%' // height
+  let wr = document.querySelector('.modalwrap')
+  wr.innerHTML = '' // Closes any currently open modals
+  wr.appendChild(y) // adds the modal to the overlay
+  let o = $('overlay') // Overlay variable (for the overlay)
+  o.setAttribute('style', 'opacity:1;filter:blur(60px);') // shows overlay
+  let save = svB64(JSON.stringify(cookie).replace(/(\r\n|\n|\r)/gm, ""),true) // The save code. Since local save was a raw object and not a string, it converts (Stringifys) local save (What the user did during browser session) to a string, then converts to base64.
+  y.innerHTML = `
+    <h1>Save Code</h1> 
     <p>This code is what's currently saved. You can change it to load a previous code, or save your code to use on a different device/browser.</p>
     <textarea id="saveTextarea" style="width:98%;height:50%;">${save}</textarea>
     <button onclick="svSetSave()">Load</button>
+    <hr>
+    <h1>Manage Save</h1>
+    <p>If you want to save your progress, click the button below. (It's probably already saved though)</p>
+    <button onclick="save()">Save Now</button>
+    <br><br>
+    <p>If you want to <b>clear everything</b>, click the button below. There is no going back from this option.</p>
+    <button style="background:red;" onclick="svClearEverything()">Clear everything!!!!</button>
     <p id="close">&times;</p>` // inner html of modal
-    mdSetClose(y) // sets the onclick events of the close button to close modal
+  mdSetClose(y) // sets the onclick events of the close button to close modal
 }
 $('getSave').onclick = () => svModal() // on click opens save modal
 
 function svSetSave() { // sets save
-    let saveContent = document.getElementById('saveTextarea') // save content
-    cookie = JSON.parse(svB64(saveContent.value,false)) // sets local save to be the converted save the user inputted
-    save() // saves globally on user's device
-    notification('Loaded!','Save was successfully loaded.')
+  let saveContent = document.getElementById('saveTextarea') // save content
+  cookie = JSON.parse(LZString.decompressFromUint8Array(saveContent.value)) // sets local save to be the converted save the user inputted
+  save() // saves globally on user's device
+  notification('Loaded!', 'Save was successfully loaded.')
+}
+function svClearEverything() {
+  if (prompt('Are you sure? Type \"forthememes\" if you want to continue...') == 'forthememes') {
+    lscache.remove('visited')
+    alert('Your progress has been cleared.')
+  } else {
+    alert("Lol, knew you didn't have enough courage KEK")
+  }
 }

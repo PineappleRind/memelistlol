@@ -6,9 +6,9 @@
 */
 
 * {
-	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
 }
-h1,p,h2 {
+h1,p,h2,h3 {
     margin:0;
 }
 html {
@@ -19,6 +19,7 @@ html {
 body {
     height: 100%;
     overflow: auto;
+	margin:0;
 }
 ::-webkit-scrollbar {
 	width: 9px;
@@ -48,11 +49,9 @@ body {
 }
 
 body {
-	background-color: #ddddf8;
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center center;
-	margin: 10px;
 	transition: 1s ease-in-out;
 	display: flex;
 	align-items: center;
@@ -63,27 +62,19 @@ body {
 	background-size:cover;
 	background-repeat: no-repeat;
 	background-position: center;
-	overflow:hidden;
 }
 
 a {
 	color: white
 }
 
-body.dark {
-	background-color: #050520;
-}
+.modal, main {
 
-body.dark .modal,
-body.dark main {
-	background: #22224481;
-	backdrop-filter: blur(20px);
-	color: white;
 }
 
 body.dark main {
-	background: rgba(50, 50, 80, 0.5);
-	border: 1px solid rgba(0, 0, 0, 0.6)
+	background: rgba(50, 50, 80, 0.692);
+	border: 1px solid rgba(255, 255, 255, 0.219)
 }
 
 body.dark #overlay {
@@ -93,7 +84,8 @@ body.dark #overlay {
 main {
 	width: 88%;
 	margin: auto;
-	background: rgba(200, 210, 255, 0. 7);
+	background: #22224481;
+	backdrop-filter: blur(10px);
 	padding: 30px;
 	-webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
 	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
@@ -147,9 +139,9 @@ i {
 	left: 0;
 	right: 0;
 	bottom: 0;
-	background: rgba(0, 0, 60, 0.1);
-	backdrop-filter: blur(50px);
-	-webkit-backdrop-filter: blur(50px);
+	background: rgba(0, 0, 60, 0.363);
+	backdrop-filter: blur(15px);
+	-webkit-backdrop-filter: blur(15px);
 	margin: 0;
 	-webkit-transition: 0.5s;
 	-o-transition: 0.5s;
@@ -181,10 +173,12 @@ i {
 
 .modal {
 	padding: 30px;
-	background: rgba(255, 255, 255, 0.555);
-	backdrop-filter: blur(30px);
-	-webkit-backdrop-filter: blur(30px);
+	background: #22224481;
+	backdrop-filter: blur(10px);
+-webkit-backdrop-filter: blur(10px);
+	padding: 30px;
 	border-radius: 20px;
+	color:white;
 	-webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 	box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 	max-width: 50%;
@@ -220,6 +214,16 @@ i {
 .modal p#close:hover {
 	font-weight: 200;
 }
+.modal h1 {
+	font-weight:200;
+	color:#ccc;
+}
+.modal h1 span {
+	color:white;
+	font-weight:800;
+	display:block;
+	letter-spacing: 1px;
+}
 
 body.dark button,body.dark button * {
 	-webkit-filter: brightness(90%);
@@ -248,11 +252,11 @@ button * {
 }
 button *{position:absolute !important;display:inline;top:0;left:0;right:0;bottom:0;animation: bing-bong cubic-bezier(0,.65,.28,.99) .7s;}
 button:hover:not(.iziToast-close) {
-	transform:scale(1.1);
+	transform:scale(1.04);
 	text-shadow: 0 0 5px rgb(0, 0, 0);
 	color:white;
 	opacity:1;
-	filter:brightness(150%);
+	filter:brightness(120%);
 }
 button:active:not(.iziToast-close) {
     box-shadow: 0 0 0 rgba(255,255,255,0.2);
@@ -306,9 +310,9 @@ body.dark input[type=text] {
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	backdrop-filter: blur(100px);
+	backdrop-filter: blur(15px);
 	opacity: 0;
-	-webkit-backdrop-filter: blur(100px);
+	-webkit-backdrop-filter: blur(15px);
 	background: rgba(0, 0, 60, 0.473);
 }
 .achievements-list h1 {
@@ -384,6 +388,13 @@ body.dark input[type=text] {
 	background:linear-gradient(to bottom,transparent,rgb(19, 21, 54));
 	content:''
 }
+
+.mobile-open {
+	border-bottom: 1px solid white;
+	border-right: 1px solid white;
+	transform: rotate(45deg);
+	padding:4px;
+}
 @supports ((-webkit-backdrop-filter: blur(30px)) or (backdrop-filter: blur(30px))) {
 	main {
 		background: rgba(200, 210, 255, 0.2);
@@ -397,9 +408,19 @@ body.dark input[type=text] {
 		max-width: 90%;
 	}
 	main {
-		width: 100%;
-		margin: 0 !important;
-		height: 100%;
+		width: 100vw;
+		height: 100vh;
+		position:fixed;
+		z-index:1;
+		top:0;
+		left:0;
+		right:0;
+		bottom:0;
+		padding:8px;
+		overflow:scroll;
+		margin:0 !important;
+		border-radius:0;
+		backdrop-filter: blur(2px) !important;
 	}
 	svg {
 		position: fixed;
@@ -412,6 +433,12 @@ body.dark input[type=text] {
 	main h1 {
 		font-size: 24px;
 	}
+	.mobile-open {
+		display:block;
+	}
+	/*.controls {
+		display:none
+	}*/
 }
 
 @-webkit-keyframes bing-bong {

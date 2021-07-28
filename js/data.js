@@ -101,6 +101,12 @@ var memes = [{
     "achievements": ["Yucky grahy", "Pretty good grahy", "Astounding grahy"],
     "reqs": [2, 5, 10]
 }, {
+    "name": "Grapy",
+    "description": "Not written yet :)",
+    "compatible": false,
+    "achievements": ['Green Grape','Red Grape','Black Grape'],
+    "reqs": [2,5,10]
+}, {
     "name": "Guy Sax",
     "description": "At a dinner table one evening, music started playing that sounded chill and attractive to listen to. Meme Creator 1 consequently sucked in his cheeks and picked up a glass and calmly started drinking from it while twitching his eyebrows upward. It was called guy sax.",
     "compatible": false,
@@ -124,6 +130,9 @@ var memes = [{
     "compatible": true,
     "achievements": ["Hooie club member", "Hooie chief", "HOOOOIEEEEEEEEEEEEE"],
     "reqs": [2, 5, 10]
+}, {
+    "name": "I Gotcha!",
+    "description": "Once, on vacation, the Meme Creators went to Denny's. When they ordered, the old, snappy female waiter there said \"I GOTCHA!\". Every single time."
 }, {
     "name": "John and Gladys",
     "description": "The Meme Creators turned shared features in some grandparents into stereotypes. These included taking a walk with their neighbor occasionally, sitting on the veranda on a rocking chair, having grandchildren visit, and having a carpenter husband whose name is John.",
@@ -366,6 +375,11 @@ var cookie = {
         "achievements": ["Yucky grahy", "Pretty good grahy", "Astounding grahy"],
         "viewed": 0
     }, {
+        "name": "Grapy",
+        "reqs": [2,5,10],
+        "achievements": ["Green Grape","Red Grape","Black Grape"],
+        "viewed":0
+    }, {
         "name": "Guy Sax",
         "reqs": [2, 5, 10],
         "achievements": ["Handsome", "Very attractive", "Guy Sax himself"],
@@ -501,8 +515,8 @@ var cookie = {
         "achievements": ["Zhou", "Pretty good Zhou", "We are going to the Zhou"],
         "viewed": 0
     }],
+    "viewedAMemeBefore": false,
     "timesViewed": 0, // How many times the page was viewed by the user
-    "myFruit": null,
     "timesSearched": 0, // This will increment upwards when the search button is pressed :)
     "timesClicked": 0, // Every time the user clicks on a meme button.
 }
@@ -853,13 +867,16 @@ var fotpData = [{
 
 /*
 CHEATS!!!!!! :D:D::D:D:
+lol please don't uncomment this, it will break the memelist
 
-setTimeout(function(){
-    for (let i = 0; i < 2; i++) {
+for (let i = 0; i < 3; i++) {
+       setTimeout(function(){
         for (let i = 0; i < cookie.memes.length; i++) {
             cookie.memes[i].viewed+=5
         }
-    }
-    cookie.timesSearched = 15
-    cookie.timesViewed = 100
-})*/
+        achievement()
+       })
+}
+cookie.timesSearched = 15
+cookie.timesViewed = 100
+*/

@@ -1,9 +1,14 @@
 # memelist
+
 The official online meme list.
-The website version is now alpha! You can find it [here](https://memelist.ml).
+Website is [here](https://memelist.ml).
 
 ## Features
 
-This meme list has lots of memes! You can use them any time you want.
+This meme list has:
 
-It also has achievements. There are over 100 achievements you can get! Check them any time in the achievements section of the page.
+- lots of memes! You can use them any time you want.
+- achievements. There are over 100 achievements you can get! Check them any time in the achievements section of the page.
+- fun quizzes. You can find out what fruit you are!
+
+*Version: 0.4.1*
