@@ -186,13 +186,12 @@ i {
 	width: -moz-fit-content;
 	width: fit-content;
 	position: relative;
-	-webkit-animation: modal-here 2s;
-	animation: modal-here 2s;
+	-webkit-animation: modal-here 0.5s cubic-bezier(.17,.67,.35,1.1);
 	z-index: 10;
 	pointer-events: all;
-	-webkit-transition: 1s;
-	-o-transition: 1s;
-	transition: 1s;
+	-webkit-transition: 0.5s cubic-bezier(.46,-0.44,1,1);
+	-o-transition: 0.5s cubic-bezier(.46,-0.44,1,1);
+	transition: 0.5s cubic-bezier(.46,-0.44,1,1);
 	max-height:80%;
 	overflow: scroll;
 }
@@ -470,36 +469,36 @@ body.dark input[type=text] {
 @-webkit-keyframes modal-here {
 	from {
 		opacity: 0;
-		-webkit-transform: translateY(30px);
-		transform: translateY(30px)
+		-webkit-transform: scale(1.1);
+		transform: scale(1.1);
 	}
 	30% {
 		opacity: 0;
-		-webkit-transform: translateY(30px);
-		transform: translateY(30px)
+		-webkit-transform: scale(1.1);
+		transform: scale(1.1);
 	}
 	to {
 		opacity: 1;
-		-webkit-transform: translateY(0px);
-		transform: translateY(0px)
+		-webkit-transform:  scale(1);
+		transform:  scale(1);
 	}
 }
 
 @keyframes modal-here {
 	from {
 		opacity: 0;
-		-webkit-transform: translateY(30px);
-		transform: translateY(30px)
+		-webkit-transform: scale(1.1);
+		transform: scale(1.1);
 	}
 	30% {
 		opacity: 0;
-		-webkit-transform: translateY(30px);
-		transform: translateY(30px)
+		-webkit-transform: scale(1.1);
+		transform: scale(1.1);
 	}
 	to {
 		opacity: 1;
-		-webkit-transform: translateY(0px);
-		transform: translateY(0px)
+		-webkit-transform:  scale(1);
+		transform:  scale(1);
 	}
 }
 

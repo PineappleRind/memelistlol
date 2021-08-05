@@ -38,16 +38,10 @@
             if (t > 0.5 && t < 0.75) return "green"
             else return "yellow"
         }
-    function randTheme() {
-        let y = Math.random()
-       if (y < 0.4) return 'light'
-       else return 'dark'
-    }
     function jokeNotif() {
         iziToast.show({
     title: `<span style="color:white">hihi :) <p style="display:block;margin-bottom:5px;font-weight:300;"> i'm a lil notification</p></span>`,
     timeout: 22200,
-    theme: randTheme(),
     color:randColor()
   });
     }

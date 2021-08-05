@@ -107,7 +107,7 @@ function mdShowModal(r, t) {
 function mdCloseModal(o, m) { // Function to close the modal
   modalOpen = false
   m.style.opacity = '0' // Set the opacity of the modal to 0
-  m.style.transform = 'translateY(30px)'
+  m.style.transform = 'scale(1.1)'
   setTimeout(function() {
     m.remove() // After a second, remove the modal from the page completely
     o.setAttribute('style', 'opacity:0;pointer-events: none;') // Hides the overlay
@@ -211,7 +211,6 @@ function ind(e, i) {
 function achievement(e) {
   for (let i = 0; i < memes.length; i++) {
     if (cookie.memes[i].viewed >= cookie.memes[i].reqs[0]) {
-      //setTimeout(achClr(i))
       if (e == true) {
         notification(memes[i].achievements[0], `View "${memes[i].name}" ${cookie.memes[i].viewed} times`)
         setTimeout(function() {
@@ -308,6 +307,7 @@ function fotpModal() {
 function fotpEval(mod) {
   setTimeout(function() {
     mod.innerHTML = 'Evaluating...'
+    fotpMakeSurePerc()
   })
   setTimeout(function() {
     fotpShowResults(mod)
@@ -320,7 +320,12 @@ function fotpEval(mod) {
     }
   }
 }
-
+function fotpMakeSurePerc() {
+  for (let i = 0; i < fotpData.length; i++) {
+    if (fotpData[i].count >= 100) fotpData[i] = 100
+    fotpData[i].count = Math.round(fotpData[i].count * 2)/2
+  }
+}
 function fotpGetFruit() {
   var arr = []
   fotpData.sort(function(a, b) {
@@ -336,10 +341,11 @@ function fotpGetFruit() {
 }
 
 function fotpShowResults(mod) {
-  mod.innerHTML = `<h1>${fotpGetFruit()[0].name} was the best match for you.</h1>
+  mod.innerHTML = `<h1>You're ${fotpGetFruit()[0].count}% ${fotpGetFruit()[0].name}.</h1>
     Next best matches were:<br>
-     ${fotpGetFruit()[1].name}<br>
-     ${fotpGetFruit()[2].name}`
+     ${fotpGetFruit()[1].name} (${fotpGetFruit()[1].count}%)<br>
+     ${fotpGetFruit()[2].name} (${fotpGetFruit()[2].count}%)
+     <p id="close">&times</p>`
      cookie.myFruit = fotpGetFruit()[0]
 }
 

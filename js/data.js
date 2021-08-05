@@ -132,7 +132,10 @@ var memes = [{
     "reqs": [2, 5, 10]
 }, {
     "name": "I Gotcha!",
-    "description": "Once, on vacation, the Meme Creators went to Denny's. When they ordered, the old, snappy female waiter there said \"I GOTCHA!\". Every single time."
+    "description": "Once, on vacation, the Meme Creators went to Denny's. When they ordered, the old, snappy female waiter there said \"I GOTCHA!\". Every single time.",
+    "compatible": false,
+    "achievements": ["Jr. Grand Slam","Grand Slam", "The Grand Slamwich"],
+    "reqs": [2,5,10]
 }, {
     "name": "John and Gladys",
     "description": "The Meme Creators turned shared features in some grandparents into stereotypes. These included taking a walk with their neighbor occasionally, sitting on the veranda on a rocking chair, having grandchildren visit, and having a carpenter husband whose name is John.",
@@ -400,6 +403,10 @@ var cookie = {
         "achievements": ["Hooie club member", "Hooie chief", "HOOOOIEEEEEEEEEEEEE"],
         "viewed": 0
     }, {
+        "name": "I Gotcha!",
+        "achievements": ["Jr. Grand Slam","Grand Slam", "The Grand Slamwich"],
+        "reqs": [2,5,10]
+    }, {
         "name": "John and Gladys",
         "reqs": [2, 5, 10],
         "achievements": ["Gladys' child", "Gladys' grandchild", "Gladys' favorite grandchild"],
@@ -533,55 +540,55 @@ FRUIT OF THE PERSON QUIZ
 
 */
 
-
+function give(ind,amt) {
+    for (let i = 0; i < ind.length; i++) {
+        fotpData[ind[i]].count += amt
+    }
+}
+function remove(ind,amt) {
+    for (let i = 0; i < ind.length; i++) {
+        fotpData[ind[i]].count -= amt
+    }
+}
+var quesLen = 6
+var upAll = 50/quesLen
+var upLil = 12/quesLen
 var fotpQuestions = [{
     name: "You would describe your head shape as...",
     id:"headshape",
     answers: [{
             name: "Average, slightly elongated oval",
             points: function() {
-                fotpData[0].count += 0.5; // Blackberry
-                fotpData[1].count += 0.2;// peach
-                fotpData[5].count += 0.5;
-                fotpData[6].count += 0.5
-                fotpData[7].count += 0.4
-                fotpData[8].count += 0.5
+               give([0,5,6,7,8],upAll); 
+               give([8],upLil)
             }
         },
         {
             name: "Little and round",
             points: function() {
-                fotpData[6].count += 0.5
+                give([6],upAll)
             }
         },
         {
             name: "A circle",
             points: function() {
                 // None for Blackberry
-                fotpData[1].count += 0.5; // peach
-                fotpData[4].count += 0.5;
-                fotpData[8].count += 0.5
+                give([1,4,8],upAll)
+                remove([6],upAll*2)
             }
         },
         {
             name: "A tall oval",
             points: function() {
-                // None for Blackberry
-                // None for Peach
-                fotpData[2].count +=0.5; // almond
-                fotpData[5].count += 0.2
+                give([2],upAll)
+                give([5],upLil)
             }
         },
         {
             name: "I have a bigger than average head",
             points: function() {
-                // None for Blackberry
-                fotpData[1].count += 0.2
-                // None for Almond
-                fotpData[3].count += 0.5;
-                fotpData[4].count += 0.2
-                fotpData[8].count += 0.2
-                
+                give([4,8],upLil)
+                give([3],upAll*2)
             }
         }
     ]
@@ -805,63 +812,51 @@ var fotpQuestions = [{
                 }
             }
         ],
-    },
-    {
-        name: "",
-        id: "",
-        answers: [
-            {
-                name: "",
-                points: function() {
-
-                }
-            },
-        ]
     }
 ]
 
 var fotpData = [{
         name: "Blackberry", //0
-        count: 0
+        count: 50
     },
     {
         name: "Peach", //1
-        count: 0,
+        count: 50,
         description: `Peaches are overweight, thick people that have light skin and a visible forehead.`
     },
     {
         name: "Almond", //2
-        count: 0
+        count: 50
     },
     {
         name: "Watermelon", //3
-        count: 0
+        count: 50
     },
     {
         name: "Plum", //4
-        count: 0
+        count: 50
     },
     {
         name: "Eggplant", //5
-        count: 0
+        count: 50
     },
     {
         name: "Grape", //6
-        count: 0,
+        count: 50,
         description: `Grapes have curly hair, and a short head. If you have this fruit, most likely you're Grapy.`
     },
     {
         name: "Rambutan", //7
-        count: 0,
+        count: 50,
         description: `Your hair is a mess. You likely have facial hair.`
     },
     {
         name: "Apple", //8
-        count: 0
+        count: 50
     },
     {
         name: "Pear",
-        count: 0
+        count: 50
     }
 ]
 
