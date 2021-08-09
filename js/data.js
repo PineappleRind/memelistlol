@@ -787,6 +787,27 @@ var fotpQuestions = [{
                 points: function() {
                     give([0,1,2,3,4,5,6,7,8,9,10,11],upLil)
                 }
+            },
+            {
+                name: "Light brown",
+                points: function() {
+                    give([1,2,6,8,10],upLil)
+                    give([11],upAll)
+                }
+            },
+            {
+                name: "Blond",
+                points: function() {
+                    give([1,8,11],upLil)
+                    give([10],upAll)
+                },
+            },
+            {
+                name: "Red/dyed",
+                points: function() {
+                    remove([0,1,2,3,4,5,6,7,8,9,11],upAll)
+                    remove([10],upLil)
+                }
             }
         ],
     }
