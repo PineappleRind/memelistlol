@@ -72,7 +72,7 @@ var memes = [{
     "reqs": [2, 5, 10]
 }, {
     "name": "Deep Dave",
-    "description": "Inspired by deep-voice announcers like Redd Pepper and the VoiceOver welcome voice, Deep Dave is a deep-voiced character made by Daniel. His catchphrase is \"My name is Dave.\"",
+    "description": "Inspired by deep-voice announcers like Redd Pepper and the VoiceOver welcome voice, Deep Dave is a deep-voiced character made by Meme Creator 1. His catchphrase is \"My name is Dave.\"",
     "compatible": false,
     "achievements": ["Deep Dave", "Deeper Dave", "Deepest Dave"],
     "reqs": [2, 5, 10]
@@ -96,7 +96,7 @@ var memes = [{
     "reqs": [2, 5, 10]
 }, {
     "name": "Grahy",
-    "description": "This meme was from a funny mispronunciation by Andrew and Marc's mom when trying to pronounce Gravy at the dinner table.",
+    "description": "This meme was from a funny mispronunciation by Andrew and Mkz's mom when trying to pronounce Gravy at the dinner table.",
     "compatible": false,
     "achievements": ["Yucky grahy", "Pretty good grahy", "Astounding grahy"],
     "reqs": [2, 5, 10]
@@ -156,7 +156,7 @@ var memes = [{
     "reqs": [2,5,10]
 }, {
     "name": "LordeGorde",
-    "description": "The Meme Creators asked Marc to create a few memes. One of the memes he created was called \"LordeGorde\". Marc said that we should say LORDEGORDE! when something goes wrong, for example: when someone falls off the bed \"LORDEGORDE\"! <hr><b>To use this meme in Meme Craziness, say LORDEGORDE with the following intonation: L medium, O high, RDE falling, GORDE rising.</b>",
+    "description": "The Meme Creators asked Mkz to create a few memes. One of the memes he created was called \"LordeGorde\". Mkz said that we should say LORDEGORDE! when something goes wrong, for example: when someone falls off the bed \"LORDEGORDE\"! <hr><b>To use this meme in Meme Craziness, say LORDEGORDE with the following intonation: L medium, O high, RDE falling, GORDE rising.</b>",
     "compatible": true,
     "achievements": ["What a pity", "Woah, that's bad", "CALL THE POLICE"],
     "reqs": [2, 5, 10]
@@ -168,7 +168,7 @@ var memes = [{
     "reqs": [2, 5, 10]
 }, {
     "name": "Ma name's BRITNEY",
-    "description": "The Meme Creators asked Marc to create a few memes. One of the memes he created was called \"Ma Name's Britney\". <hr><b>To use this meme in Meme Craziness, say it really high pitched.",
+    "description": "The Meme Creators asked Mkz to create a few memes. One of the memes he created was called \"Ma Name's Britney\". <hr><b>To use this meme in Meme Craziness, say it really high pitched.",
     "compatible": true,
     "achievements": ["My name is britney.", "Ma name's britnee", "MA NAYMS BRITNEEEE"],
     "reqs": [2, 5, 10]
@@ -245,7 +245,7 @@ var memes = [{
     "reqs": [2, 5, 10]
 }, {
     "name": "Scuzi",
-    "description": "In the Meme Creators' House, an Italian cleaner was cleaning and got in the way with the Meme Creator's aunt. The Meme Creators' aunt then said: \"Scuzi\" (excuse me in Italian). The meme creators thought it was funny for a non-Italian to say something in Italian. Here's a story associated with the meme: It's 1 AM. The Meme Creator is in the bed with Andrew. Andrew asked the Meme Creator to say Scuzi. He did. <hr> <b> To use this meme in Meme Craziness, say each syllable with the following intonations: scu medium, zi low then high </b>",
+    "description": "In the Meme Creators' House, an Italian cleaner was cleaning and got in the way with the Meme Creator's aunt. The Meme Creators' aunt then said: \"Scuzi\" (excuse me in Italian). The meme creators thought it was funny for a non-Italian to say something in Italian. Here's a story associated with the meme: It's 1 AM. The Meme Creator is in the bed with Flop. Flop asked the Meme Creator to say Scuzi. He did. <hr> <b> To use this meme in Meme Craziness, say each syllable with the following intonations: scu medium, zi low then high </b>",
     "compatible": true,
     "reqs": [2, 5, 10]
 }, {
@@ -255,7 +255,7 @@ var memes = [{
     "reqs": [2, 5, 10]
 }, {
     "name": "TITONGO GET NO PAY",
-    "description": "This meme refers to an Argentinian web developer who designed the UtilityBot website. The website looked horrible and Andrew decided to not pay him (he never said he was paying anyway). <hr><b>To use this meme in Meme Craziness, say it in a high-pitched Indian Voice.</b>",
+    "description": "This meme refers to an Argentinian web developer who designed the UtilityBot website. The website looked horrible and Flop decided to not pay him (he never said he was paying anyway). <hr><b>To use this meme in Meme Craziness, say it in a high-pitched Indian Voice.</b>",
     "compatible": true,
     "reqs": [2, 5, 10]
 }, {
