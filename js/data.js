@@ -550,44 +550,35 @@ function remove(ind,amt) {
         fotpData[ind[i]].count -= amt
     }
 }
-var quesLen = 6
+var quesLen = 7
 var upAll = 50/quesLen
 var upLil = 12/quesLen
 var fotpQuestions = [{
     name: "You would describe your head shape as...",
     id:"headshape",
     answers: [{
-            name: "Average, slightly elongated oval",
+            name: "An average head",
             points: function() {
-               give([0,5,6,7,8],upAll); 
+               give([0,5,6,7,8,10],upAll); 
                give([8],upLil)
             }
-        },
-        {
-            name: "Little and round",
-            points: function() {
-                give([6],upAll)
-            }
-        },
-        {
-            name: "A circle",
+        }, {
+            name: "rounder than average",
             points: function() {
                 // None for Blackberry
-                give([1,4,8],upAll)
+                give([1,4,8,9],upAll)
                 remove([6],upAll*2)
             }
-        },
-        {
-            name: "A tall oval",
+        }, {
+            name: "A tall head",
             points: function() {
                 give([2],upAll)
                 give([5],upLil)
             }
-        },
-        {
-            name: "I have a bigger than average head",
+        }, {
+            name: "a big head",
             points: function() {
-                give([4,8],upLil)
+                give([4,8,9],upLil)
                 give([3],upAll*2)
             }
         }
@@ -600,35 +591,22 @@ var fotpQuestions = [{
           {
               name: "I have fair skin",
               points: function() {
-                  fotpData[0].count += 0.2; //blackberry
-                  fotpData[1].count += 0.5;
-                  // None for Almond
-                  fotpData[3].count +=  0.5;
-                  fotpData[4].count += 0.2;
-                  fotpData[6].count += 0.5
-                  fotpData[8].count += 0.5
-                  fotpData[2].count = 0
+                  give([1,3,6,8,10],upAll)
+                  give([0,4],upLil)
+                  remove([2],upAll)
               }
-          },
-          {
+          }, {
               name: "I have slightly darker fair skin",
               points: function() {
-                  fotpData[0].count += 0.5; //blackberry
-                  // None for Peach
-                  fotpData[2].count += 0.5;
-                  fotpData[4].count += 0.2
-                  fotpData[7].count += 0.4
-                  fotpData[6].count += 0.2
+                  give([0,2,7],upAll)
+                  give([4,6],upLil)
               }
           },
           {
               name: "I have brown skin",
               points: function() {
-                  fotpData[0].count += 0.2;
-                  // None for Peach
-                  fotpData[2].count += 0.2;
-                  // None for Watermelon
-                  fotpData[5].count += 0.7
+                  give([0],upAll)
+                  give([2],upLil/2)
               }
           }
       ]  
@@ -636,48 +614,40 @@ var fotpQuestions = [{
     {
         name: "In terms of weight, how would you describe yourself?",
         id:"weight",
-        answers: [
-            {
+        answers: [{
+                name: "I'm slim",
+                points: function() {
+                    give([10],upAll*2)
+                    give([0,7],upLil)
+                }
+            }, {
                 name: "I have average weight",
                 points: function() {
-                    fotpData[0].count += 0.5;
-                    // none for peach
-                    fotpData[2].count += 0.5;
-                    fotpData[3].count += 0.2;
-                    fotpData[5].count += 0.5;
-                    fotpData[6].count += 0.2
-                    fotpData[7].count += 0.5
+                    give([0,2,5,7],upAll + Math.random()/2)
+                    give([3,6],upLil)
+                    remove([8,9],upAll)
                 }
             },
             {
                 name: "I'm slightly overweight",
                 points: function() {
-                    fotpData[0].count += 0.2;
-                    fotpData[1].count += 0.2;
-                    // none for almond
-                    fotpData[3].count += 0.5
-                    fotpData[5].count += 0.2
-                    fotpData[6].count += 0.2
+                    give([3],upAll)
+                    give([0,1,5,6],upLil)
                 }
             },
             {
                 name: "I'm overweight",
                 points: function() {
-                    //none for blackberry
-                    fotpData[1].count += 0.5;
-                    // none for almond
-                    fotpData[3].count += 0.2
-                    fotpData[4].count += 0.2
-                    fotpData[8].count += 0.5
+                    give([1,8],upAll)
+                    give([3,4],upLil)
                 }
             },
             {
                 name: "I'm obese",
                 points: function() {
-                    //none at all 
-                    fotpData[4].count += 0.5
-                    fotpData[8].count += 0.5
-                    fotpData[2].count = 0
+                    remove([7,10,0,2],upAll)
+                    give([4,8,9],upAll)
+                    give([6,3,1],upLil)
                 }
             }
         ]
@@ -687,47 +657,44 @@ var fotpQuestions = [{
         id:"hair",
         answers: [
             {
-                name: "I have normal hair",
+                name: "I have normal male hair",
                 points: function() {
-                    fotpData[0].count += 0.2;
-                    fotpData[4].count += 0.2
-                    fotpData[8].count += 0.2
+                    give([0,6,8],upLil)
                 }
             },
             {
-                name: "I have lots of hair, pretty messy",
+                name: "I have a big bush of hair",
                 points: function() {
-                    fotpData[7].count += 0.5
-                    fotpData[6].count += 0.2
-                    fotpData[2].count = 0
-                    
+                    give([7],upAll*2)
+                    give([6],upLil)
+                    remove([2,3,4,10],upAll)
+
                 }
             },
             {
                 name: "I have curly hair",
                 points: function() {
-                    fotpData[6].count += 0.5
-                    fotpData[8].count += 0.5
-                    fotpData[2].count = 0
+                    remove([2,0],upAll)
+                    give([6,8],upAll)
                 }
             },
             {
                 name: "I'm bald",
                 points: function() {
-                    fotpData[5].count += 0.5
+                    give([1,5],upAll)
                 }
             },
             {
-                name: "My hair is straight and covers my eyebrows",
+                name: "I have normal female hair",
                 points: function() {
-                    fotpData[3].count += 0.5
+                    give([0,4,8,9,10],upAll)
                 }
             },
             {
-                name: "I have a little bit of male pattern baldness",
+                name: "I have male pattern baldness",
                 points: function() {
-                    fotpData[1].count += 0.5
-                    fotpData[2].count += 0.5
+                    give([1,2],upAll)
+                    remove([3,6],upAll)
                 }
             }
         ]
@@ -736,127 +703,108 @@ var fotpQuestions = [{
         id:"voice",
         answers: [
             {
-                name: "I have a deep, rich voice.",
+                name: "I have a thick, rich voice.",
                 points: function() {
-                    fotpData[4].count += 0.5
-                }
-            },
-            {
-                name: "I have a slightly breathy voice.",
-                points: function() {
-                    fotpData[7].count += 0.5
+                    give([4,9],upAll)
                 }
             },
             {
                 name: "I have a high-pitched voice.",
                 points: function() {
-                    fotpData[6].count += 0.5
+                    give([6],upAll)
                 }
             },
             {
                 name: "I would say I have a normal voice.",
                 points: function() {
-                    fotpData[5].count += 0.5
-                    fotpData[7].count += 0.5
-                }
-            },
-            {
-                name: "My voice is deeper than average.",
-                points: function() {
-                    fotpData[3].count += 0.5
+                    give([0,1,5,7,10],upLil)
                 }
             },
             {
                 name: "My voice is soapy and thick.",
                 points: function() {
-                    fotpData[3].count += 0.2
-                    fotpData[8].count += 0.9
+                    give([8,4],upAll)
+                    remove([7,10],upLil)
                 }
             },
         ]
-    },
-    {
+    }, {
+        name: "What's your gender?",
+        id: "gender",
+        answers: [{
+            name: "I'm male",
+            points: function() {
+                remove([10],upAll)
+                remove([9,0,8],upLil)
+            }
+        }, {
+            name: "I'm female",
+            points: function() {
+                remove([1,2,3,7],upLil)
+            }
+        }]
+    }, {
         name: "How fast do you talk?",
         id: "talkSpeed",
         answers: [
             {
                 name: "Slowly",
                 points: function() {
-                    fotpData[3].count += 0.5
-                    fotpData[7].count += 0.5
-                    fotpData[4].count += 0.5
-                    fotpData[8].count = 0
+                    remove([8],upAll)
+                    give([3,7,4],upAll)
                 }
             },
             {
                 name: "Normally",
                 points: function() {
-                    fotpData[0].count += 0.5
-                    fotpData[2].count += 0.5
-                    fotpData[3].count += 0.5
-                    fotpData[5].count += 0.2
-                    fotpData[6].count +=0.2
-                    fotpData[7].count += 0.5
+                    remove([8],upAll)
+                    give([0,2,3,7],upAll)
+                    give([6,7],upLil)
                 }
             },
             {
                 name: "Fast",
                 points: function() {
-                    fotpData[0].count += 0.5
-                    fotpData[2].count += 0.5
-                    fotpData[3].count = 0 // reset watermelon, bc you cant talk fast and be a watermelon
-                    fotpData[7].count = 0
-                    fotpData[5].count += 0.2
-                    fotpData[6].count += 0.5
-                    fotpData[8].count += 1
+                    remove([3,7],upAll*2)
+                    give([0,2,6],upAll)
+                    give([8,10],upAll)
+                }
+            }
+        ],
+    }, {
+        name: "What's your hair color?",
+        id: "hairColor",
+        answers: [
+            {
+                name: "Black",
+                points: function() {
+                    remove([11],upAll)
+                    give([0,1,2,3,4,5,6,7,8,9,10],upLil)
+                }
+            },
+            {
+                name: "Dark brown",
+                points: function() {
+                    give([0,1,2,3,4,5,6,7,8,9,10,11],upLil)
                 }
             }
         ],
     }
 ]
 
-var fotpData = [{
-        name: "Blackberry", //0
-        count: 50
-    },
-    {
-        name: "Peach", //1
-        count: 50,
-        description: `Peaches are overweight, thick people that have light skin and a visible forehead.`
-    },
-    {
-        name: "Almond", //2
-        count: 50
-    },
-    {
-        name: "Watermelon", //3
-        count: 50
-    },
-    {
-        name: "Plum", //4
-        count: 50
-    },
-    {
-        name: "Eggplant", //5
-        count: 50
-    },
-    {
-        name: "Grape", //6
-        count: 50,
-        description: `Grapes have curly hair, and a short head. If you have this fruit, most likely you're Grapy.`
-    },
-    {
-        name: "Rambutan", //7
-        count: 50,
-        description: `Your hair is a mess. You likely have facial hair.`
-    },
-    {
-        name: "Apple", //8
-        count: 50
-    },
-    {
-        name: "Pear",
-        count: 50
+var fotpData = [{ 
+    name: "Blackberry", count: 50 //0
+    }, { name: "Peach", count: 50, //1
+    }, { name: "Almond", count: 50 //2
+    }, { name: "Watermelon", count: 50 //3
+    }, { name: "Plum", count: 50 //4
+    }, { name: "Eggplant", count: 50 //5
+    }, { name: "Grape", count: 50,
+    }, { name: "Rambutan", count: 50,//7
+    }, { name: "Apple",  count: 50//8
+    }, { name: "Pear", count: 50//9
+    }, { name: "Clementine", count: 50//10
+    }, { name: "Nectarine", count: 50//11
     }
 ]
 

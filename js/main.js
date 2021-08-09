@@ -345,7 +345,7 @@ function fotpShowResults(mod) {
     Next best matches were:<br>
      ${fotpGetFruit()[1].name} (${fotpGetFruit()[1].count}%)<br>
      ${fotpGetFruit()[2].name} (${fotpGetFruit()[2].count}%)
-     <p id="close">&times</p>`
+     <p id="close" onclick="mdCloseModal($('overlay'),document.querySelector('.modal'))">&times</p>`
      cookie.myFruit = fotpGetFruit()[0]
 }
 
