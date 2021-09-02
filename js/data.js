@@ -286,12 +286,10 @@ var memes = [{
 
 var cookie = {
     "achievementsList": [],
-    "achievementData": [
-        {
+    "search": {
             "achievements": ["Just looking", "Searching","Seeker"],
             "reqs": [1,5,15]
-        }
-    ],
+    },
     "memes": [{
         "name": "Andrew Chester",
         "achievements": ["Chester Simp", "Chester Servant", "Chester Spouse"],
@@ -666,7 +664,6 @@ var fotpQuestions = [{
                 name: "I have a big bush of hair",
                 points: function() {
                     give([7],upAll*2)
-                    give([6],upLil)
                     remove([2,3,4,10],upAll)
 
                 }
@@ -779,7 +776,7 @@ var fotpQuestions = [{
                 name: "Black",
                 points: function() {
                     remove([11],upAll)
-                    give([0,1,2,3,4,5,6,7,8,9,10],upLil)
+                    give([0,1,2,3,4,5,7,8,9,10],upLil)
                 }
             },
             {
@@ -820,7 +817,7 @@ var fotpData = [{
     }, { name: "Watermelon", count: 50 //3
     }, { name: "Plum", count: 50 //4
     }, { name: "Eggplant", count: 50 //5
-    }, { name: "Grape", count: 50,
+    }, { name: "Grape", count: 50, //6
     }, { name: "Rambutan", count: 50,//7
     }, { name: "Apple",  count: 50//8
     }, { name: "Pear", count: 50//9
