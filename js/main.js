@@ -3,6 +3,8 @@ var main = document.querySelector('main')
 var inp = document.getElementById('input')
 var achl = document.querySelector('.achievements-list')
 var cloneCount = 0
+var curMeme = 0
+var memeStreak = true
 var loaded, modalOpen
 
 var Memes = {
@@ -54,6 +56,8 @@ function loadMemes() {
 			}, 200) // Open the modal 
 			cookie.memes[i].viewed++ // Increase the view count of the specific meme
 				cookie.timesClicked++ // Increase the overall view count
+
+      /**/
 				if (cookie.viewedAMemeBefore == false) {
 					notification('Your first meme', 'View 1 meme')
 					cookie.achievementsList.push({
@@ -63,6 +67,37 @@ function loadMemes() {
 					cookie.viewedAMemeBefore = true
 				}
 
+      /**/
+      console.log('Current ='+curMeme+'. Memestreak = '+memeStreak)
+      console.log(i)
+      if (curMeme == memes.length && memeStreak == true) {
+        notification('The Real Kitchen Party!','View all memes in a row.')
+        cookie.achievementsList.push({
+          name: 'The Real Kitchen Party!',
+          desc: 'View all memes in a row.'
+        })
+      } else if (curMeme != i) {
+        memeStreak = false
+      } else {
+         curMeme++
+      }
+      /**/
+      if (cookie.viewedAMemeBefore == false && i == 0) {
+        notification('Orderly','View the first meme first')
+        cookie.achievementsList.push({
+          name: 'Orderly',
+          desc: 'View the first meme first'
+        })
+      }
+      /**/
+      if (cookie.viewedAMemeBefore == false && i == memes.length) {
+        notification('Orderly in a different sense','View the last meme last')
+        cookie.achievementsList.push({
+          name: 'Orderly in a different sense',
+          desc: 'View the last meme last'
+        })
+      }
+      /**/
 			achievement(true) // Check if the user unlocked an achievement
 		}
 		if (memes[i].compatible === true) p.style.fontWeight = '900'; // If the meme is compatible with Meme Craziness bold it
@@ -80,7 +115,7 @@ function buttonClone(btn) {
 		btn.appendChild(y)
 		setTimeout(function () {
 			y.remove()
-		}, 1 * 10000)
+		}, 1 * 1000)
 	} else return cloneCount++
 }
 
