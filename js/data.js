@@ -259,6 +259,11 @@ var memes = [{
     "compatible": true,
     "reqs": [2, 5, 10]
 }, {
+    "name": "Toughcoach Rambutan",
+    "description": "When Meme Creator 1's siblings were being mean to him, Meme Creator 1, with his fruit of the person being Rambutan, started calling himself \"Toughcoach Rambutan\", and started doing really hard exercises with his siblings to make them tired and not bully him. Now, the meme is used as a nickname for Meme Creator 1.",
+    "compatible": false,
+    "reqs": [2, 5, 10]
+}, {
     "name": "The Smeller",
     "description": "The Smeller puts his nose up to a body part, smells it, and tells you what it smells like in a deep, acidic voice. Here's an example: \"Your Shoulder smells like honey-maple!\"",
     "compatible": false,
@@ -503,6 +508,11 @@ var cookie = {
         "name": "Skin Twist",
         "reqs": [2, 5, 10],
         "achievements": ["You left it on for a minute", "You left it on for an hour", "You left it on for a day"],
+        "viewed": 0
+    }, {
+        "name": "Toughcoach Rambutan",
+        "reqs": [2, 5, 10],
+        "achievements": ["Jumping Jacks!", "High Knees!", "Push-ups!"],
         "viewed": 0
     }, {
         "name": "TITONGO GET NO PAY",
