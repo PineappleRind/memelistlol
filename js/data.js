@@ -242,36 +242,43 @@ var memes = [{
     "name": "Rupert",
     "description": "Meme Creator 1 had a thought: Rupert is a funny name. When he saw the name Prince Rupert, he associated it with the funny name, and created Rupert. <hr><b>To usee this meme in Meme Craziness, say: \"My name is Rupert\" in a very throaty voice that is hard to do.</b>",
     "compatible": true,
+    "achievements": ["Visit Prince Rupert", "Drive around Prince Rupert", "Sail around Prince Rupert"],
     "reqs": [2, 5, 10]
 }, {
     "name": "Scuzi",
     "description": "In the Meme Creators' House, an Italian cleaner was cleaning and got in the way with the Meme Creator's aunt. The Meme Creators' aunt then said: \"Scuzi\" (excuse me in Italian). The meme creators thought it was funny for a non-Italian to say something in Italian. Here's a story associated with the meme: It's 1 AM. The Meme Creator is in the bed with Flop. Flop asked the Meme Creator to say Scuzi. He did. <hr> <b> To use this meme in Meme Craziness, say each syllable with the following intonations: scu medium, zi low then high </b>",
     "compatible": true,
+    "achievements": ["Excuse me", "'scuse me", "Scuzi"],
     "reqs": [2, 5, 10]
 }, {
     "name": "Skin Twist",
     "description": "In a Bad Lip Reading video, Tim Cook was announcing the next apple product: The Apple Skin Twist. He said: <i>\"We're proud to present the Apple Skin Twist. It twists your skin, okay? If you just leave it on there, you can surprise yourself, because it can make up to 50% more <b>flaps.</b>\"</i>",
     "compatible": false,
+    "achievements": ["You left it on for a minute", "You left it on for an hour", "You left it on for a day"],
     "reqs": [2, 5, 10]
 }, {
     "name": "TITONGO GET NO PAY",
     "description": "This meme refers to an Argentinian web developer who designed the UtilityBot website. The website looked horrible and Flop decided to not pay him (he never said he was paying anyway). <hr><b>To use this meme in Meme Craziness, say it in a high-pitched Indian Voice.</b>",
     "compatible": true,
+    "achievements": ["Bad website", "Horrible website", "Beyond horrible website."],
     "reqs": [2, 5, 10]
 }, {
     "name": "Toughcoach Rambutan",
     "description": "When Meme Creator 1's siblings were being mean to him, Meme Creator 1, with his fruit of the person being Rambutan, started calling himself \"Toughcoach Rambutan\", and started doing really hard exercises with his siblings to make them tired and not bully him. Now, the meme is used as a nickname for Meme Creator 1.",
     "compatible": false,
+    "achievements": ["Jumping Jacks!", "High Knees!", "Push-ups!"],
     "reqs": [2, 5, 10]
 }, {
     "name": "The Smeller",
     "description": "The Smeller puts his nose up to a body part, smells it, and tells you what it smells like in a deep, acidic voice. Here's an example: \"Your Shoulder smells like honey-maple!\"",
     "compatible": false,
+    "achievements": ["You smell like sweat and cheetos", "You smell like a hotel bedsheet", "You smell like honey-maple"],
     "reqs": [2, 5, 10]
 }, {
     "name": "Zhou",
     "description": "One of the Meme Creators said to the other, \"Zhou\". The other Meme Creator died laughing. Another form: \"We are going to the Zhou.\" <hr> <b>To use this meme in meme craziness, say it with an unnatural elongation of the syllable Zh and slightly high-pitched voice, ending with the Ou a little lower.</b>",
     "compatible": true,
+    "achievements": ["Zhou...", "Zhou?", "We are going to the Zhou!!!"],
     "reqs": [2, 5, 10]
 }]
 
