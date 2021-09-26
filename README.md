@@ -11,4 +11,4 @@ This meme list has:
 - achievements. There are over 100 achievements you can get! Check them any time in the achievements section of the page.
 - fun quizzes. You can find out what fruit you are!
 
-*Version: 0.4.1*
+*Version: 1.3.0*
