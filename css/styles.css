@@ -67,13 +67,8 @@ body {
 a {
 	color: white
 }
-
-.modal, main {
-
-}
-
 body.dark main {
-	background: rgba(50, 50, 80, 0.692);
+	background: rgba(50, 50, 80, 0.356);
 	border: 1px solid rgba(255, 255, 255, 0.219)
 }
 
@@ -84,8 +79,8 @@ body.dark #overlay {
 main {
 	width: 88%;
 	margin: auto;
-	background: #22224481;
-	backdrop-filter: blur(10px);
+	background: #22224457;
+	backdrop-filter: blur(3px);
 	padding: 30px;
 	-webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
 	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
@@ -95,7 +90,6 @@ main {
 	-o-transition: 1s ease-in-out;
 	transition: 1s ease-in-out;
 	color: white;
-	text-shadow: 0 0 10px black !important;
 	position: relative;
 	z-index: 2;
 	border: 1px solid rgba(255, 255, 255, 0.3);
@@ -108,7 +102,7 @@ i {
 
 .controls {
 	position: absolute;
-	z-index: 11;
+	z-index: 3;
 	right: 30px;
 	top: 30px;
 	display: flex;
@@ -187,11 +181,12 @@ i {
 	width: fit-content;
 	position: relative;
 	-webkit-animation: modal-here 0.5s cubic-bezier(.17,.67,.35,1.1);
-	z-index: 10;
+	animation: modal-here 0.5s cubic-bezier(.17,.67,.35,1.1);
+	z-index: 4;
 	pointer-events: all;
-	-webkit-transition: 0.5s cubic-bezier(.46,-0.44,1,1);
-	-o-transition: 0.5s cubic-bezier(.46,-0.44,1,1);
-	transition: 0.5s cubic-bezier(.46,-0.44,1,1);
+	-webkit-transition: 0.5s cubic-bezier(.17,.67,.35,1.1);;
+	-o-transition: 0.5s cubic-bezier(.17,.67,.35,1.1);;
+	transition: 0.5s cubic-bezier(.17,.67,.35,1.1);;
 	max-height:80%;
 	overflow: scroll;
 }
@@ -308,7 +303,7 @@ body.dark input[type=text] {
 	right: 0;
 	height:100%;
 	width:100%;
-	z-index: 12;
+	z-index: 4;
 	pointer-events: none;
 	transform: scale(1.2);
 	color: white;
@@ -351,11 +346,11 @@ body.dark input[type=text] {
 #closeachl {
 	font-size: 30px;
 	cursor: pointer;
-	position: fixed;
-	top: 0;
-	right: 0;
-	z-index: 200;
-	margin: 60px;
+	position: absolute;
+	right: 7%;
+	top:7%;
+	margin:0;
+	z-index: 5;
 }
 
 #closeachl:active {
@@ -405,8 +400,8 @@ body.dark input[type=text] {
 @supports ((-webkit-backdrop-filter: blur(30px)) or (backdrop-filter: blur(30px))) {
 	main {
 		background: rgba(200, 210, 255, 0.2);
-		backdrop-filter: blur(30px);
-		-webkit-backdrop-filter: blur(30px);
+		backdrop-filter: blur(10px);
+		-webkit-backdrop-filter: blur(10px);
 	}
 }
 
@@ -423,7 +418,7 @@ body.dark input[type=text] {
 		left:0;
 		right:0;
 		bottom:0;
-		padding:8px;
+		padding:18px;
 		overflow:scroll;
 		margin:0 !important;
 		border-radius:0;

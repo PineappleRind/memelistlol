@@ -6,16 +6,14 @@ var cloneCount = 0
 var curMeme = 0
 var memeStreak = true
 var loaded, modalOpen
+let light = Math.round(Math.random() * 365);
 
-var Memes = {
-	load: function () {
-		inp.style.display = 'inline-block'
-		document.getElementById('search').style.display = 'inline-block'
-		document.getElementById('info').style.display = 'block'
-		document.getElementById('loading').style.display = 'none'
-		loadMemes()
-	}
-}
+inp.style.display = 'inline-block'
+document.getElementById('search').style.display = 'inline-block'
+document.getElementById('info').style.display = 'block'
+document.getElementById('loading').style.display = 'none'
+loadMemes()
+achCheck()
 $('closeachl').onmouseup = () => {
 	achl.classList.remove('open')
 }
@@ -27,12 +25,6 @@ function $(e) {
 	return document.getElementById(e)
 }
 
-function getVal(e) {
-	return Object.values(e)
-}
-
-let light = Math.round(Math.random() * 365);
-
 function clr() { // The function for colors, so that the buttons' background color goes from red, to pink, and back again
 	light = light + 3
 	if (light <= 100 || light >= 50) return `hsl(${light},100%,30%)`
@@ -40,7 +32,7 @@ function clr() { // The function for colors, so that the buttons' background col
 }
 
 function loadMemes() {
-	loadAchs()
+
 	loaded = true;
 	for (let i = 0; i < memes.length; i++) { // For each meme,
 		var y = document.createElement('BUTTON') // Create a button
@@ -55,61 +47,41 @@ function loadMemes() {
 				mdShowModal(memes[i].name, memes[i].description)
 			}, 200) // Open the modal 
 			cookie.memes[i].viewed++ // Increase the view count of the specific meme
-				cookie.timesClicked++ // Increase the overall view count
+			cookie.timesClicked++ // Increase the overall view count
 
-      /**/
-				if (cookie.viewedAMemeBefore == false) {
-					notification('Your first meme', 'View 1 meme')
-					cookie.achievementsList.push({
-						name: 'Your first meme',
-						desc: 'View 1 meme'
-					})
-					cookie.viewedAMemeBefore = true
-				}
+			/**/
+			if (cookie.viewedAMemeBefore == false) {
+				if (i == 0) achGet('Orderly', 'View the first meme first')
+				if (i == memes.length - 1) achGet('Orderly in a different sense', 'View the last meme first')
+				achGet('Your first meme', 'View 1 meme')
+				cookie.viewedAMemeBefore = true
+			}
 
-      /**/
-      console.log('Current ='+curMeme+'. Memestreak = '+memeStreak)
-      console.log(i)
-      if (curMeme == memes.length && memeStreak == true) {
-        notification('The Real Kitchen Party!','View all memes in a row.')
-        cookie.achievementsList.push({
-          name: 'The Real Kitchen Party!',
-          desc: 'View all memes in a row.'
-        })
-      } else if (curMeme != i) {
-        memeStreak = false
-      } else {
-         curMeme++
-      }
-      /**/
-      if (cookie.viewedAMemeBefore == false && i == 0) {
-        notification('Orderly','View the first meme first')
-        cookie.achievementsList.push({
-          name: 'Orderly',
-          desc: 'View the first meme first'
-        })
-      }
-      /**/
-      if (cookie.viewedAMemeBefore == false && i == memes.length) {
-        notification('Orderly in a different sense','View the last meme last')
-        cookie.achievementsList.push({
-          name: 'Orderly in a different sense',
-          desc: 'View the last meme last'
-        })
-      }
-      /**/
-			achievement(true) // Check if the user unlocked an achievement
+			/**/
+			console.log('Current =' + curMeme + '. Memestreak = ' + memeStreak)
+			console.log(i)
+			if (curMeme == memes.length && memeStreak == true) {
+				achGet('The Real Kitchen Party!', 'View all memes in a row.')
+			} else if (curMeme != i) {
+				memeStreak = false
+			} else {
+				curMeme++
+			}
+			/**/
+			achCheck() // Check if the user unlocked an achievement
 		}
 		if (memes[i].compatible === true) p.style.fontWeight = '900'; // If the meme is compatible with Meme Craziness bold it
 		bod.appendChild(p) // Add the button to the page
-		//console.clear()
+		
 	}
+
+	return 'Memes loaded.'
 }
 
 function buttonClone(btn) {
 	if (btn.childElementCount < 1) {
 		let y = document.createElement('BUTTON')
-    y.classList.add('item')
+		y.classList.add('item')
 		y.style.backgroundColor = btn.style.backgroundColor
 		y.innerHTML = btn.innerHTML
 		btn.appendChild(y)
@@ -117,9 +89,10 @@ function buttonClone(btn) {
 			y.remove()
 		}, 1 * 1000)
 	} else return cloneCount++
+	return 'Button "' + btn.innerHTML + '" cloned.'
 }
 
-inp.onkeypress = e => {
+inp.onkeydown = e => {
 	if (e.key == 'Enter') document.getElementById('search').click() // If the user pressed the key "Enter" search the value
 }
 /***********************
@@ -144,6 +117,7 @@ function mdShowModal(r, t) {
 	}
 	wr.innerHTML = '' // Closes any currently open modals
 	wr.appendChild(y) // adds the modal to the overlay
+	return 'Showed modal.'
 }
 
 function mdCloseModal(o, m) { // Function to close the modal
@@ -153,7 +127,8 @@ function mdCloseModal(o, m) { // Function to close the modal
 	setTimeout(function () {
 		m.remove() // After a second, remove the modal from the page completely
 		o.setAttribute('style', 'opacity:0;pointer-events: none;') // Hides the overlay
-	}, 1000)
+	}, 200)
+	return 'Closed modal.'
 }
 
 function mdSetClose(mo) {
@@ -165,53 +140,52 @@ function mdSetClose(mo) {
  * These functions power the search algorithm. 
  * They were minified, so going to be hard to explain
  ***************************/
-function autocomplete() {
-	let e = document.getElementById("input");
-	clear() // Removes all memes from memelist
+function search() {
+	let term = document.getElementById("input")
+	let r = document.getElementsByClassName("item")
+	let removed = 0
 	cookie.timesSearched++ // Increases times searched locally
-		setTimeout(function () {
-			loadMemes()
-			achievement()
-			save()
-			searchDups();
-			for (let t = 0; t < 15; t++)
-				for (let t = 0; t < document.getElementsByClassName("item").length; t++) {
-					document.getElementsByClassName("item")[t].textContent.toLowerCase().includes(e.value) || document.getElementsByClassName("item")[t].remove();
-				}
-
-			if (document.getElementsByClassName("item").length == 0) main.innerHTML += "No results :( <button id=\"reload\">Try again</button>"
-			setTimeout(function () {
-				$('reload').onclick = () => loadMemes()
-			})
-		}, 10)
+	achCheck()
+	save()
+	for (let t = 0; t < memes.length; t++) {
+		if (
+			r[t].textContent.toLowerCase().indexOf(term.value) == -1
+			&&
+			removed != memes.length - 1
+		) {
+			r[t].style.display = 'none';
+			removed++
+		} else {
+			r[t].style.display = 'inline-block'
+		}
+	}
+	return 'Searched.'
 }
 
 function clear() {
 	bod.innerHTML = ''
+	return 'Cleared.'
 }
 
-function searchDups() {
-	let items = document.getElementsByClassName('item')
-	for (let i = 0; i > items.length; i++) {
-		for (let j = 0; j > items.length; j++) {
-			if (items[i].innerHTML == items[j].innerHTML) {
-				items[j].remove()
-			}
-		}
-	}
-}
 
 setTimeout(function () {
 	cookie.timesViewed++
-		save()
+	save()
 }, 5000)
 
 if (!lscache.get('visited')) {
 	save()
 	set('visited', 'true')
+	checkPlatform()
 } else {
 	loadFromSave()
+	setTimeout(() => {
+		checkPlatform()
+		save()
+	}, 1000); 
 }
+
+loadAchs()
 
 function save() {
 	let notSaved = JSON.stringify(cookie)
@@ -236,7 +210,6 @@ function loadFromSave() {
 function set(e, r) {
 	lscache.set(e, r, 10000000000)
 }
-
 function len(e) {
 	var size = 0,
 		key;
@@ -250,37 +223,25 @@ function ind(e, i) {
 	return e[Object.keys(e)[i]];
 }
 
-function achievement(e) {
+function achCheck() {
 	for (let i = 0; i < memes.length; i++) {
-    if (cookie.memes[i].viewed === cookie.memes[i].reqs[0]) {
-			if (e == true) {
-				notification(memes[i].achievements[0], `View "${memes[i].name}" ${cookie.memes[i].viewed} times`)
-				setTimeout(function () {
-					cookie.achievementsList = remDupObj(cookie.achievementsList, 'desc');
-					achClr(i)
-          save()
-				})
-				cookie.achievementsList.push({
-					name: memes[i].achievements[0],
-					desc: `View the meme ${memes[i].name} ${cookie.memes[i].viewed} times`
-				})
-			}
+		if (cookie.memes[i].viewed >= cookie.memes[i].reqs[0]) {
+			achGet(memes[i].achievements[0], `View "${memes[i].name}" ${cookie.memes[i].reqs[0]} times`)
+			setTimeout(function () {
+				cookie.achievementsList = remDupObj(cookie.achievementsList, 'desc');
+				achClr(i)
+				save()
+			})
 		}
 	}
 	loadAchs()
-	if (cookie.timesViewed == 5 && searchName('Welcome back') == undefined) {
-		notification('Welcome back', `View the meme list 5 times`)
-		cookie.achievementsList.push({
-			name: 'Welcome back',
-			desc: `View the meme list 5 times`
-		})
+	if (cookie.timesViewed == 2 && achSearchName('Hey') == undefined) {
+		achGet('Hey', `View the meme list 2 times`)
+	} else if (cookie.timesViewed == 5 && achSearchName('Welcome back') == undefined) {
+		achGet('Welcome back', `View the meme list 5 times`)
 	}
-	if (cookie.timesSearched >= cookie.search.reqs[0] && searchName(cookie.search.achievements[0])) {
-		notification(cookie.search.achievements[0], `Search ${cookie.search.reqs[0]} time(s)`)
-		cookie.achievementsList.push({
-			name: cookie.search.achievements[0],
-			desc: `Search ${cookie.search.reqs[0]} time(s)`
-		})
+	if (cookie.timesSearched >= cookie.search.reqs[0] && achSearchName(cookie.search.achievements[0]) == undefined) {
+		achGet(cookie.search.achievements[0], `Search ${cookie.search.reqs[0]} time(s)`)
 		cookie.search.achievements.shift()
 		cookie.search.reqs.shift()
 	}
@@ -294,7 +255,6 @@ function achClr(i) {
 		cookie.memes[i].achievements.shift()
 	})
 }
-
 function remDupObj(array, key) {
 	var check = {};
 	var res = [];
@@ -307,15 +267,19 @@ function remDupObj(array, key) {
 	return res;
 }
 
-function notification(name, desc) {
+function achGet(name, desc) {
+	cookie.achievementsList.push({
+		name: name,
+		desc: desc
+	});
 	iziToast.show({
 		title: `Achievement Unlocked: ${name}<p style="display:block;font-weight:200;margin-bottom:10px;margin-right:14px;margin-top:10px;">${desc}</p>`,
-		timeout: 15000,
+		timeout: 8000,
 		theme: 'dark'
 	});
 }
 
-function searchName(e) {
+function achSearchName(e) {
 	var result = cookie.achievementsList.find(obj => {
 		return obj.name === e
 	})
@@ -357,7 +321,7 @@ function fotpEval(mod) {
 	}, 500)
 	for (let i = 0; i < fotpQuestions.length; i++) {
 		for (let j = 0; j < fotpQuestions[i].answers.length; j++) {
-			if (document.getElementById(`${fotpQuestions[i].id + (j+1).toString()}`).checked == true) {
+			if (document.getElementById(`${fotpQuestions[i].id + (j + 1).toString()}`).checked == true) {
 				fotpQuestions[i].answers[j].points()
 			}
 		}
@@ -449,6 +413,9 @@ function svModal() { // Function to open modal. Kinda identical to the previous 
     <br><br>
     <p>If you want to <b>clear everything</b>, click the button below. There is no going back from this option.</p>
     <button style="background:red;" onclick="svClearEverything()">Clear everything!!!!</button>
+	<br><br>
+	<p>This is the cheat button! Press this to get all the achievements! :D</p>
+	<button onclick="svCheat();alert('Ready? You'll get ALL achievements. May cause your device to slow down temporarily.')" style="background:linear-gradient(45deg,cyan,rebeccapurple)">Hahahaha</button>
     <p id="close">×</p>` // inner html of modal
 	mdSetClose(y) // sets the onclick events of the close button to close modal
 }
@@ -456,16 +423,87 @@ $('getSave').onclick = () => svModal() // on click opens save modal
 
 function svSetSave() { // sets save
 	let saveContent = document.getElementById('saveTextarea') // save content
-	cookie = JSON.parse(LZString.decompressFromUint8Array(saveContent.value)) // sets local save to be the converted save the user inputted
-	save() // saves globally on user's device
-	notification('Loaded!', 'Save was successfully loaded.')
+	try {
+		if (typeof JSON.parse(saveContent.value) != object) cookie = JSON.parse(atob(saveContent.value)) // sets local save to be the converted save the user inputted
+		save() // saves globally on user's device
+		iziToast.show({
+			title: `Loaded!<p style="display:block;font-weight:200;margin-bottom:10px;margin-right:14px;margin-top:10px;">Save was loaded successfully.</p>`,
+			timeout: 10000,
+			theme: 'dark'
+		});
+	} catch (err) {
+		alert(`Error! The Save Code you've entered in is invalid. (${err})`)
+	}
 }
 
 function svClearEverything() {
 	if (prompt('Are you sure? Type \"forthememes\" if you want to continue...') == 'forthememes') {
 		lscache.remove('visited')
-		alert('Your progress has been cleared.')
+		alert('Your progress has been cleared. The Memelist will refresh after you dismiss this alert.')
+		window.location.href = window.location.href
 	} else {
 		alert("Lol, knew you didn't have enough courage KEK")
 	}
 }
+
+function svCheat() {
+	for (let e = 0; e < memes.length; e++) {
+		cookie.memes[e].viewed = 10;
+		if (e == memes.length - 1) {
+			achCheck();
+			achCheck();
+			save();
+		}
+	}
+	achGet("Hey", "View the meme list 2 times");
+	achGet("Welcome back", "View the meme list 5 times");
+	achGet("Hello again", "View the meme list 10 times");
+	achGet("Hey, how are you?", "View the meme list 15 times");
+	achGet("Woah, are you an addict?", "View the meme list 30 times");
+	achGet("Just looking", "Search 1 time");
+	achGet("Searching", "Search 10 times");
+	achGet("Seeker", "Search 30 times");
+	achGet("Metallic", "Use the meme list on Chrome (or a Chromium-based browser)");
+	achGet("Blazing Hot", "Use the meme list on Firefox");
+	achGet("Explorer", "Use the meme list on Safari");
+	achGet("Internet Explorer can not display this title.", "Use the meme list on Internet Explorer");
+	achGet("Mobile Memer", "Use the meme list on mobile");
+	achGet("Orderly", "View the first meme first");
+	achGet("Orderly in a different sense", "View the last meme first");
+	achGet("Your first meme", "View 1 meme");
+	achGet("The Real Kitchen Party!", "View all memes in a row.");
+	save();
+	achCheck();
+	loadAchs()
+}
+
+/*
+Platform checking 
+*/
+
+function checkPlatform() {
+	if (platform.name == "Chrome") {
+		if (achSearchName('Metallic') == undefined) achGet('Metallic', 'Use the meme list on Chrome (or a Chromium-based browser)')
+	} else if (platform.name == "Chrome") {
+		if (achSearchName('Blazing Hot') == undefined) achGet('Blazing Hot', 'Use the meme list on Firefox')
+	} else if (platform.name == "Chrome") {
+		if (achSearchName('Explorer') == undefined) achGet('Explorer', 'Use the meme list on Safari')
+	} else if (platform.name == "Chrome") {
+		if (achSearchName('Internet Explorer can not display this title.') == undefined) achGet('Internet Explorer can not display this title.', 'Use the meme list on Internet Explorer')
+	} else if (platform.os.family == "iOS") {
+		if (achSearchName('Mobile Memer') == undefined) achGet('Mobile Memer', 'Use the meme list on mobile')
+	}
+
+	loadAchs()
+}
+// these 
+// comments
+// exist 
+// only
+// to 
+// make
+// the 
+// file 
+// 500 
+// lines 
+//:D

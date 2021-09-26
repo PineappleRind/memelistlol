@@ -8,7 +8,7 @@ var memes = [{
     "name": "Appley",
     "description": "Some people have excess fat. Some people sound soapy, like apples. Some people have a round body. Some people are very very fast. And some people have all of these qualities! Introducing: Appley People.",
     "compatible": false,
-    "achievements": ["Red Delicious Apple", "Gala Apple", "Spartan Apple"],
+    "achievements": ["Red Delicious Apple", "Gala Apple", "Pink Lady Apple"],
     "reqs": [2, 5, 10]
 }, {
     "name": "Assorted \"Insults\"",
@@ -295,7 +295,6 @@ var memes = [{
 
 
 
-
 var cookie = {
     "achievementsList": [],
     "search": {
@@ -309,7 +308,7 @@ var cookie = {
         "reqs": [2, 5, 10]
     }, {
         "name": "Appley",
-        "achievements": ["Red Delicious Apple", "Gala Apple", "Spartan Apple"],
+        "achievements": ["Red Delicious Apple", "Gala Apple", "Pink Lady Apple"],
         "viewed": 0,
         "reqs": [2, 5, 10]
     }, {
@@ -847,14 +846,7 @@ var fotpData = [{
 CHEATS!!!!!! :D:D::D:D:
 lol please don't uncomment this, it will break the memelist
 
-for (let i = 0; i < 3; i++) {
-       setTimeout(function(){
-        for (let i = 0; i < cookie.memes.length; i++) {
-            cookie.memes[i].viewed+=5
-        }
-        achievement()
-       })
-}
+
 cookie.timesSearched = 15
 cookie.timesViewed = 100
 */
