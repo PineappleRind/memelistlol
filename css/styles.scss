@@ -60,6 +60,7 @@ h3 {
 
 html {
     overflow: hidden;
+    
     height: 100%;
 }
 
@@ -97,7 +98,7 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    overflow: auto;
+    overflow: hidden;
     margin: 0;
 }
 
@@ -128,7 +129,7 @@ main {
     width: 88%;
     overflow: scroll;
     resize: none;
-    border: $border
+    border: $border;
 }
 
 i {

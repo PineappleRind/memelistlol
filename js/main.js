@@ -19,7 +19,7 @@ document.getElementById('loadText').style.display = 'none'
 loadMemes()
 achCheck()
 
-debugb = true
+debugb = false
 function debug(to) {
 	if (debugb == true) {
 		var stack = new Error().stack.replace("Error", '')
@@ -87,7 +87,6 @@ function loadMemes() {
 			achCheck() // Check if the user unlocked an achievement
 		}
 		bod.appendChild(p) // Add the button to the page
-
 	}
 
 	return debug('Memes loaded.')
@@ -415,9 +414,8 @@ setTimeout(function () {
 	save()
 }, 2000)
 if (lscache.get('achievements')) { // Backwards compatibility
-	alert('You have data saved on Memelist V1. The data will now migrate to the new format used in V2')
-	let old = lscache.get('achievements')
-	lscache.set('data',old)
+	alert('You have save data that is only compatible with the old version (v1.3.0). The data will be cleared in order to migrate it to the new version (v2.0.0)')
+	lscache.flush()
 	lscache.remove('achievements')
 }
 if (!lscache.get('visited')) {

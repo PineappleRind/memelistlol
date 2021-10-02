@@ -1,6 +1,6 @@
-! function(a, b) {
+! function (a, b) {
     "function" == typeof define && define.amd ? define([], b) : "undefined" != typeof module && module.exports ? module.exports = b() : a.lscache = b()
-}(this, function() {
+}(this, function () {
     function a() {
         var a = "__lscachetest__",
             c = a;
@@ -86,7 +86,7 @@
         v = "",
         w = !1,
         x = {
-            set: function(d, l, n) {
+            set: function (d, l, n) {
                 if (!a()) return !1;
                 if (!c()) return !1;
                 try {
@@ -99,14 +99,14 @@
                 } catch (a) {
                     if (!b(a)) return m("Could not add item with key '" + d + "'", a), !1;
                     var o, p = [];
-                    j(function(a, b) {
+                    j(function (a, b) {
                         var c = g(b);
                         c = c ? parseInt(c, s) : u, p.push({
                             key: a,
                             size: (g(a) || "").length,
                             expiration: c
                         })
-                    }), p.sort(function(a, b) {
+                    }), p.sort(function (a, b) {
                         return b.expiration - a.expiration
                     });
                     for (var q = (l || "").length; p.length && q > 0;) o = p.pop(), m("Cache is full, removing item with key '" + d + "'"), k(o.key), q -= o.size;
@@ -118,7 +118,7 @@
                 }
                 return n ? h(e(d), (f() + n).toString(s)) : i(e(d)), !0
             },
-            get: function(b) {
+            get: function (b) {
                 if (!a()) return null;
                 if (l(b)) return null;
                 var d = g(b);
@@ -129,35 +129,35 @@
                     return d
                 }
             },
-            remove: function(b) {
+            remove: function (b) {
                 a() && k(b)
             },
-            supported: function() {
+            supported: function () {
                 return a()
             },
-            flush: function() {
-                a() && j(function(a) {
+            flush: function () {
+                a() && j(function (a) {
                     k(a)
                 })
             },
-            flushExpired: function() {
-                a() && j(function(a) {
+            flushExpired: function () {
+                a() && j(function (a) {
                     l(a)
                 })
             },
-            setBucket: function(a) {
+            setBucket: function (a) {
                 v = a
             },
-            resetBucket: function() {
+            resetBucket: function () {
                 v = ""
             },
-            getExpiryMilliseconds: function() {
+            getExpiryMilliseconds: function () {
                 return t
             },
-            setExpiryMilliseconds: function(a) {
+            setExpiryMilliseconds: function (a) {
                 t = a, u = n(t)
             },
-            enableWarnings: function(a) {
+            enableWarnings: function (a) {
                 w = a
             }
         };
