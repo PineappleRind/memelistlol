@@ -1,34 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="meme, memes, funny, absurd, memelist, memelist.ml, memelist.com">
+    <meta name="description" content="A list of absurd, sometimes nonsensical concepts that you can say to people that won't make the least bit of sense to them.">
     <title>Memelist</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="libs/izitoast.css">
 </head>
-<body class="dark" style="display:flex;align-items:center;justify-content:center;height:100vh;">
+
+<body class="dark" style="background-image: url(./imgs/bg1.jpg);display:flex;align-items:center;justify-content:center;height:100vh;">
     <div id="notifs"></div>
     <main>
-        <div class="controls">
-          <div id="achievements" style="font-size:20px;color:white;opacity:1;">achievements</div>
-          <span style="font-size:40px;pointer-events: none;opacity:1;color:white;font-weight:100;">|</span>
-          <div id="getSave" style="font-size:20px;color:white;opacity:1;">saves</div>
+        <div class="controls" id="controlsOpen">
+            <svg viewBox="0 0 100 80" width="40" height="40">
+                <rect width="100" height="10" rx="8" fill="white"></rect>
+                <rect y="30" width="100" height="10" rx="8" fill="white"></rect>
+                <rect y="60" width="100" height="10" rx="8" fill="white"></rect>
+            </svg>
         </div>
         <h1 style="font-weight:900">Official Online Meme List</h1>
-        <h2 style="color:rgb(255, 255, 255);font-weight:300;">All Memes</h2><hr>
-        <p id="loading">Loading all memes... If it doesn't load, there's an error in the code that needs to be fixed by the site owner, or you have JavaScript disabled.</p>
-        <p id="info" style="display:none;">Click for info. Each meme has its own description! If the button is bold, it's meme craziness compatible.</p><br>
-    <input id="input" style="display:none;" type="text" placeholder="Search..."><button style="display:none;" id="search" onclick="search()">Go</button><br>
+        <h2 style="color:rgb(255, 255, 255);font-weight:300;">All Memes</h2>
+        <hr>
+        <p id="loadText">Loading all memes... If it doesn't load, there's an error in the code that needs to be fixed by
+            the site owner, or you have JavaScript disabled.</p>
+        <p id="info" style="display:none;">Click for info. Each meme has its own description! </p><br>
+        <div class="input">
+            <input id="input" maxlength="32" style="display:none;" type="input" placeholder="Search...">
+            <button id="search" onclick="search($('input').value)">Search</button>
+        </div>
+        <div id="searchResult"></div><br>
         <div class="items-cont"></div>
     </main>
     <div id="overlay" style="opacity:0;pointer-events: none;"></div>
     <div class="modalwrap">
     </div>
     <div class="achievements-list">
-    <p id="closeachl">&times;</p>
-    <h1>No achievements yet</h1>
+        <p id="closeachl">&times;</p>
+        <h1>No achievements yet</h1>
+    </div>
+    <div class="controls-overlay" onclick="this.classList.remove('open')">
+        <p id="closectrl">&times;</p>
+        <div id="games">games</div>
+        <div id="achievements">achievements</div>
+        <div id="getSave">manage save</div>
+        <div id="appearance" onclick="stOpenAndHandleSettings()">memelist appearance</div>
     </div>
     <script src="libs/izitoast.js"></script>
     <script src="libs/lscache.js"></script>
@@ -37,4 +56,5 @@
     <script src="js/main.js"></script>
     <script> </script>
 </body>
+
 </html>

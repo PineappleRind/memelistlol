@@ -163,3 +163,5 @@
         };
     return x
 });
+
+document.getElementById('loadText').innerHTML = 'Loading platform.js...'

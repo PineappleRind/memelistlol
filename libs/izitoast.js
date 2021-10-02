@@ -1290,3 +1290,5 @@
 
 	return $iziToast;
 });
+
+document.getElementById('loadText').innerHTML = 'Loading lscache.js...'

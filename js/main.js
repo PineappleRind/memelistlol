@@ -1,24 +1,41 @@
-var bod = document.querySelector(".items-cont"); // The variables. These are "shortcuts"; I select the element on the page and store it. This one can be referred to as "bod" in the code.
+var bod = document.querySelector(".items-cont") // The variables. These are "shortcuts" I select the element on the page and store it. This one can be referred to as "bod" in the code.
 var main = document.querySelector('main')
 var inp = document.getElementById('input')
 var achl = document.querySelector('.achievements-list')
+var srchRes = $('searchResult')
+var controls = document.querySelector('.controls-overlay')
 var cloneCount = 0
 var curMeme = 0
+
 var memeStreak = true
-var loaded, modalOpen
-let light = Math.round(Math.random() * 365);
+var loaded, modalOpen, debugb
+let clearShowing = false
+let hue = Math.floor(Math.random() * 365)
 
 inp.style.display = 'inline-block'
 document.getElementById('search').style.display = 'inline-block'
 document.getElementById('info').style.display = 'block'
-document.getElementById('loading').style.display = 'none'
+document.getElementById('loadText').style.display = 'none'
 loadMemes()
 achCheck()
+
+debugb = true
+function debug(to) {
+	if (debugb == true) {
+		var stack = new Error().stack.replace("Error", '')
+		console.log('____________' + new Date().toLocaleTimeString() + '_____________\n' + to + '\n Called: ' + stack)
+		return to
+	} else return
+}
 $('closeachl').onmouseup = () => {
 	achl.classList.remove('open')
 }
 $('achievements').onclick = () => {
+	loadAchs()
 	achl.classList.add('open')
+}
+$('controlsOpen').onclick = () => {
+	controls.classList.add('open')
 }
 
 function $(e) {
@@ -26,14 +43,13 @@ function $(e) {
 }
 
 function clr() { // The function for colors, so that the buttons' background color goes from red, to pink, and back again
-	light = light + 3
-	if (light <= 100 || light >= 50) return `hsl(${light},100%,30%)`
-	else return `hsl(${light},100%,50%)`
+	hue += 4
+	if (hue <= 100 || hue >= 50) return `hsl(${hue},100%,30%)`
+	else return `hsl(${hue},100%,50%,)`
 }
 
 function loadMemes() {
-
-	loaded = true;
+	loaded = true
 	for (let i = 0; i < memes.length; i++) { // For each meme,
 		var y = document.createElement('BUTTON') // Create a button
 		y.classList.add('item') // Add a class to it to refer to it in the style sheet
@@ -44,17 +60,17 @@ function loadMemes() {
 			save() // Save 
 			buttonClone(p) // Button animation
 			setTimeout(function () {
-				mdShowModal(memes[i].name, memes[i].description)
+				mdShowMemeModal(memes[i].name, memes[i].description)
 			}, 200) // Open the modal 
-			cookie.memes[i].viewed++ // Increase the view count of the specific meme
-			cookie.timesClicked++ // Increase the overall view count
+			saveData.memes[i].viewed++ // Increase the view count of the specific meme
+			saveData.timesClicked++ // Increase the overall view count
 
 			/**/
-			if (cookie.viewedAMemeBefore == false) {
+			if (saveData.viewedAMemeBefore == false) {
 				if (i == 0) achGet('Orderly', 'View the first meme first')
 				if (i == memes.length - 1) achGet('Orderly in a different sense', 'View the last meme first')
 				achGet('Your first meme', 'View 1 meme')
-				cookie.viewedAMemeBefore = true
+				saveData.viewedAMemeBefore = true
 			}
 
 			/**/
@@ -70,12 +86,11 @@ function loadMemes() {
 			/**/
 			achCheck() // Check if the user unlocked an achievement
 		}
-		if (memes[i].compatible === true) p.style.fontWeight = '900'; // If the meme is compatible with Meme Craziness bold it
 		bod.appendChild(p) // Add the button to the page
-		
+
 	}
 
-	return 'Memes loaded.'
+	return debug('Memes loaded.')
 }
 
 function buttonClone(btn) {
@@ -87,37 +102,57 @@ function buttonClone(btn) {
 		btn.appendChild(y)
 		setTimeout(function () {
 			y.remove()
-		}, 1 * 1000)
+		}, 700)
 	} else return cloneCount++
-	return 'Button "' + btn.innerHTML + '" cloned.'
+	return debug('Button "' + btn.innerHTML + '" cloned.')
 }
 
-inp.onkeydown = e => {
-	if (e.key == 'Enter') document.getElementById('search').click() // If the user pressed the key "Enter" search the value
+inp.onkeyup = e => {
+	if (e.key == 'Enter') {
+		e.preventDefault()
+		document.getElementById('search').click() // If the user pressed the key "Enter" search the value
+		let y = document.createElement('div')
+		y.onclick = () => {
+			y.remove()
+			search('')
+		}
+		inp.appendChild(y)
+	}
 }
 /***********************
  * Modal Functions
  ***********************/
+class Modal {
+	constructor() {
+		let y = document.createElement('DIV')
+		y.classList.add('modal') //adds class
+		//y.style.height = '70%' // height
+		let wr = document.querySelector('.modalwrap')
+		wr.innerHTML = '' // Closes any currently open modals
+		wr.appendChild(y) // adds the modal to the overlay
 
+		this.element = y
+		this.setClose = function () {
+			mdSetClose(this.element)
+		}
+		let o = $('overlay') // Overlay variable (for the overlay)
+		o.setAttribute('style', 'opacity:1') // shows overlay
+	}
+}
 
-function mdShowModal(r, t) {
+function mdShowMemeModal(r, t) {
 	modalOpen = true
-	let o = $('overlay') // Overlay variable (for the overlay)
-	o.setAttribute('style', 'opacity:1;filter:blur(60px);')
-	let y = document.createElement('DIV') // Creates a miscellanous object
-	y.classList.add('modal') // adds a class to it
-	y.innerHTML = ` <h1>Meme Info <span>${r}</span></h1> 
+	let mod = new Modal()
+	mod.element.innerHTML = ` <h1>Meme Info <span>${r}</span></h1> 
             <hr>
             <p>${t}</p>
             <p id="close" onclick="mdCloseModal($('overlay'),document.querySelector('.modal'))">×</p>
             ` // Puts the content of the modal
-	let wr = document.querySelector('.modalwrap')
 	document.body.onkeyup = e => {
 		if (e.code == 'Escape' && modalOpen == true) mdCloseModal($('overlay'), document.querySelector('.modal'))
 	}
-	wr.innerHTML = '' // Closes any currently open modals
-	wr.appendChild(y) // adds the modal to the overlay
-	return 'Showed modal.'
+	mod.setClose()
+	return debug('Showed modal.')
 }
 
 function mdCloseModal(o, m) { // Function to close the modal
@@ -128,161 +163,168 @@ function mdCloseModal(o, m) { // Function to close the modal
 		m.remove() // After a second, remove the modal from the page completely
 		o.setAttribute('style', 'opacity:0;pointer-events: none;') // Hides the overlay
 	}, 200)
-	return 'Closed modal.'
+	return debug('Closed modal.')
 }
 
 function mdSetClose(mo) {
+	onkeydown = e => {
+		if (e.key == 'Escape') mdCloseModal($('overlay'), mo), onkeydown = () => { }
+	}
 	$('close').onclick = () => mdCloseModal($('overlay'), mo)
+	return debug('Set close onclicks for modal ' + mo.children[0].innerHTML + '.')
 }
 /************************** 
  * SEARCH FUNCTIONS
  * by me lol
  * These functions power the search algorithm. 
- * They were minified, so going to be hard to explain
  ***************************/
-function search() {
-	let term = document.getElementById("input")
-	let r = document.getElementsByClassName("item")
-	let removed = 0
-	cookie.timesSearched++ // Increases times searched locally
-	achCheck()
-	save()
-	for (let t = 0; t < memes.length; t++) {
+function search(term) {
+	let plural
+	let r = document.getElementsByClassName("item") // Gets all of the memes
+	let removed = 0 // Amount of memes removed that didn't match term
+	saveData.timesSearched++ // Increases times searched locally
+	achCheck() // Check for achievements
+	save()//Save
+	for (let t = 0; t < memes.length; t++) { // For each meme,
+
 		if (
-			r[t].textContent.toLowerCase().indexOf(term.value) == -1
-			&&
-			removed != memes.length - 1
+			r[t].textContent.toLowerCase().indexOf(term.toLowerCase()) == -1 // IF the current meme contains the search term,
+			&& //AND
+			removed != memes.length //all of the memes weren't already removed,
 		) {
-			r[t].style.display = 'none';
-			removed++
-		} else {
-			r[t].style.display = 'inline-block'
+
+			r[t].classList.add('not-found')
+			r[t].classList.remove('found')
+			removed++// increase amount removed
+		} else { // if conditions weren't matched
+			if (clearShowing == true) $('nores').remove(), clearShowing = false
+			r[t].classList.add('found')
+			r[t].classList.remove('not-found')
 		}
+
+		if (!term) {
+			r[t].classList.remove('found')
+			r[t].classList.remove('not-found')
+		}
+
 	}
-	return 'Searched.'
-}
-
-function clear() {
-	bod.innerHTML = ''
-	return 'Cleared.'
-}
-
-
-setTimeout(function () {
-	cookie.timesViewed++
-	save()
-}, 5000)
-
-if (!lscache.get('visited')) {
-	save()
-	set('visited', 'true')
-	checkPlatform()
-} else {
-	loadFromSave()
+	Math.abs(removed - memes.length) == 1 ? plural = '' : plural = 's'
+	let y = document.createElement('P')
+	window.innerWidth > 850 ?
+		y.innerHTML = Math.abs(removed - memes.length) + ' result' + plural
+		:
+		y.innerHTML = Math.abs(removed - memes.length) + ' result' + plural + '. Scroll down if you don\'t see it'
+	srchRes.appendChild(y)
 	setTimeout(() => {
-		checkPlatform()
-		save()
-	}, 1000); 
-}
-
-loadAchs()
-
-function save() {
-	let notSaved = JSON.stringify(cookie)
-	set('achievements', notSaved)
+		y.remove()
+	}, 2000)
+	if (removed == memes.length && clearShowing == false) {
+		clearShowing = true
+		bod.insertAdjacentHTML('afterbegin', '<div id="nores">No results <button onclick="clearShowing = false;search(\'\');this.parentElement.remove()">clear</button></div>')
+	}
+	return debug('Searched for ' + term)
 }
 
 function loadAchs() {
-	if (cookie.achievementsList.length == 0) achl.innerHTML = `<p id="closeachl">×</p><div class="inner"><h1>No achievements yet..</h1></div>`
-	else achl.innerHTML = `<p id="closeachl">×</p><div class="inner"><h1>Your achievements (You have ${cookie.achievementsList.length})</h1></div>`
+	let plural
+	saveData.achievementsList.length == 1 ? plural = '' : plural = 's'
+	if (saveData.achievementsList.length == 0) achl.innerHTML = `<p id="closeachl">×</p><div class="inner"><h1>No achievements yet..</h1></div>`
+	else achl.innerHTML = `<p id="closeachl">×</p><div class="inner"><h1>Your achievement${plural} (${saveData.achievementsList.length})</h1></div>`
 	$('closeachl').onmouseup = () => {
 		achl.classList.remove('open')
 	}
-	for (let i = 0; i < cookie.achievementsList.length; i++) {
-		document.querySelector('.inner').insertAdjacentHTML('beforeend', `<div class="list-item"><h1>${cookie.achievementsList[i].name}</h1><p>${cookie.achievementsList[i].desc}</p></div>`)
+	for (let i = 0; i < saveData.achievementsList.length; i++) {
+		document.querySelector('.inner').insertAdjacentHTML('beforeend', `<div class="list-item"><p class="date">${saveData.achievementsList[i].at}</p><h1>${saveData.achievementsList[i].name} </h1><p>${saveData.achievementsList[i].desc}</p></div>`)
 	}
+	return debug('Loaded achievements.')
 }
-
-function loadFromSave() {
-	cookie = JSON.parse(lscache.get('achievements'))
-}
-
 function set(e, r) {
-	lscache.set(e, r, 10000000000)
+	lscache.set(e, r, 1000000000)
 }
 function len(e) {
 	var size = 0,
-		key;
+		key
 	for (key in e) {
-		if (e.hasOwnProperty(key)) size++;
+		if (e.hasOwnProperty(key)) size++
 	}
 	return size
 }
 
 function ind(e, i) {
-	return e[Object.keys(e)[i]];
+	return e[Object.keys(e)[i]]
 }
 
 function achCheck() {
-	for (let i = 0; i < memes.length; i++) {
-		if (cookie.memes[i].viewed >= cookie.memes[i].reqs[0]) {
-			achGet(memes[i].achievements[0], `View "${memes[i].name}" ${cookie.memes[i].reqs[0]} times`)
+	for (let i = 0; i < memes.length; i++) { // For each meme:
+		if (saveData.memes[i].viewed >= saveData.memes[i].reqs[0]) { // If this meme has been viewed more times than the requirement,
+			achGet(memes[i].achievements[0], `View "${memes[i].name}" ${saveData.memes[i].reqs[0]} times`) // Get the achievement
 			setTimeout(function () {
-				cookie.achievementsList = remDupObj(cookie.achievementsList, 'desc');
+				saveData.achievementsList = remDupObj(saveData.achievementsList, 'desc')
 				achClr(i)
 				save()
 			})
 		}
 	}
-	loadAchs()
-	if (cookie.timesViewed == 2 && achSearchName('Hey') == undefined) {
+	if (saveData.timesViewed == 2 && achSearchName('Hey') == undefined) {
 		achGet('Hey', `View the meme list 2 times`)
-	} else if (cookie.timesViewed == 5 && achSearchName('Welcome back') == undefined) {
+	} else if (saveData.timesViewed == 5 && achSearchName('Welcome back') == undefined) {
 		achGet('Welcome back', `View the meme list 5 times`)
 	}
-	if (cookie.timesSearched >= cookie.search.reqs[0] && achSearchName(cookie.search.achievements[0]) == undefined) {
-		achGet(cookie.search.achievements[0], `Search ${cookie.search.reqs[0]} time(s)`)
-		cookie.search.achievements.shift()
-		cookie.search.reqs.shift()
+	if (saveData.timesSearched >= saveData.search.reqs[0] && achSearchName(saveData.search.achievements[0]) == undefined) {
+		achGet(saveData.search.achievements[0], `Search ${saveData.search.reqs[0]} time(s)`)
+		saveData.search.achievements.shift()
+		saveData.search.reqs.shift()
 	}
+	return debug('Checked for achievements.')
 }
 
 function achClr(i) {
 	setTimeout(function () {
 		memes[i].achievements.shift()
 		memes[i].reqs.shift()
-		cookie.memes[i].reqs.shift()
-		cookie.memes[i].achievements.shift()
+		saveData.memes[i].reqs.shift()
+		saveData.memes[i].achievements.shift()
 	})
-}
-function remDupObj(array, key) {
-	var check = {};
-	var res = [];
-	array.forEach(element => {
-		if (!check[element[key]]) {
-			check[element[key]] = true;
-			res.push(element);
-		}
-	});
-	return res;
+	return debug('Shifted requirements for meme' + memes[i].name)
 }
 
 function achGet(name, desc) {
-	cookie.achievementsList.push({
-		name: name,
-		desc: desc
-	});
-	iziToast.show({
-		title: `Achievement Unlocked: ${name}<p style="display:block;font-weight:200;margin-bottom:10px;margin-right:14px;margin-top:10px;">${desc}</p>`,
-		timeout: 8000,
-		theme: 'dark'
-	});
+	if (achSearchName(name) == undefined) {
+		saveData.achievementsList.push({
+			name: name,
+			desc: desc,
+			at: new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString()
+		});
+		iziToast.show({
+			title: `Achievement Unlocked: ${name}<p style="display:block;font-weight:200;margin-bottom:10px;margin-right:14px;margin-top:10px;">${desc}</p>`,
+			timeout: 8000,
+			theme: 'dark'
+		})
+		save()
+		return debug('Got achievement "' + name + '"')
+	} else {
+		return debug('Cannot get achievement "' + name + '", it already exists')
+	}
+}
+
+function remDupObj(array, key) {
+	var check = {}
+	var res = []
+	array.forEach(element => {
+		if (!check[element[key]]) {
+			check[element[key]] = true
+			res.push(element)
+		}
+	})
+	if (!res) return ('Checked for duplicates; however there were none.')
+	else return res
 }
 
 function achSearchName(e) {
-	var result = cookie.achievementsList.find(obj => {
+	var result = saveData.achievementsList.find(obj => {
 		return obj.name === e
 	})
+	debug('Searched for "' + e + '" in achievements list.')
 	return result
 }
 
@@ -292,7 +334,7 @@ function achSearchName(e) {
  */
 
 function fotpModal() {
-	var iid = 0;
+	var iid = 0
 	let y = document.createElement('DIV')
 	y.classList.add('modal')
 	y.innerHTML += `<h1>Fruit of the Person Quiz</h1>
@@ -309,16 +351,12 @@ function fotpModal() {
 	let wr = document.querySelector('.modalwrap')
 	wr.innerHTML = '' // Closes any currently open modals
 	wr.appendChild(y) // adds the modal to the overlay
+	return debug('Fruit of the person modal compiled and shown.')
 }
 
 function fotpEval(mod) {
-	setTimeout(function () {
-		mod.innerHTML = 'Evaluating...'
-		fotpMakeSurePerc()
-	})
-	setTimeout(function () {
-		fotpShowResults(mod)
-	}, 500)
+	setTimeout(function () { mod.innerHTML = 'Evaluating...'; fotpMakeSurePerc() })
+	setTimeout(function () { fotpShowResults(mod) }, 500)
 	for (let i = 0; i < fotpQuestions.length; i++) {
 		for (let j = 0; j < fotpQuestions[i].answers.length; j++) {
 			if (document.getElementById(`${fotpQuestions[i].id + (j + 1).toString()}`).checked == true) {
@@ -326,6 +364,7 @@ function fotpEval(mod) {
 			}
 		}
 	}
+	return debug('Evaluated fotp quiz results.')
 }
 
 function fotpMakeSurePerc() {
@@ -338,8 +377,8 @@ function fotpMakeSurePerc() {
 function fotpGetFruit() {
 	var arr = []
 	fotpData.sort(function (a, b) {
-		return parseFloat(b.count) - parseFloat(a.count);
-	});
+		return parseFloat(b.count) - parseFloat(a.count)
+	})
 	for (let i = 0; i < fotpData.length; i++) {
 		arr.push({
 			name: fotpData[i].name,
@@ -347,6 +386,7 @@ function fotpGetFruit() {
 		})
 		if (i == fotpData.length - 1) return arr
 	}
+	debug('Got fruit from results.')
 }
 
 function fotpShowResults(mod) {
@@ -355,7 +395,8 @@ function fotpShowResults(mod) {
      ${fotpGetFruit()[1].name} (${fotpGetFruit()[1].count}%)<br>
      ${fotpGetFruit()[2].name} (${fotpGetFruit()[2].count}%)
      <p id="close" onclick="mdCloseModal($('overlay'),document.querySelector('.modal'))">×</p>`
-	cookie.myFruit = fotpGetFruit()[0]
+	saveData.myFruit = fotpGetFruit()[0]
+	debug('Showed results.')
 }
 
 function getArticle(u) {
@@ -363,45 +404,49 @@ function getArticle(u) {
 	if (e.startsWith('a') || e.startsWith('e') || e.startsWith('i') || e.startsWith('o') || e.startsWith('u')) return 'an'
 	else return 'a'
 }
-
 /************** SAVING FUNCTIONS *****************/
 /* by me lol
  * started july 23 2021
  * These functions handle the save part of the memelist.
  */
 
-function svB64(str, en) { // Converts save data to base64.
-	if (en == true) { // If en (the parameter that is passed) is true, convert *to* base64.
-		try { // If there's no error,
-			return window.btoa(unescape(encodeURIComponent(str))); // Return converted base64.
-		} catch (err) { // If there is an error,
-			svDisplayError(err) // Display the error in this function.
-		}
-	} else { // If it's false, convert *from* base64.
-		try { // If there's no error,
-			return window.atob(unescape(encodeURIComponent(str))); // Return.
-		} catch (err) { // If there is an error,
-			svDisplayError(err) // Display the error in this function.
-		}
-	}
+setTimeout(function () {
+	saveData.timesViewed++
+	save()
+}, 2000)
+if (lscache.get('achievements')) { // Backwards compatibility
+	alert('You have data saved on Memelist V1. The data will now migrate to the new format used in V2')
+	let old = lscache.get('achievements')
+	lscache.set('data',old)
+	lscache.remove('achievements')
+}
+if (!lscache.get('visited')) {
+	save()
+	set('visited', 'true')
+	checkPlatform()
+} else {
+	loadFromSave()
+	document.body.style.backgroundImage = 'url("./imgs/bg'+saveData.settings.background+'.jpg")'
+	setTimeout(() => {
+		checkPlatform()
+	}, 1000)
 }
 
-function svDisplayError(error) { // Function to show error.
-	let modal = document.querySelector('.modal') // Get modal
-	modal.innerHTML += `<p style="color:red;">Error! More detailed info: ${error}</p>` // Adds this <P> element to the end of the modal.
+function save() {
+	let notSaved = JSON.stringify(saveData)
+	set('data', notSaved)
+	return debug('Saved.')
 }
 
+function loadFromSave() {
+	saveData = JSON.parse(lscache.get('data'))
+	return debug('Loaded from save.')
+}
 function svModal() { // Function to open modal. Kinda identical to the previous one (I could merge them, but its not the priority now)
-	let y = document.createElement('DIV') // creates element
-	y.classList.add('modal') //adds class
-	y.style.height = '70%' // height
-	let wr = document.querySelector('.modalwrap')
-	wr.innerHTML = '' // Closes any currently open modals
-	wr.appendChild(y) // adds the modal to the overlay
-	let o = $('overlay') // Overlay variable (for the overlay)
-	o.setAttribute('style', 'opacity:1;filter:blur(60px);') // shows overlay
-	let save = svB64(JSON.stringify(cookie).replace(/(\r\n|\n|\r)/gm, ""), true) // The save code. Since local save was a raw object and not a string, it converts (Stringifys) local save (What the user did during browser session) to a string, then converts to base64.
-	y.innerHTML = `
+	let y = new Modal() // creates element
+
+	let save = btoa(unescape(encodeURIComponent(JSON.stringify(saveData).replace(/(\r\n|\n|\r)/gm, "")))) // The save code. Since local save was a raw object and not a string, it converts (Stringifys) local save (What the user did during browser session) to a string, then converts to base64.
+	y.element.innerHTML = `
     <h1>Save Code</h1> 
     <p>This code is what's currently saved. You can change it to load a previous code, or save your code to use on a different device/browser.</p>
     <textarea id="saveTextarea" style="width:98%;height:50%;">${save}</textarea>
@@ -414,96 +459,276 @@ function svModal() { // Function to open modal. Kinda identical to the previous 
     <p>If you want to <b>clear everything</b>, click the button below. There is no going back from this option.</p>
     <button style="background:red;" onclick="svClearEverything()">Clear everything!!!!</button>
 	<br><br>
-	<p>This is the cheat button! Press this to get all the achievements! :D</p>
-	<button onclick="svCheat();alert('Ready? You'll get ALL achievements. May cause your device to slow down temporarily.')" style="background:linear-gradient(45deg,cyan,rebeccapurple)">Hahahaha</button>
+	<p>This is the cheat button! Press this to get all the achievements. May cause your device to slow down temporarily (or even crash). </p>
+	<button onclick="svCheat();" style="background:linear-gradient(45deg, red,orange)">Get all achievements</button>
     <p id="close">×</p>` // inner html of modal
-	mdSetClose(y) // sets the onclick events of the close button to close modal
+	y.setClose()
+	debug('Showed saves modal.')
 }
 $('getSave').onclick = () => svModal() // on click opens save modal
 
 function svSetSave() { // sets save
 	let saveContent = document.getElementById('saveTextarea') // save content
 	try {
-		if (typeof JSON.parse(saveContent.value) != object) cookie = JSON.parse(atob(saveContent.value)) // sets local save to be the converted save the user inputted
+		if (typeof JSON.parse(atob(saveContent.value)) == undefined) saveData = JSON.parse(atob(saveContent.value)) // sets local save to be the converted save the user inputted
 		save() // saves globally on user's device
 		iziToast.show({
 			title: `Loaded!<p style="display:block;font-weight:200;margin-bottom:10px;margin-right:14px;margin-top:10px;">Save was loaded successfully.</p>`,
 			timeout: 10000,
 			theme: 'dark'
-		});
+		})
 	} catch (err) {
-		alert(`Error! The Save Code you've entered in is invalid. (${err})`)
+		if (err == "InvalidCharacterError: Failed to execute 'atob' on 'Window': The string to be decoded is not correctly encoded.") alert(`Error! The Save Code you've entered in is invalid. (${err})`)
+		else alert('Buddy, this doesn\'t look like a code to me. ' + err)
 	}
 }
+debug('Set save.')
 
 function svClearEverything() {
-	if (prompt('Are you sure? Type \"forthememes\" if you want to continue...') == 'forthememes') {
+	let words = ['Ricky the Cruise Director', 'Put a little fresh auringe juice in there', 'Chocolo-fudge Peanuto-caramel', 'At the business centre, I\'m Mike Eppel']
+
+	let rand = words[Math.floor(Math.random() * words.length)]
+	if (prompt('Are you sure? Type \"' + rand + '\" if you want to continue...').toLowerCase() == rand.toLowerCase()) {
 		lscache.remove('visited')
 		alert('Your progress has been cleared. The Memelist will refresh after you dismiss this alert.')
 		window.location.href = window.location.href
 	} else {
-		alert("Lol, knew you didn't have enough courage KEK")
+		alert("Too bad lol")
 	}
 }
 
 function svCheat() {
-	for (let e = 0; e < memes.length; e++) {
-		cookie.memes[e].viewed = 10;
-		if (e == memes.length - 1) {
-			achCheck();
-			achCheck();
-			save();
-		}
+	for (let i = 0; i < 10; i++) {
+		setTimeout(() => {
+			for (let e = 0; e < memes.length; e++) {
+				saveData.memes[e].viewed += 1
+				if (e == memes.length - 1) {
+					achCheck()
+					setTimeout(() => {
+						achCheck()
+					}, 100)
+
+					save()
+				}
+			}
+		}, 100)
 	}
-	achGet("Hey", "View the meme list 2 times");
-	achGet("Welcome back", "View the meme list 5 times");
-	achGet("Hello again", "View the meme list 10 times");
-	achGet("Hey, how are you?", "View the meme list 15 times");
-	achGet("Woah, are you an addict?", "View the meme list 30 times");
-	achGet("Just looking", "Search 1 time");
-	achGet("Searching", "Search 10 times");
-	achGet("Seeker", "Search 30 times");
-	achGet("Metallic", "Use the meme list on Chrome (or a Chromium-based browser)");
-	achGet("Blazing Hot", "Use the meme list on Firefox");
-	achGet("Explorer", "Use the meme list on Safari");
-	achGet("Internet Explorer can not display this title.", "Use the meme list on Internet Explorer");
-	achGet("Mobile Memer", "Use the meme list on mobile");
-	achGet("Orderly", "View the first meme first");
-	achGet("Orderly in a different sense", "View the last meme first");
-	achGet("Your first meme", "View 1 meme");
-	achGet("The Real Kitchen Party!", "View all memes in a row.");
-	save();
-	achCheck();
-	loadAchs()
+	achGet("Hey", "View the meme list 2 times")
+	achGet("Welcome back", "View the meme list 5 times")
+	achGet("Hello again", "View the meme list 10 times")
+	achGet("Hey, how are you?", "View the meme list 15 times")
+	achGet("Woah, are you an addict?", "View the meme list 30 times")
+	achGet("Just looking", "Search 1 time")
+	achGet("Searching", "Search 10 times")
+	achGet("Seeker", "Search 30 times")
+	achGet("Metallic", "Use the meme list on Chrome (or a Chromium-based browser)")
+	achGet("Blazing Hot", "Use the meme list on Firefox")
+	achGet("Explorer", "Use the meme list on Safari")
+	achGet("Internet Explorer can not display this title.", "Use the meme list on Internet Explorer")
+	achGet("Mobile Memer", "Use the meme list on mobile")
+	achGet("Orderly", "View the first meme first")
+	achGet("Orderly in a different sense", "View the last meme first")
+	achGet("Your first meme", "View 1 meme")
+	achGet("The Real Kitchen Party!", "View all memes in a row.")
+	save()
+	achCheck()
 }
-
-/*
-Platform checking 
-*/
-
+/* Platform checking  */
 function checkPlatform() {
 	if (platform.name == "Chrome") {
 		if (achSearchName('Metallic') == undefined) achGet('Metallic', 'Use the meme list on Chrome (or a Chromium-based browser)')
-	} else if (platform.name == "Chrome") {
+	} else if (platform.name == "Firefox") {
 		if (achSearchName('Blazing Hot') == undefined) achGet('Blazing Hot', 'Use the meme list on Firefox')
-	} else if (platform.name == "Chrome") {
+	} else if (platform.name == "Safari") {
 		if (achSearchName('Explorer') == undefined) achGet('Explorer', 'Use the meme list on Safari')
-	} else if (platform.name == "Chrome") {
+	} else if (platform.name == "IE") {
 		if (achSearchName('Internet Explorer can not display this title.') == undefined) achGet('Internet Explorer can not display this title.', 'Use the meme list on Internet Explorer')
 	} else if (platform.os.family == "iOS") {
 		if (achSearchName('Mobile Memer') == undefined) achGet('Mobile Memer', 'Use the meme list on mobile')
 	}
-
-	loadAchs()
 }
-// these 
-// comments
-// exist 
-// only
-// to 
-// make
-// the 
-// file 
-// 500 
-// lines 
-//:D
+
+/* Games modal handling */
+$('games').onclick = () => {
+	gamesShowModal()
+}
+function gamesShowModal() {
+	let html = `<h1> Games! </h1> <p id="close">&times;</p>`
+	for (let i = 0; i < games.length; i++) {
+		html += `<div class="games-card" onclick="${games[i].loadFunc}">
+		<img src="${games[i].image}">
+		<div>
+			<h1 class="title">${games[i].name}</h1>
+			<p class="highScore">Your High score: ${saveData.gameScores[i].score}</h2>
+			<p class="description">${games[i].description}</p>
+		</div>
+		</div>`
+	}
+	let mod = new Modal()
+	mod.element.innerHTML = html
+	mod.setClose()
+}
+/****************************************
+ * Hooy Typing Game
+ * also by me lol
+ * started oct 1
+ ***************************************/
+var hooyTimer = {
+	seconds: 0,
+	start: function (func) {
+		func(hooyTimer.seconds)
+		setInterval(function () {
+			hooyTimer.seconds=Math.round((hooyTimer.seconds + 0.1)*10)/10
+			func(hooyTimer.seconds)
+		}, 100)
+	},
+	getResult: function () {
+		for (let i = 0; i < 150; i++) window.clearInterval(i);
+		return hooyTimer.seconds
+	},
+	reset: function () {
+		hooyTimer.seconds = 0
+	}
+}
+function hooyGenStr() {
+	let hooies = []
+	for (let i = 0; i < 10; i++) {
+		let os = ``
+		for (let j = 0; j < Math.round(Math.random() * 3) + 2; j++) {
+			os += 'o'
+		}
+
+		let es = ``
+		for (let k = 0; k < Math.round(Math.random() * 10) + 1; k++) {
+			es += 'e'
+		}
+		hooies.push('h' + os + 'i' + es)
+		if (i == 9) return hooies.join(' ')
+	}
+}
+function hooyTypeModal() {
+	let mod = new Modal()
+	mod.element.innerHTML = `
+	<p id="close">&times;</p>
+	<h1>Hooie Typing Game</h1>
+	<p>Type 10 Hooies with randomly generated lengths as fast as you can! <b>Tip: being slower instead of getting letters wrong gets you a higher score. </b><p>
+	<button onclick="hooyTypeBegin()">Start</button>
+	`
+	mod.setClose()
+}
+
+function hooyTypeBegin() {
+	let curLetter = 0, wrongLetters = 0, str = hooyGenStr(), mod = document.querySelector('.modal')
+	mod.innerHTML = `
+	<h1>Hooie Typing Game</h1>
+	<p><span id="progress">0</span>/${str.length} | <span id="time"></span>s</p>
+	<div id="typediv"><div class="carot"></div></div>
+	`
+	let td = $('typediv')
+	for (let i = 0; i < str.length; i++) {
+		td.innerHTML += `<span class="letter">${str.charAt(i)}</span>`
+	}
+
+	let currentLetterBCR = document.getElementsByClassName('letter')[curLetter].getBoundingClientRect()
+	let carot = document.querySelector('.carot')
+	var loffset = carot.getBoundingClientRect().left
+	var toffset = carot.getBoundingClientRect().top
+	let relativeBCRLeft = Math.round(currentLetterBCR.left - loffset) + 15
+	let relativeBCRTop = Math.round(currentLetterBCR.top - toffset) + 20
+	carot.style.left = relativeBCRLeft + 'px'
+	carot.style.top = relativeBCRTop + 'px'
+	onkeydown = e => {
+		setTimeout(function () {
+			if (curLetter == 0) {
+				hooyTimer.start(function (seconds) {
+					$('time').innerHTML = seconds
+				})
+			}
+			$('progress').innerHTML = curLetter + 1
+
+			if (curLetter == str.length - 1) hooyResults(str.length,wrongLetters)
+			currentLetterBCR = document.getElementsByClassName('letter')[curLetter].getBoundingClientRect()
+			let currentLetter = document.getElementsByClassName('letter')[curLetter]
+			let relativeBCRLeft = Math.round(currentLetterBCR.left - loffset) + 35
+			let relativeBCRTop = Math.round(currentLetterBCR.top - toffset) + 20
+			carot.style.left = relativeBCRLeft + 'px'
+			carot.style.top = relativeBCRTop + 'px'
+			if (e.key == str.charAt(curLetter)) {
+				currentLetter.classList.add('passed')
+			} else {
+				wrongLetters++
+				currentLetter.classList.add('passed-red')
+			}
+			if (e.key == 'Backspace') {
+				curLetter = Math.abs(curLetter - 1)
+				currentLetter.classList.remove('passed')
+				currentLetter.classList.remove('passed-red')
+			}
+			else curLetter++, currentLetter.classList.add('passed')
+		}, 0)
+	}
+}
+function hooyResults(typed,wrong) {
+	onkeydown = () => {} 
+	let res = hooyTimer.getResult()
+	let score = (Math.round(((typed - (wrong*1.6))/res)*100)/100)*100
+	let modal = document.querySelector('.modal')
+	let grade
+	if (score < 0) grade = 'You scored so low I had to make it 0 instead of '+score, score = 0
+	else if (score >= 0 && score <= 300) grade = 'You\'re horrible.'
+	else if (score > 300 && score < 400) grade = 'I\'ve seen better'
+	else if (score >= 400 && score < 500) grade = 'Average'
+	else if (score >= 500 && score < 575) grade = 'Pretty good :)'
+	else if (score >= 575 && score < 650) grade = 'Good job!'
+	else if (score >= 650 && score < 700) grade = 'Amazing!! :D'
+	else if (score >= 700) grade = 'Superhuman :O Teach me senpai'
+	else grade = 'Buddy you kind of broke the algorithm.'
+	modal.innerHTML = `
+	<p id="close" onclick="mdCloseModal($('overlay'),document.querySelector('.modal'))">&times;</p>
+	<h1>Your Results</h1>
+	<h2>${grade}</h2>
+	<p>Elapsed time <light>${res}</light></p>
+	<p>Letters Typed <light>${typed}</light></p>
+	<p>Wrong Letters <light>${wrong}</light></p>
+	<p>Your Score   <light>${score}</light></p>`
+
+	saveData.gameScores[0].score = score
+	save()
+}
+
+// W.I.P.
+
+/*******************************
+ * Settings!
+ * Started oct 1 2021 :D
+ * by me lol, everything here is by me
+ ******************************/
+
+function stOpenAndHandleSettings() {
+	let imgs = ``
+	for (let i = 0; i < 5; i++) {
+		if (document.body.style.backgroundImage == 'url("./imgs/bg' + (i + 1) + '.jpg")') {
+			imgs += `<div class="img selected"  onclick="document.body.style.backgroundImage = 'url(./imgs/bg${i + 1}.jpg)';stCheckThis(this)"style="background-image:url(./imgs/bg${i + 1}.jpg)"></div>`
+		} else imgs += `<div class="img" onclick="document.body.style.backgroundImage = 'url(./imgs/bg${i + 1}.jpg)';saveData.settings.background = ${i+1};stCheckThis(this)" style="background-image:url(./imgs/bg${i + 1}.jpg)"></div>`
+	}
+	let settingsModal = new Modal()
+	settingsModal.element.innerHTML = `
+	<h1>Settings</h1>
+	<p id="close">&times;</p>
+	<h2>Background</h2>
+	<div class="imgs-cont">${imgs}</div>`
+	settingsModal.setClose()
+}
+function stCheckThis(el) {
+	$('overlay').style.opacity = '0';
+	document.querySelector('.modal').style.opacity = '0.2'
+	setTimeout(() => {
+		$('overlay').style.opacity = '';
+		document.querySelector('.modal').style.opacity = ''
+	}, 1500);
+	for (let i = 0; i < document.querySelectorAll('.img').length; i++) {
+		document.querySelectorAll('.img')[i].classList.remove('selected')
+	}
+	el.classList.add('selected')
+
+	save()
