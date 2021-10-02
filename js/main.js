@@ -732,3 +732,4 @@ function stCheckThis(el) {
 	el.classList.add('selected')
 
 	save()
+}
