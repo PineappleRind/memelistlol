@@ -850,13 +850,13 @@ var games = [
         image: './imgs/hooyType.png',
         highScore: 0,
         loadFunc: 'hooyTypeModal()'
-    },/* {
+    }, {
         name: "Auringe Juice",
         description: "",
         image: '',
         highScore: 0,
-        loadFunc: 'auringeModal()'
-    }*/
+        loadFunc: 'alert(\'This game is not completed yet!\')'
+    }
 ]
 
 document.getElementById('loadText').innerHTML = 'Loading main.js...'

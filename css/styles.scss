@@ -507,6 +507,7 @@ textarea,
     transition: $trans-bounce;
     border: $border;
     padding: 20px;
+    margin: 10px;
     border-radius: $radius-big;
     background: rgba(200, 200, 240, 0.15);
 
@@ -686,9 +687,22 @@ textarea,
     right: 50%;
     transform: translateX(50%) translateY(-100%)
 }
-
+.pitcher::before {
+    position: absolute;
+    white-space: pre;
+    padding: 5px;
+    border-radius: 50px;
+    content: 'Click to start pouring. Click again to stop.';
+    top: -15%;
+    left: -100%;
+    background: $bg-floating;
+    border: $border;
+}
 .upside-down {
     transform: rotate(180deg)
+}
+.upside-down::before {
+    opacity: 0;
 }
 
 .pouring::after {

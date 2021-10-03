@@ -679,7 +679,7 @@ function hooyResults(typed, wrong) {
 	else if (score >= 500 && score < 575) grade = 'Pretty good :)'
 	else if (score >= 575 && score < 650) grade = 'Good job!'
 	else if (score >= 650 && score < 700) grade = 'Amazing!! :D'
-	else if (score >= 700) grade = 'Superhuman :O Teach me senpai'
+	else if (score >= 700) grade = 'Superhuman :O'
 	else grade = 'Buddy you kind of broke the algorithm.'
 	modal.innerHTML = `
 	<p id="close" onclick="mdCloseModal($('overlay'),document.querySelector('.modal'))">&times;</p>
@@ -748,7 +748,7 @@ function auringeStartPouring() {
 function auringeTryAgain() {
 	auringePitcher.classList.remove('upside-down')
 	auringeJuiceAmt = 0
-	auringeBeaker.children[1].style.opacity = '0'
+	document.querySelector('.beakerContent').style.height = '0px'
 	auringeStart(true)
 }
 function auringeStopPouring() {
