@@ -523,7 +523,10 @@ var saveData = {
         {
             "name": "hooy",
             "score": 0
-        }
+        },/* {
+            "name": "auringe",
+            "score": 0
+        }*/
     ]
 }
 
@@ -847,7 +850,13 @@ var games = [
         image: './imgs/hooyType.png',
         highScore: 0,
         loadFunc: 'hooyTypeModal()'
-    }
+    },/* {
+        name: "Auringe Juice",
+        description: "",
+        image: '',
+        highScore: 0,
+        loadFunc: 'auringeModal()'
+    }*/
 ]
 
 document.getElementById('loadText').innerHTML = 'Loading main.js...'

@@ -1,143 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Testing lolllll</title>  
+    <title>Testing lolllll</title>
     <style>
-        *{-webkit-user-select: none;
--khtml-user-select: none;
--moz-user-select: none;
--o-user-select: none;
-user-select: none;}
-        html {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            width: 100vw;
-            background:black;
-        }
-        body {
-            height:500px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-end;
-            width:60vw;
-            background: #ffe7cb;
-            overflow:hidden;
-        }
-        .pitcher {
-            height:100px;
-            position: relative;
-            z-index:0;
-            left: 10px;
-            bottom: 10px;
-            transition: 0.2s ease-in-out;
-            background: url('pitcher_full.png');
-            background-size: cover;
-            width: 70px;
-        }
 
-        .pitcher::after {
-            height: 0px;
-            z-index:0;
-            border-top-right-radius:100px;
-            border-top-left-radius:100px;
-            top: 0;
-            position: absolute;
-            width: 10px;
-            transition: 0.2s;
-            background: #ffb700;
-            content:'';
-            right: 50%;
-            transform: translateX(50%) translateY(-100%)
-        }
-        .upside-down {
-            transform: rotate(180deg)
-        }
-        .pouring::after {
-            height: 310px;
-        }
-        .beaker img {
-            height:300px;
-            transform:translateY(10px)
-        }
-        .beaker {
-            position: relative;
-        }
-        .beaker img {
-            position: relative;
-            z-index:2;
-            user-select: none;
-        }
-        .beakerContent {
-            background: #ffb700;
-            position: absolute;
-            bottom:5px;
-            right:3px;
-            left:calc(10% + 3px);
-            z-index:1;
-        }
-        .redLine {
-            width: 82.7%;
-            position: absolute;
-            right:12px;
-            height:1px;
-            background: red;
-            z-index: 3;
-        }
     </style>
 </head>
+
 <body>
-       <div class="pitcher"></div>
-    <div class="beaker">
-        <img draggable="false" src="beaker.png" alt="">
-        <div class="beakerContent"></div>
-        <div class="redLine"></div>
-    </div>
-    <script> 
-        let beaker = document.querySelector('.beaker')
-        let timeToStop = Math.round(Math.random() * (beaker.children[0].getBoundingClientRect().height-90)+50)
-        document.querySelector('.redLine').style.bottom = timeToStop + 'px'
-        console.log(timeToStop)
-        let pitch = document.querySelector('.pitcher')
-        let pouring=false, liquidHeight = 0
-        onmousedown = () => {
-            if (pouring == false) startPouring()
-            else stopPouring()
-        }
-        let pouringInterval
-        function startPouring() {
-            pouring = true
-            pitch.classList.add('upside-down') 
+    
+    <script>
 
-                pouringInterval = setInterval(function(){
-                    if (liquidHeight <= 238) {
-                        liquidHeight+=1.5
-                        console.log(liquidHeight)
-                        beaker.children[1].style.height = liquidHeight + 'px'
-                    } else stopPouringFOREVER()
-                },10)
-            setTimeout(function(){
-                if (pitch.classList.contains('upside-down')) pitch.classList.add('pouring')
-            },200)
-        }
-        function stopPouring() {
-            onmousedown = () => {}
-            pouring = false
-            pitch.classList.remove('pouring')
-            clearInterval(pouringInterval)
-            setTimeout(function(){
-                if (!pitch.classList.contains('pouring')) pitch.classList.remove('upside-down')
-            },200)
-        }
-        function stopPouringFOREVER() {
-            
-        }
 
-        </script>
+    </script>
 </body>
+
 </html>

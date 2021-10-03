@@ -424,7 +424,7 @@ if (!lscache.get('visited')) {
 	checkPlatform()
 } else {
 	loadFromSave()
-	document.body.style.backgroundImage = 'url("./imgs/bg'+saveData.settings.background+'.jpg")'
+	document.body.style.backgroundImage = 'url("./imgs/bg' + saveData.settings.background + '.jpg")'
 	setTimeout(() => {
 		checkPlatform()
 	}, 1000)
@@ -576,7 +576,7 @@ var hooyTimer = {
 	start: function (func) {
 		func(hooyTimer.seconds)
 		setInterval(function () {
-			hooyTimer.seconds=Math.round((hooyTimer.seconds + 0.1)*10)/10
+			hooyTimer.seconds = Math.round((hooyTimer.seconds + 0.1) * 10) / 10
 			func(hooyTimer.seconds)
 		}, 100)
 	},
@@ -644,7 +644,7 @@ function hooyTypeBegin() {
 			}
 			$('progress').innerHTML = curLetter + 1
 
-			if (curLetter == str.length - 1) hooyResults(str.length,wrongLetters)
+			if (curLetter == str.length - 1) hooyResults(str.length, wrongLetters)
 			currentLetterBCR = document.getElementsByClassName('letter')[curLetter].getBoundingClientRect()
 			let currentLetter = document.getElementsByClassName('letter')[curLetter]
 			let relativeBCRLeft = Math.round(currentLetterBCR.left - loffset) + 35
@@ -666,13 +666,13 @@ function hooyTypeBegin() {
 		}, 0)
 	}
 }
-function hooyResults(typed,wrong) {
-	onkeydown = () => {} 
+function hooyResults(typed, wrong) {
+	onkeydown = () => { }
 	let res = hooyTimer.getResult()
-	let score = (Math.round(((typed - (wrong*1.6))/res)*100)/100)*100
+	let score = (Math.round(((typed - (wrong * 1.6)) / res) * 100) / 100) * 100
 	let modal = document.querySelector('.modal')
 	let grade
-	if (score < 0) grade = 'You scored so low I had to make it 0 instead of '+score, score = 0
+	if (score < 0) grade = 'You scored so low I had to make it 0 instead of ' + score, score = 0
 	else if (score >= 0 && score <= 300) grade = 'You\'re horrible.'
 	else if (score > 300 && score < 400) grade = 'I\'ve seen better'
 	else if (score >= 400 && score < 500) grade = 'Average'
@@ -693,8 +693,84 @@ function hooyResults(typed,wrong) {
 	saveData.gameScores[0].score = score
 	save()
 }
+/***************************
+ * Auringe Juice Game
+ * started oct 2 2021
+ * by me lol
+ */
 
-// W.I.P.
+let auringePitcher, isAuringePouring, auringeJuiceAmt, auringeGamearea, auringeBeaker, timeToStopPouringAuringeJuice
+
+function auringeModal() {
+	let mod = new Modal()
+	mod.element.innerHTML = `<h1>Auringe Juice Game</h1><p>Pour auringe juice into a beaker. When you stop pouring, the closer you get to the red line, the higher your score!</p><button onclick="auringeStart()">Start</button>`
+	auringeGamearea = mod.element
+}
+function auringeStart(e) {
+	if (!e) {
+		auringeGamearea.classList.add('auringe-modal')
+		auringeGamearea.innerHTML = `
+	<div class="auringe-gamearea">
+	<div class="pitcher"></div>
+	<div class="beaker">
+		<img draggable="false" src="./imgs/beaker.png" alt="">
+		<div class="beakerContent"></div>
+		<div class="redLine"></div>
+	</div>
+	</div>`
+	}
+	auringeBeaker = document.querySelector('.beaker')
+	timeToStopPouringAuringeJuice = Math.round(Math.random() * (auringeBeaker.children[0].getBoundingClientRect().height - 100) + 50)
+	document.querySelector('.redLine').style.bottom = timeToStopPouringAuringeJuice + 'px'
+	auringePitcher = document.querySelector('.pitcher')
+	isAuringePouring = false, auringeJuiceAmt = 0
+	onmousedown = () => {
+		if (isAuringePouring == false) auringeStartPouring()
+		else auringeStopPouring()
+	}
+}
+let pouringInterval
+function auringeStartPouring() {
+	isAuringePouring = true
+	auringePitcher.classList.add('upside-down')
+
+	pouringInterval = setInterval(function () {
+		if (auringeJuiceAmt <= 248) {
+			auringeJuiceAmt += 1
+			console.log(auringeJuiceAmt)
+			auringeBeaker.children[1].style.height = auringeJuiceAmt + 'px'
+		} else auringeStopPouring()
+	}, 10)
+	setTimeout(function () {
+		if (auringePitcher.classList.contains('upside-down')) auringePitcher.classList.add('pouring')
+	}, 200)
+}
+function auringeTryAgain() {
+	auringePitcher.classList.remove('upside-down')
+	auringeJuiceAmt = 0
+	auringeBeaker.children[1].style.opacity = '0'
+	auringeStart(true)
+}
+function auringeStopPouring() {
+	onmousedown = () => { }
+	isAuringePouring = false
+	auringePitcher.classList.remove('upside-down')
+	auringePitcher.classList.remove('pouring')
+	clearInterval(pouringInterval)
+	setTimeout(function () {
+		if (!auringePitcher.classList.contains('pouring')) auringePitcher.classList.remove('upside-down')
+	}, 200)
+	auringeResults(auringeJuiceAmt, timeToStopPouringAuringeJuice)
+}
+function auringeResults(score, actual) {
+	let finscore = (50 - Math.abs(actual - 4 - score)) / 2.4
+	auringeGamearea.innerHTML += `<div class="results">
+		 Your score is ${(Math.round(finscore * 10))}.
+		 <button>Quit</button>
+		 <button onclick="auringeTryAgain();this.parentElement.remove()">Try again</button>
+		 </div>
+		 `
+}
 
 /*******************************
  * Settings!
@@ -707,7 +783,7 @@ function stOpenAndHandleSettings() {
 	for (let i = 0; i < 5; i++) {
 		if (document.body.style.backgroundImage == 'url("./imgs/bg' + (i + 1) + '.jpg")') {
 			imgs += `<div class="img selected"  onclick="document.body.style.backgroundImage = 'url(./imgs/bg${i + 1}.jpg)';stCheckThis(this)"style="background-image:url(./imgs/bg${i + 1}.jpg)"></div>`
-		} else imgs += `<div class="img" onclick="document.body.style.backgroundImage = 'url(./imgs/bg${i + 1}.jpg)';saveData.settings.background = ${i+1};stCheckThis(this)" style="background-image:url(./imgs/bg${i + 1}.jpg)"></div>`
+		} else imgs += `<div class="img" onclick="document.body.style.backgroundImage = 'url(./imgs/bg${i + 1}.jpg)';saveData.settings.background = ${i + 1};stCheckThis(this)" style="background-image:url(./imgs/bg${i + 1}.jpg)"></div>`
 	}
 	let settingsModal = new Modal()
 	settingsModal.element.innerHTML = `

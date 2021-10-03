@@ -60,7 +60,7 @@ h3 {
 
 html {
     overflow: hidden;
-    
+
     height: 100%;
 }
 
@@ -110,9 +110,11 @@ cursive {
     font-family: 'Parisienne', cursive !important;
     font-size: 20px !important;
 }
+
 light {
     font-weight: 300;
 }
+
 main {
     background: $bg-floating;
     backdrop-filter: $backdrop-blur;
@@ -520,14 +522,15 @@ textarea,
     .description {
         font-weight: 300;
     }
-    
+
     img {
         border-radius: $radius;
         height: 130px;
         margin-right: 10px;
     }
+
     &:hover {
-        transform:translateY(-2px);
+        transform: translateY(-2px);
         box-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);
     }
 }
@@ -572,18 +575,22 @@ textarea,
 .modal div.img {
     width: 45.5%;
     position: relative;
-    min-width:200px;
+    min-width: 200px;
     border-radius: $radius;
-    min-height:200px;
+    min-height: 200px;
     background-position: center center;
     background-size: 150%;
     margin: 10px;
     display: inline-block;
-    overflow:hidden;
+    overflow: hidden;
     border: 5px solid transparent;
     transition: $trans;
+
     &::after {
-        top: 0;bottom: 0;right: 0;left: 0;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
         position: absolute;
         content: '✓';
         display: flex;
@@ -591,26 +598,163 @@ textarea,
         align-items: center;
         justify-content: center;
         background: rgba(200, 200, 240, 0.15);
-        font-size:60px;
-        opacity:0;
+        font-size: 60px;
+        opacity: 0;
         pointer-events: none;
         transition: $trans;
     }
 }
+
 .modal div.selected {
     background-size: 160%;
     border: 5px solid dodgerblue;
+
     &::after {
-        opacity:1;
+        opacity: 1;
         pointer-events: all;
-        transform:scale(1)
+        transform: scale(1)
     }
 }
+
 .modal .imgs-cont {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    justify-content:center;
+    justify-content: center;
+}
+.auringe-modal {
+    height: 500px;
+    width: 60vw;
+    overflow:hidden;
+
+}
+.auringe-gamearea {
+    position: absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    border-radius: $radius-big;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 60vw;
+    background: url('../imgs/background.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    overflow: hidden;
+
+    * {
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -o-user-select: none;
+        user-select: none;
+    }
+
+
+}
+.auringe-gamearea {
+    background: #555575;
+}
+.pitcher {
+    height: 180px;
+    position: relative;
+    z-index: 0;
+    bottom: 10px;
+    transition: 0.2s ease-in-out;
+    background: url('../imgs/pitcher_full.png');
+    background-size: cover;
+    width: 125px;
+    cursor: pointer;
+}
+
+.pitcher::after {
+    height: 0px;
+    z-index: 0;
+    border-top-right-radius: 100px;
+    border-top-left-radius: 100px;
+    top: 0;
+    position: absolute;
+    width: 10px;
+    transition: 0.2s;
+    background: #ffb700;
+    content: '';
+    right: 50%;
+    transform: translateX(50%) translateY(-100%)
+}
+
+.upside-down {
+    transform: rotate(180deg)
+}
+
+.pouring::after {
+    height: 250px;
+}
+
+.beaker img {
+    height: 300px;
+}
+
+.beaker {
+    position: relative !important;
+    height:290px;
+    width:270px;
+}
+
+.beaker img {
+    position: relative;
+    z-index: 2;
+    user-select: none;
+    top:-8px;
+    left:0;
+}
+
+
+.beakerContent {
+    background: #ffb700;
+    position: absolute;
+    bottom: 5px;
+    right: 3px;
+    left: calc(10% + 3px);
+    z-index: 1;
+}
+
+.redLine {
+    width: 82.7%;
+    position: absolute;
+    right: 12px;
+    height: 1px;
+    background: red;
+    z-index: 3;
+}
+
+.results {
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: rgba(0, 12, 123, 0.37);
+    color: white;
+    font-size: 30px;
+    animation: scale 0.2s;
+}
+
+
+@keyframes scale {
+    0% {
+        transform: scale(1.1);
+        opacity: 0
+    }
 }
 
 @keyframes buttonClone {
