@@ -523,10 +523,10 @@ var saveData = {
         {
             "name": "hooy",
             "score": 0
-        },/* {
+        }, {
             "name": "auringe",
             "score": 0
-        }*/
+        }
     ]
 }
 
@@ -855,7 +855,7 @@ var games = [
         description: "",
         image: '',
         highScore: 0,
-        loadFunc: 'alert(\'This game is not completed yet!\')'
+        loadFunc: 'alert(\'This game isn\'t finished yet!\')'
     }
 ]
 
