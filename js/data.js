@@ -27,6 +27,11 @@ var memes = [{
     "achievements": ["Lights", "Southern Lights", "Northern Lights"],
     "reqs": [2, 5, 10]
 }, {
+    "name": "Bad dad ad that make me sad, I am crab with a pad",
+    "description": "Mkz randomly said this once. It was a success.",
+    "achievements": ["Bad ad", "Bad dad ad", "Bad sad dad ad"],
+    "reqs": [2, 5, 10]
+}, {
     "name": "Be One with the Pie Crust",
     "description": "Meme Creator 2 was trying to make a gluten free/dairy free pumpkin pie. He found a recipe on YouTube featuring an energetic female Texan making a pumpkin pie. At one point she said, when molding the pie crust into the pie pan, \"Be One with the Pie Crust\".<hr> <b>To use this meme in Meme Craziness, say it slowly in an eerie, nasal kind of voice.</b>",
     "achievements": ["Baker", "Good baker", "Award-winning baker"],
@@ -293,6 +298,11 @@ var saveData = {
         "viewed": 0,
         "reqs": [2, 5, 10]
     }, {
+        "name": "Bad dad ad that make me sad, I am crab with a pad",
+        "description": "Mkz randomly said this once. It was a success.",
+        "achievements": ["Bad ad", "Bad dad ad", "Bad sad dad ad"],
+        "reqs": [2, 5, 10]
+    }, {
         "name": "Be One with the Pie Crust",
         "achievements": ["Baker", "Good baker", "Award-winning baker"],
         "viewed": 0,
@@ -557,7 +567,7 @@ var fotpQuestions = [{
     answers: [{
         name: "An average head",
         points: function () {
-            give([0, 5, 6, 7, 8, 10], upAll);
+            give([0, 5, 6, 8, 10, 11], upAll);
             give([8], upLil)
         }
     }, {
@@ -574,9 +584,9 @@ var fotpQuestions = [{
             give([5], upLil)
         }
     }, {
-        name: "a big head",
+        name: "a big, round head",
         points: function () {
-            give([4, 8, 9], upLil)
+            give([4, 8, 9, 7], upLil)
             give([3], upAll * 2)
         }
     }
@@ -589,7 +599,7 @@ var fotpQuestions = [{
         {
             name: "I have fair skin",
             points: function () {
-                give([1, 3, 6, 8, 10], upAll)
+                give([1, 3, 6, 8, 10, 11], upAll)
                 give([0, 4], upLil)
                 remove([2], upAll)
             }
@@ -597,7 +607,7 @@ var fotpQuestions = [{
             name: "I have slightly darker fair skin",
             points: function () {
                 give([0, 2, 7], upAll)
-                give([4, 6], upLil)
+                give([4, 6, 11], upLil)
             }
         },
         {
@@ -621,8 +631,7 @@ var fotpQuestions = [{
     }, {
         name: "I have average weight",
         points: function () {
-            give([0, 2, 5, 7], upAll + Math.random() / 2)
-            give([3, 6], upLil)
+            give([0, 2, 3, 5, 6, 7, 11], upLil)
             remove([8, 9], upAll)
         }
     },
@@ -630,7 +639,7 @@ var fotpQuestions = [{
         name: "I'm slightly overweight",
         points: function () {
             give([3], upAll)
-            give([0, 1, 5, 6], upLil)
+            give([0, 1, 5, 6, 11], upLil)
         }
     },
     {
@@ -657,7 +666,8 @@ var fotpQuestions = [{
         {
             name: "I have normal male hair",
             points: function () {
-                give([0, 6, 8], upLil)
+                remove([7], upAll * 2)
+                give([0, 6, 8, 11], upLil)
             }
         },
         {
@@ -671,25 +681,28 @@ var fotpQuestions = [{
         {
             name: "I have curly hair",
             points: function () {
-                remove([2, 0], upAll)
-                give([6, 8], upAll)
+                remove([2, 6, 0], upAll)
+                give([8], upAll)
             }
         },
         {
             name: "I'm bald",
             points: function () {
+                remove([7], upAll * 2)
                 give([1, 5], upAll)
             }
         },
         {
             name: "I have normal female hair",
             points: function () {
+                remove([7], upAll * 2)
                 give([0, 4, 8, 9, 10], upAll)
             }
         },
         {
             name: "I have male pattern baldness",
             points: function () {
+                remove([7], upAll * 2)
                 give([1, 2], upAll)
                 remove([3, 6], upAll)
             }
@@ -709,6 +722,7 @@ var fotpQuestions = [{
             name: "I have a high-pitched voice.",
             points: function () {
                 give([6], upAll)
+                give([11], upLil)
             }
         },
         {
@@ -855,7 +869,7 @@ var games = [
         description: "",
         image: '',
         highScore: 0,
-        loadFunc: 'alert(\'This game isn\'t finished yet!\')'
+        loadFunc: 'auringeModal()'
     }
 ]
 
