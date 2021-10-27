@@ -771,6 +771,8 @@ function auringeStopPouring() {
 }
 function auringeResults(score, actual) {
 	let finscore = auringeCompute(score, actual)
+	games[1].highScore = finscore.score
+	saveData.gameScores[1].score = finscore.score
 	auringeGamearea.innerHTML += `<div class="results">
 		<h1>${finscore.rating}</h1>
 		 <p>Your score is ${finscore.score}, off by ${finscore.pixels} pixel${finscore.plural()}</p>

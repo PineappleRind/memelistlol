@@ -861,13 +861,13 @@ var games = [
     {
         name: "Hooie Type",
         description: "Type a series of HOOIEEEEEs as fast as you can!",
-        image: './imgs/hooyType.png',
+        image: './imgs/hooyType.thumb.png',
         highScore: 0,
         loadFunc: 'hooyTypeModal()'
     }, {
         name: "Auringe Juice",
-        description: "",
-        image: '',
+        description: "Pour Auringe juice as close as you can to the red line!",
+        image: './imgs/auringe.thumb.png',
         highScore: 0,
         loadFunc: 'auringeModal()'
     }
