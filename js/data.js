@@ -187,6 +187,11 @@ var memes = [{
     "achievements": ["Strawberry New York Cheesecake", "Chocolate New York Cheesecake", "YUMMY New York Cheesecake"],
     "reqs": [2, 5, 10]
 }, {
+    "name": "Oil Lamp",
+    "description": "Once, at night, Meme Creator 1 quietly got out of his bed holding an imaginary oil lamp. He walked all the way over to Meme Creator 2's bed, paused, and said \"OIL LAMP!\"",
+    "achievements": ["Vegetable Oil Lamp", "Canola Oil Lamp","Kerosene Oil Lamp"],
+    "reqs": [2, 5, 10]
+}, {
     "name": "Prudence",
     "description": "The Meme Creators found an old picture of their aunt putting her finger on her chin and staring off into the distance. The word \"Prudence\" was associated with the picture. Later on, attributes to the meme such as the Plum of Prudence were added.",
     "achievements": ["Observer of Prudence", "Prudent", "A person of Prudence"],
@@ -455,6 +460,11 @@ var saveData = {
         "name": "New York Cheesecake",
         "viewed": 0,
         "achievements": ["Strawberry New York Cheesecake", "Chocolate New York Cheesecake", "YUMMY New York Cheesecake"],
+        "reqs": [2, 5, 10]
+    },  {
+        "name": "Oil Lamp",
+        "viewed": 0,
+        "achievements": ["Vegetable Oil Lamp", "Canola Oil Lamp","Kerosene Oil Lamp"],
         "reqs": [2, 5, 10]
     }, {
         "name": "Prudence",
