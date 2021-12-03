@@ -413,11 +413,13 @@ setTimeout(function () {
 	saveData.timesViewed++
 	save()
 }, 2000)
-if (lscache.get('achievements')) { // Backwards compatibility
-	alert('You have save data that is only compatible with the old version (v1.3.0). The data will be cleared in order to migrate it to the new version (v2.0.0)')
+if (lscache.get('achievements') || lscache.get('data')) { // Backwards compatibility
+	alert('You have save data that is only compatible with the old version (v2.0.0). The data will be cleared in order to migrate it to the new version (v2.0.0)')
 	lscache.flush()
 	lscache.remove('achievements')
+	lscache.remove('data')
 }
+
 if (!lscache.get('visited')) {
 	save()
 	set('visited', 'true')
@@ -432,12 +434,12 @@ if (!lscache.get('visited')) {
 
 function save() {
 	let notSaved = JSON.stringify(saveData)
-	set('data', notSaved)
+	set('memelistdata', notSaved)
 	return debug('Saved.')
 }
 
 function loadFromSave() {
-	saveData = JSON.parse(lscache.get('data'))
+	saveData = JSON.parse(lscache.get('memelistdata'))
 	return debug('Loaded from save.')
 }
 function svModal() { // Function to open modal. Kinda identical to the previous one (I could merge them, but its not the priority now)
@@ -571,7 +573,7 @@ function gamesShowModal() {
  * also by me lol
  * started oct 1
  ***************************************/
-var hooyTimer = {
+ var hooyTimer = {
 	seconds: 0,
 	start: function (func) {
 		func(hooyTimer.seconds)
