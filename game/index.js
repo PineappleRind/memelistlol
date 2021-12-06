@@ -1,3 +1,4 @@
+
 var games = [
     {
         name: "Hooie Type",
@@ -10,17 +11,22 @@ var games = [
         description: "Pour Auringe juice as close as you can to the red line!",
         image: '../imgs/auringe.thumb.png',
         highScore: 0,
-        loadFilesDir: 'auringeBegin()',
+        loadfunc: 'auringeStart()',
     }
 ]
-
+var gameIndex = parseInt(window.location.hash.replace('#', ''))
+if (JSON.parse(localStorage.getItem('memelistdata'))) {
+    games[gameIndex].highScore = JSON.parse(localStorage.getItem('memelistdata')).gameScores[gameIndex].score
+        
+}
 
 function loadTitle() {
     let name = document.querySelector('.title'), gameIndex = window.location.hash.replace('#', '')
     name.children[0].src = games[gameIndex].image
     name.children[1].children[1].innerHTML = games[gameIndex].name
-    name.children[1].children[2].innerHTML = games[parseInt(gameIndex)].description
-    name.children[1].children[3].onclick = function () {
+    name.children[1].children[2].innerHTML = `High score: ${games[gameIndex].highScore}`
+    name.children[1].children[3].innerHTML = games[parseInt(gameIndex)].description
+    name.children[1].children[4].onclick = function () {
         name.classList.add('hidden')
         setTimeout(function () {
             document.querySelector('.title').remove()

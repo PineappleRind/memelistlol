@@ -866,21 +866,19 @@ var fotpData = [{
  * ha ha ha ha ha ha ha
  * started oct 1
  */
-
-var games = [
+ var games = [
     {
         name: "Hooie Type",
         description: "Type a series of HOOIEEEEEs as fast as you can!",
-        image: './imgs/hooyType.thumb.png',
+        image: '../imgs/hooyType.thumb.png',
         highScore: 0,
-        loadFunc: 'hooyTypeModal()'
+        loadfunc: `hooyTypeBegin()`,
     }, {
         name: "Auringe Juice",
         description: "Pour Auringe juice as close as you can to the red line!",
-        image: './imgs/auringe.thumb.png',
+        image: '../imgs/auringe.thumb.png',
         highScore: 0,
-        loadFunc: 'auringeModal()'
+        loadfunc: 'auringeStart()',
     }
 ]
 
-document.getElementById('loadText').innerHTML = 'Loading main.js...'

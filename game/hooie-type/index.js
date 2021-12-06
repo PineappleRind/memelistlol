@@ -1,5 +1,12 @@
 function $(id) {return document.getElementById(id)}
+let saveData = JSON.parse(localStorage.getItem('memelistdata'))
+if (typeof saveData === 'string') {
+	saveData = JSON.parse(saveData)
+}
 
+function save() {
+	localStorage.setItem('memelistdata', JSON.stringify(saveData))
+}
 var hooyTimer = {
 	seconds: 0,
 	start: function (func) {
@@ -35,7 +42,6 @@ function hooyGenStr() {
 }
 
 function hooyTypeBegin() {
-    console.log('haha')
 	let curLetter = 0, wrongLetters = 0, str = hooyGenStr(), mod = document.querySelector('.container')
 	mod.innerHTML = `
 	<h1>Hooie Typing Game</h1>
@@ -67,10 +73,8 @@ function hooyTypeBegin() {
 			if (curLetter == str.length - 1) hooyResults(str.length, wrongLetters)
 			currentLetterBCR = document.getElementsByClassName('letter')[curLetter].getBoundingClientRect()
 			let currentLetter = document.getElementsByClassName('letter')[curLetter]
-			let relativeBCRLeft = Math.round(currentLetterBCR.left - loffset) + 35
-			let relativeBCRTop = Math.round(currentLetterBCR.top - toffset) + 20
-			carot.style.left = relativeBCRLeft + 'px'
-			carot.style.top = relativeBCRTop + 'px'
+			carot.style.left = currentLetterBCR.left + 20 +  'px'
+			carot.style.top = currentLetterBCR.top + 'px'
 			if (e.key == str.charAt(curLetter)) {
 				currentLetter.classList.add('passed')
 			} else {

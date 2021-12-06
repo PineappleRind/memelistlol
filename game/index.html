@@ -11,18 +11,21 @@
         * {
             margin: 0;
             color: white;
+            box-sizing: border-box;
             font-family: Inter, system-ui, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         }
 
         html,
         body {
             width: 100vw;
-            height: 100vh
+            height: 100vh;
+    
         }
 
         body {
             background: linear-gradient(rgb(7, 10, 12), rgb(25, 25, 39));
             display: flex;
+            overflow:hidden;
             align-items: center;
             flex-direction: column;
             justify-content: center;
@@ -37,9 +40,11 @@
         h1 {
             font-size: 2em;
             font-weight: 800;
+            width:fit-content;
         }
 
-        .title,.container {
+        .title,
+        .container {
             width: fit-content;
             background: rgba(255, 255, 255, 0.05);
             padding: 20px;
@@ -49,8 +54,9 @@
             animation: come 1s;
             transition: 0.3s;
         }
+
         .container {
-            flex-direction:column;
+            flex-direction: column;
         }
 
         .title div {
@@ -62,12 +68,13 @@
 
         .title img {
             border-radius: 20px;
-            width: calc(200px + 20vw);
-            margin-right:20px;
+            width: calc(200px + 20vw) !important;
+            margin-right: 20px;
         }
 
         .title * {
             transition: 0.8s;
+            width:fit-content
         }
 
         .hidden {
@@ -107,6 +114,17 @@
                 transform: scale(0.9)
             }
         }
+        @media only screen and (max-width:500px) {
+            .title {
+                flex-direction: column;
+                height:100vh;
+                width:100vw;
+                margin:0;
+            }
+            .title img {
+                width:100vw;
+            }
+        }
     </style>
 </head>
 
@@ -116,6 +134,7 @@
         <div>
             <p class="caps hidden">memelist.ml game</p>
             <h1 class="hidden">Game Name</h1>
+            <h2 class="hidden" style="font-size:15px">High Score</h2></h2>
             <p style="max-width: 300px;" class="hidden"></p>
             <button class="hidden">Begin Game</button>
         </div>
@@ -125,7 +144,7 @@
         // to defer the loading of stylesheets
         // just add it right before the </body> tag
         // and before any javaScript file inclusion (for performance)  
-        function loadStyleSheet(src){
+        function loadStyleSheet(src) {
             if (document.createStyleSheet) document.createStyleSheet(src);
             else {
                 var stylesheet = document.createElement('link');
@@ -136,9 +155,76 @@
             }
         }
         loadStyleSheet('hooie-type/index.css')
+        loadStyleSheet('auringe-juice/index.css')
+    </script>
+    <script>
+        var num
+        console.log('%cHey there!', 'font-size:30px;font-family:inter,sans-serif')
+        console.info('%cWant to play a game?', 'font-weight:800;font-family:inter,sans-serif')
+        console.info('%cType ok.ill.doIt() if you want to continue.', 'font-family:monospace;font-size:20px;')
+        var ok = {
+            ill: {
+                doIt: function () {
+                    setTimeout(function () {
+                        console.warn('%cYou\'ll need to guess a number from 1 to 10. The closer you are, the better your score =)', 'font-family:Inter,sans-serif;')
+                        setTimeout(function () {
+                            console.log('%cType ok.lets.start() if you\'d like to play.', 'color:blue;font-family:Inter,sans-serif;')
+                        }, 1000)
+                    }, 1000)
+                    return 'Alright...'
+                },
+            }, lets: {
+                start: function () {
+                    setTimeout(function () {
+                        num = Math.round(Math.random() * 10)
+                        console.log('%cGuess your number!', 'font-family:Inter,sans-serif;')
+                        setTimeout(function () {
+                            console.log('%cType guess(<your number>) to guess. Put your guess instead of "<your number>".', 'font-weight:900;font-family:Inter,sans-serif;font-size:20px;')
+                        }, 1000)
+                    }, 1000)
+                    return 'Okay!'
+                }
+            },
+            i: {
+                want: {
+                    to: {
+                        do: {
+                            it: {
+                                again: function () {
+                                    console.clear()
+                                    ok.lets.start()
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+        var guess = function (number) {
+            let score = Math.abs(number - num)
+            if (!score) console.clear(), console.log('Bruh')
+            else {
+                console.clear()
+                console.log('%cYour score is...', 'font-family:Inter,sans-serif;font-size:20px;')
+                setTimeout(function () {
+                    console.log(`%c${score}!`, 'font-family:Inter,sans-serif;font-size:25px;')
+                    setTimeout(function () {
+                        console.log(`%cThe number was ${num}...`, 'font-family:Inter,sans-serif;font-size:15px;')
+                        setTimeout(function () {
+                            if (score > 3) console.log(`%cSorry... type ok.i.want.to.do.it.again() if you want to restart... otherwise, try playing the game that you came here for.  But thank you for actually being interested in how I made this(by opening DevTools)! =)`, 'font-family:Inter,sans-serif;font-size:15px;')
+                            if (score <= 3) console.log(`%cYou did quite well! Now try playing the game that you came here for. But thank you for actually being interested in how I made this (by opening DevTools)! =) `, 'font-family:Inter,sans-serif;font-size:15px;')
+                        }, 1000)
+                    }, 1000)
+                }, 1000)
+            }
+
+        }
+
     </script>
     <script src="index.js"></script>
     <script defer src="hooie-type/index.js"></script>
+    <script defer src="auringe-juice/index.js"></script>
 </body>
 
 </html>
